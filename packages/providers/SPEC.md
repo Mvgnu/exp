@@ -26,3 +26,7 @@ Implement createExaSearch, createBraveSearch, createAnthropicReasoner, createCla
 ## Required verification
 
 Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.
+
+## Implemented surface and limits
+
+Exports: createExaSearch, createBraveSearch, createAnthropicReasoner, createClairicExtractor, ProviderError and contract types. 14 credential-free behavioral tests cover source-vs-summary separation, freshness, bounded errors, typed response validation, evidence spans, null guesses, unsupported structures and truncation. Current-model forced-tool restriction is handled with auto tool selection plus explicit envelope validation. Live extraction accuracy remains unmeasured without a representative paid eval. JSON and references are deliberately routed to the engine's explicit reasoning/resolution path.

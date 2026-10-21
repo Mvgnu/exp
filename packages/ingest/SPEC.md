@@ -26,3 +26,7 @@ Implement createAcquirer(options), createParser(options), canonicalizeUrl(url), 
 ## Required verification
 
 Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.
+
+## Implemented surface and limits
+
+Exports: createAcquirer, createParser, canonicalizeUrl, enumerateCollection (synchronous), AcquisitionError, PARSER_VERSION and contract types. 13 tests cover SSRF/pinned DNS, conditional fetch, robots, body limits, heading/table record boundaries, structured JSON/XML, sitemap/API collections and a real Poppler PDF execution. Scanned pages require an OCR extension; PDFs with embedded text remain flagged for layout audit. JavaScript-only pages require a separately authorized rendering/acquisition adapter.
