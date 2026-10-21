@@ -26,3 +26,15 @@ Implement createEngine(dependencies):Engine and createProject(input,clock?):Proj
 ## Required verification
 
 Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.
+
+## Implemented public surface
+
+Exports `createEngine`, `createProject`, `BudgetExceededError`, `LeaseLostError`, `WorkflowError`, `extractStructuredRecord`, runtime reasoning-task schemas, task names and the untrusted-evidence prompt. Contract exports remain unchanged. The engine consumes the complete core deterministic helper surface, Repository/BlobStore, injected capability interfaces, and ingest canonicalization/collection enumeration.
+
+## Verification record
+
+2026-10-21: domain typecheck passed and 13 real-store integration/adversarial tests passed. Tests cover discovery → schema gap → approval → replay → publication, preserved raw/version history, unchanged retry deduplication, source changes, scope separation, disagreement, stale/breaking approval, rollback version monotonicity, budget/source caps, invalid audit quarantine, missing identity, lease cancellation, database restart and escape-aware JSON evidence offsets. Root architecture/build gates run after PM integration.
+
+## Explicit remaining limits
+
+Provider-cost preflight uses conservative estimates; recorded usage is reconciled but is not a guaranteed invoice ceiling. Provider calls can repeat after unknown remote outcomes; immutable evidence effects are idempotent. Schema replay uses preserved parser segments; a parser upgrade needs a new parsed source version. An approved proposal does not automatically resolve audit findings or publish. References remain explicit source identifiers; ambiguous canonical linkage is withheld for domain-specific resolution rather than guessed.
