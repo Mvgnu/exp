@@ -63,6 +63,17 @@ export const IMMUTABLE_COLLECTIONS: ReadonlySet<Collection> = new Set(['schemas'
 export const WorkspaceSnapshotSchema = z.object({ version: z.literal(1), generatedAt: IsoDateSchema, mode: z.enum(['demo','live']), projects: z.array(ProjectSchema), schemas: z.array(DomainSchemaSchema), sources: z.array(SourceSchema), sourceVersions: z.array(SourceVersionSchema), segments: z.array(SegmentSchema), entities: z.array(EntitySchema), observations: z.array(ObservationSchema), findings: z.array(FindingSchema), proposals: z.array(ProposalSchema), runs: z.array(RunSchema), events: z.array(EventSchema), jobs: z.array(JobSchema), publications: z.array(PublicationSchema), usage: z.array(UsageSchema) });
 export type WorkspaceSnapshot = z.infer<typeof WorkspaceSnapshotSchema>;
 
+/** Public site input: no operator runs, credentials, raw documents or unpublished claims. */
+export const PublicDatasetSchema = z.object({
+  project: ProjectSchema.pick({ id: true, name: true, description: true, mode: true }),
+  publication: PublicationSchema,
+  schema: DomainSchemaSchema,
+  sources: z.array(SourceVersionSchema.pick({ id: true, url: true, title: true, fetchedAt: true, acquisition: true })),
+});
+export type PublicDataset = z.infer<typeof PublicDatasetSchema>;
+export const CatalogDataSchema = z.object({ datasets: z.array(PublicDatasetSchema) });
+export type CatalogData = z.infer<typeof CatalogDataSchema>;
+
 export interface Clock { now(): string }
 export const systemClock: Clock = { now: () => new Date().toISOString() };
 export interface ModelUsage { provider: string; model: string; inputTokens: number; outputTokens: number; estimatedCostUsd: number; reportedCostUsd: number | null }
