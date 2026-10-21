@@ -106,7 +106,7 @@ Rollback body:
 
 Rollback updates the project pointer; the newer release and its history remain intact.
 
-The public `/v1/projects/:id/publication` route returns `404` until explicit publication. Its response is validated by `PublicDatasetSchema` when imported into a catalog. It omits private project questions, source frontier, raw artifacts, observations, drafts, jobs, findings and usage. It sets a short public cache lifetime and an ETag containing the publication ID.
+The public `/v1/projects/:id/publication` route returns `404` until explicit publication. `buildPublicDataset` validates its response against `PublicDatasetSchema`, rechecks evidence spans and includes only source metadata and preserved parsed passages cited by that pinned release. The catalog can distinguish source documents and highlight exact values in their context without a live origin fetch. The response omits private project questions, the source frontier, original blobs, unrelated passages, observations, drafts, jobs, findings and usage. It sets a short public cache lifetime and an ETag containing the publication ID.
 
 ## Errors and operational semantics
 

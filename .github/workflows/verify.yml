@@ -22,11 +22,11 @@ jobs:
       TEST_DATABASE_URL: postgresql://deeplake:deeplake-test-only@localhost:5432/deeplake_test
       NEXT_TELEMETRY_DISABLED: 1
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
         with:
           version: 11.25.0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -41,7 +41,7 @@ jobs:
       - run: pnpm test:e2e
       - run: pnpm cli init && docker compose config --quiet
       - run: docker build --target catalog --tag deeplake-catalog:ci .
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: browser-failure-evidence

@@ -10,13 +10,7 @@ export default defineConfig({
     launchOptions: executablePath
       ? {
           executablePath,
-          args: [
-            '--no-sandbox',
-            '--no-zygote',
-            '--single-process',
-            '--use-gl=angle',
-            '--use-angle=swiftshader',
-          ],
+          args: ['--no-sandbox', '--no-zygote', '--use-gl=angle', '--use-angle=swiftshader'],
         }
       : {},
   },

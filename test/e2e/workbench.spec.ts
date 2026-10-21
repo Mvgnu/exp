@@ -56,10 +56,10 @@ test('connects to the real API and creates persisted operator state', async ({
   await page.goto('/');
   await page.getByRole('button', { name: 'Connect your data', exact: true }).click();
   await page.getByLabel('API URL', { exact: true }).fill('http://127.0.0.1:4311');
-  await page.getByLabel('Operator token', { exact: true }).fill(token);
+  await page.getByLabel('Operator token').fill(token);
   await page.getByRole('button', { name: 'Connect workspace', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
-  await page.getByRole('button', { name: 'New project', exact: true }).click();
+  await page.getByRole('button', { name: 'New project', exact: true }).first().click();
   const name = `Browser-created ${testInfo.project.name} ${Date.now()}`;
   await page.getByLabel('Project name', { exact: true }).fill(name);
   await page
@@ -76,7 +76,13 @@ test('connects to the real API and creates persisted operator state', async ({
   expect(response.status()).toBe(200);
   const projects: Array<{ name: string; mode: string }> = await response.json();
   expect(projects.find((project) => project.name === name)?.mode).toBe('live');
+  const restoredSnapshot = page.waitForResponse(
+    (response) =>
+      response.url() === 'http://127.0.0.1:4311/api/snapshot' &&
+      response.request().method() === 'GET',
+  );
   await page.reload();
+  expect((await restoredSnapshot).status()).toBe(200);
   await expect(page.getByLabel('Project', { exact: true })).toContainText(name);
   expect(await page.evaluate(() => localStorage.length)).toBe(0);
 });

@@ -8,7 +8,7 @@
         "mode": "demo"
       },
       "publication": {
-        "id": "publication_83a11ef0c90bbbbe423de94854ded1a2eda3d43f",
+        "id": "publication_98cdfe569bb795821145066fba071b71eef3d824",
         "projectId": "project_curricula",
         "schemaId": "schema_d66ddff80e67346dc178a661c79e0f45284b22f3",
         "version": 2,
@@ -26,12 +26,12 @@
               "code": {
                 "value": "CS102",
                 "observationIds": [
-                  "observation_9ce4196df3e66c6d613c5159a2cd8dafa078fc54"
+                  "observation_9814788b45ea7caf93a099a3ad2f636ae140eaac"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 103,
                     "end": 108,
                     "quote": "CS102"
@@ -43,12 +43,12 @@
               "name": {
                 "value": "Programming Studio",
                 "observationIds": [
-                  "observation_e971dfbb4751cd5a26981eb21be1b820abaddc8c"
+                  "observation_a53f7375c2db73d92fcab8c6ac413bfed5f16233"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 122,
                     "end": 140,
                     "quote": "Programming Studio"
@@ -60,12 +60,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_bac5c8e390de842105fc5e88e23250aac68efd02"
+                  "observation_42a4b54cc4395405f9eb88887a0131cd1caf01f8"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 258,
                     "end": 264,
                     "quote": "Autumn"
@@ -77,12 +77,12 @@
               "credits": {
                 "value": 8,
                 "observationIds": [
-                  "observation_0e3356fd178cea038dcd1c1eb5a40203ff65e18c"
+                  "observation_a76c4219c60d047f982f480aa27007b30f2f6484"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 203,
                     "end": 204,
                     "quote": "8"
@@ -95,12 +95,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_c84e6039c7c677ad37392369b6ec79480c04ecf9"
+                  "observation_fd4292760079a4a432753af16d74d279800043a0"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 247,
                     "end": 251,
                     "quote": "Core"
@@ -112,12 +112,12 @@
               "assessment": {
                 "value": "Practical portfolio",
                 "observationIds": [
-                  "observation_6cb6468b1d36bab15e1d21749677b8a08f60757e"
+                  "observation_b114ef6f0d18d2195b0154b825810e9d519c1db0"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 217,
                     "end": 236,
                     "quote": "Practical portfolio"
@@ -129,12 +129,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_09c0739b771155a829f1d20edd015b250c3413c3"
+                  "observation_e37c2bfdadc40181bfd4e3b8994073850dcecd18"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 189,
                     "end": 193,
                     "quote": "2026"
@@ -146,12 +146,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_d7f3d3952fd570d357ad038682e319f0ac4de9ac"
+                  "observation_00ddec8d7bbc0130e93327a2f44ac5584620b591"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-                    "segmentId": "segment_bcbac2059d45509334d78c4986f714218a59e643",
+                    "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+                    "segmentId": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
                     "start": 154,
                     "end": 176,
                     "quote": "Northbridge University"
@@ -176,12 +176,12 @@
               "code": {
                 "value": "BI240",
                 "observationIds": [
-                  "observation_ca2066db18bead54b4834c1a5f2c2df3d9142dc4"
+                  "observation_4ee386174fa51e306872f59c700d8a71abcb9b6c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 106,
                     "end": 111,
                     "quote": "BI240"
@@ -193,12 +193,12 @@
               "name": {
                 "value": "Computational Biology",
                 "observationIds": [
-                  "observation_7abadaeab6ed73479a5af347c2dc17389aa99210"
+                  "observation_71aa69e78425f891af89646ba1821b44cbe1e3ca"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 125,
                     "end": 146,
                     "quote": "Computational Biology"
@@ -210,12 +210,12 @@
               "term": {
                 "value": "Spring",
                 "observationIds": [
-                  "observation_461b88c310c3d9aca2d945a64e63987058be098e"
+                  "observation_b3ea632e18629775cac95fa93930aea67ed4a5e6"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 261,
                     "end": 267,
                     "quote": "Spring"
@@ -227,12 +227,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_77cbfe64c16dede4421b65eff5f0bcbdc5761099"
+                  "observation_52a245ddd4dc03a6d999f224ac956596a4bc78fd"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 205,
                     "end": 206,
                     "quote": "6"
@@ -245,12 +245,12 @@
               "category": {
                 "value": "Elective",
                 "observationIds": [
-                  "observation_35c37c666af5d75969619f8264fb15be3019eaf9"
+                  "observation_3c62a6c554d3b033a337ddb043b48965ae2d5780"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 246,
                     "end": 254,
                     "quote": "Elective"
@@ -262,12 +262,12 @@
               "assessment": {
                 "value": "Research project",
                 "observationIds": [
-                  "observation_3834c22aa87c97544b968100007290f0c6f1e6bd"
+                  "observation_8a99fabb68b507a187462aa6c89ed4ff6723a67a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 219,
                     "end": 235,
                     "quote": "Research project"
@@ -279,12 +279,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_b0da8aafd8abafbd77978a949be35a76b1ffcf3e"
+                  "observation_8a71c326dbc26b50e7adf5d9bcc45317fc3b718c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 191,
                     "end": 195,
                     "quote": "2026"
@@ -296,12 +296,12 @@
               "institution": {
                 "value": "Riverton Institute",
                 "observationIds": [
-                  "observation_87d8e8bac62cddbd06a39252f2c3f76b0f25c38f"
+                  "observation_b4e7c79e4a651cceb5e689344dd3d174ef5a39a4"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-                    "segmentId": "segment_d9d5afbdc010b42edd38489403bd9ea69160b445",
+                    "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+                    "segmentId": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
                     "start": 160,
                     "end": 178,
                     "quote": "Riverton Institute"
@@ -326,12 +326,12 @@
               "code": {
                 "value": "CS101",
                 "observationIds": [
-                  "observation_206f8231ca1f8313ea8d4ada66a535ac6565220a"
+                  "observation_f25db44c742a141af435b4a838dfa0cf775e747f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 109,
                     "end": 114,
                     "quote": "CS101"
@@ -343,12 +343,12 @@
               "name": {
                 "value": "Foundations of Computing",
                 "observationIds": [
-                  "observation_9accf5d324e098d77bf8675e2535f5005a240d3a"
+                  "observation_48befc29bcfca594b963d6b8361d08896fdc77aa"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 128,
                     "end": 152,
                     "quote": "Foundations of Computing"
@@ -360,12 +360,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_2398936da968570c3700565a8d949d507df69d47"
+                  "observation_19e118366896644d806f433d38d60d56b90f2a60"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 263,
                     "end": 269,
                     "quote": "Autumn"
@@ -377,12 +377,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_bf8433d9d50f726c06683a0678d95611171a8a77"
+                  "observation_e5ade57b24a497f364c70cb3933182d64b41a4a4"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 215,
                     "end": 216,
                     "quote": "6"
@@ -395,12 +395,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_7182b0eb8fd0d72531206a9ca9e67481420e84d0"
+                  "observation_a923272071842d15008ddad1503e3b7331f160a7"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 252,
                     "end": 256,
                     "quote": "Core"
@@ -412,12 +412,12 @@
               "assessment": {
                 "value": "Written exam",
                 "observationIds": [
-                  "observation_716726925de31edaf85d215b102e364b96f1cdcc"
+                  "observation_cc10a6f25c10627632190aacf61387108f629f30"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 229,
                     "end": 241,
                     "quote": "Written exam"
@@ -429,12 +429,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_6e4e441c3461b57e71a3cb79ec76fd8e357a3884"
+                  "observation_b29f0eb4ca0a98f71cbe99633af5af5da482b17a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 201,
                     "end": 205,
                     "quote": "2026"
@@ -446,12 +446,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_d451408dd976afbff8c16d6830a98254c44d46a9"
+                  "observation_e71baa181f0e01dea376188ddcfa5e571a3cebfc"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-                    "segmentId": "segment_b550386722f51d0e3ccb341cd23e451b595a452b",
+                    "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+                    "segmentId": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
                     "start": 166,
                     "end": 188,
                     "quote": "Northbridge University"
@@ -476,12 +476,12 @@
               "code": {
                 "value": "MA110",
                 "observationIds": [
-                  "observation_254e2064ee252a43803687015a8d43d5f2482e66"
+                  "observation_87a1388dff202ca2fd95d85863dbd7e01e3e4090"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 105,
                     "end": 110,
                     "quote": "MA110"
@@ -493,12 +493,12 @@
               "name": {
                 "value": "Discrete Mathematics",
                 "observationIds": [
-                  "observation_bf59f00a2341a51f3bab41fef051f9a4669700f5"
+                  "observation_c256f5348dabcca8992a5c7b0e15ad575b929ccb"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 124,
                     "end": 144,
                     "quote": "Discrete Mathematics"
@@ -510,12 +510,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_c8ecc2476b1eb379a6f55661146d7c2d09441b8d"
+                  "observation_ba58526f4ca3af06fa0a256d01b0dd30f0d6d3c1"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 255,
                     "end": 261,
                     "quote": "Autumn"
@@ -527,12 +527,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_343a3e18f40de07770c4f9f3229d284ad31226c6"
+                  "observation_d151772c3271fc2d72a0b6fe8f12bbff04b82992"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 207,
                     "end": 208,
                     "quote": "6"
@@ -545,12 +545,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_1b2f46d9eb2ce8be8f6a901d507fa61ecdff6cf9"
+                  "observation_2930472b67a00902fcf8267fb087962eb8052784"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 244,
                     "end": 248,
                     "quote": "Core"
@@ -562,12 +562,12 @@
               "assessment": {
                 "value": "Written exam",
                 "observationIds": [
-                  "observation_6ffa0556894d39fbd34d10a5402f647252990ab6"
+                  "observation_78239880de7fc2772e7395f8ae0338016b7fbee7"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 221,
                     "end": 233,
                     "quote": "Written exam"
@@ -579,12 +579,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_2d739b13450f087c92bbc660c3629793e09f46ad"
+                  "observation_1d18f8e93ba0e6d4bfa3039af6bb4856d492e132"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 193,
                     "end": 197,
                     "quote": "2026"
@@ -596,12 +596,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_cccca8d6ba628e200686130bd4b5cdc835e3e079"
+                  "observation_eb4fc6b3617883ab93e5e3b47fe2bbcc94e33e8d"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-                    "segmentId": "segment_c26affcb823f07ff2bd0ec40173b59f03482b79a",
+                    "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+                    "segmentId": "segment_65c3855ae00554a95373fc409fba4506841ac001",
                     "start": 158,
                     "end": 180,
                     "quote": "Northbridge University"
@@ -626,12 +626,12 @@
               "code": {
                 "value": "SE220",
                 "observationIds": [
-                  "observation_0d0384c161423ef93b06c9b2d71bb01548db32ec"
+                  "observation_4f7c189f9c7c23f1c054193f504aac833f816502"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 105,
                     "end": 110,
                     "quote": "SE220"
@@ -643,12 +643,12 @@
               "name": {
                 "value": "Software Engineering",
                 "observationIds": [
-                  "observation_c0f00fc543e4ef8d679b951b010a0491af9050b1"
+                  "observation_cf2371bfd0c584494d7af390b50c592e864caa78"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 124,
                     "end": 144,
                     "quote": "Software Engineering"
@@ -660,12 +660,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_3371ce4f78ba51289c30e0f5ade5bdc570e58255"
+                  "observation_bc42cd4dc3f0f5b4307bf55d1f387894d9d611ef"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 255,
                     "end": 261,
                     "quote": "Autumn"
@@ -677,12 +677,12 @@
               "credits": {
                 "value": 8,
                 "observationIds": [
-                  "observation_2457a89900fbb9d296d4d3591152d06a684d3bbb"
+                  "observation_06fbf1c29855e11849c1657c61299cd516266f5a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 207,
                     "end": 208,
                     "quote": "8"
@@ -695,12 +695,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_5fffb7538d476e34d82a496c1c9471db9ada962a"
+                  "observation_743aa07f83f372e7a218782703bdd11a8313216b"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 244,
                     "end": 248,
                     "quote": "Core"
@@ -712,12 +712,12 @@
               "assessment": {
                 "value": "Team project",
                 "observationIds": [
-                  "observation_301b2e559db8d16d6fbeb8d5bfc8bcbeb8819703"
+                  "observation_9925e1ba98a4390c53bf9f78bb92d3d66c858ee2"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 221,
                     "end": 233,
                     "quote": "Team project"
@@ -729,12 +729,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_d878b474e34dd70895abe45209fae4d84f792465"
+                  "observation_fa36c545291905229e708bf7ed8869215c195b08"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 193,
                     "end": 197,
                     "quote": "2026"
@@ -746,12 +746,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_879659ac551f5ce053e8b8cd9e8cd16ce4e7b86b"
+                  "observation_bd93c8e23a1592e3aa0f7c3aa27df5d6bd23fa6d"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-                    "segmentId": "segment_a02259bcf62cc93c5a9e33b551aad6ba421343c5",
+                    "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+                    "segmentId": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
                     "start": 158,
                     "end": 180,
                     "quote": "Northbridge University"
@@ -776,12 +776,12 @@
               "code": {
                 "value": "DS310",
                 "observationIds": [
-                  "observation_a13c1fd82f044fcc1b993a72692f902b3cf50116"
+                  "observation_7a33f0fc5b84af059fae9addf0c5e73765329d7c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 105,
                     "end": 110,
                     "quote": "DS310"
@@ -793,12 +793,12 @@
               "name": {
                 "value": "Applied Data Science",
                 "observationIds": [
-                  "observation_e6229b7d951f1d9adf7680cda5262e58ece2dad1"
+                  "observation_95d36429ef377ca28093b4bf1bd0caf76e9345d4"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 124,
                     "end": 144,
                     "quote": "Applied Data Science"
@@ -810,12 +810,12 @@
               "term": {
                 "value": "Spring",
                 "observationIds": [
-                  "observation_e04bea919ec9285b1e04731d09d8d9c3bf951e0d"
+                  "observation_3b9c7e3f08e1adb86cf4b6e4f29f06888903db01"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 260,
                     "end": 266,
                     "quote": "Spring"
@@ -827,12 +827,12 @@
               "credits": {
                 "value": 10,
                 "observationIds": [
-                  "observation_bed597265578ad0db2bc845a33f9d428343ed041"
+                  "observation_91bac16c73557144b0290acfc0626a8172fda39a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 203,
                     "end": 205,
                     "quote": "10"
@@ -845,12 +845,12 @@
               "category": {
                 "value": "Elective",
                 "observationIds": [
-                  "observation_15f4cb7846148218fe39d86be1551641e024b5bc"
+                  "observation_d802040a3c87ae7a2df6c4db617d2dd955532686"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 245,
                     "end": 253,
                     "quote": "Elective"
@@ -862,12 +862,12 @@
               "assessment": {
                 "value": "Research project",
                 "observationIds": [
-                  "observation_08f1dcaaf4f672b2473dd278c9363cf8e1f08b67"
+                  "observation_ba2e078cda391273925180359fa5f6266cc72424"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 218,
                     "end": 234,
                     "quote": "Research project"
@@ -879,12 +879,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_3e8fd961a558baf21a3f1d5233549717fa5e86ab"
+                  "observation_98566111b9eec87e48c0e1300e210a6c1e5b663f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 189,
                     "end": 193,
                     "quote": "2026"
@@ -896,12 +896,12 @@
               "institution": {
                 "value": "Riverton Institute",
                 "observationIds": [
-                  "observation_56ee1761e4f26c4e6caf522de9730a55ca7dcc70"
+                  "observation_301b0f9c173dee3a5c320900d1d4f8a4d2516ccb"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-                    "segmentId": "segment_3b9d15bba9aeb373c644822c845609e6c5592840",
+                    "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+                    "segmentId": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
                     "start": 158,
                     "end": 176,
                     "quote": "Riverton Institute"
@@ -926,12 +926,12 @@
               "code": {
                 "value": "DB210",
                 "observationIds": [
-                  "observation_10981c48a3c456a71ea6da22af48e0bb00d748f9"
+                  "observation_1f02bb5e61976bb64fec4e3d312c17667bffab5f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 100,
                     "end": 105,
                     "quote": "DB210"
@@ -943,12 +943,12 @@
               "name": {
                 "value": "Database Design",
                 "observationIds": [
-                  "observation_4999e75028123981f71b0d0cbfb46b707724d48c"
+                  "observation_659016d8894b508018d6aa3c0dd9da906c4223ff"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 119,
                     "end": 134,
                     "quote": "Database Design"
@@ -960,12 +960,12 @@
               "term": {
                 "value": "Spring",
                 "observationIds": [
-                  "observation_c70ae4244eff1645a7b3957aa723eeffd59dcd53"
+                  "observation_93c517b5e64a14850a7d4faded0a281b479bad4c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 252,
                     "end": 258,
                     "quote": "Spring"
@@ -977,12 +977,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_02a17e445374cdd90a280a11a304f166045586e5"
+                  "observation_c2d7e44e22dbcf98e6b3de39eacda13386d673cb"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 197,
                     "end": 198,
                     "quote": "6"
@@ -995,12 +995,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_04a470fca1a5b9989bf7bce9dc96af98c1f31652"
+                  "observation_874ea5ac2d2a7998dd48052a6a4c6ee972449a30"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 241,
                     "end": 245,
                     "quote": "Core"
@@ -1012,12 +1012,12 @@
               "assessment": {
                 "value": "Practical portfolio",
                 "observationIds": [
-                  "observation_0ddbd6ee51f3edc18594d0ec7629170835e2fef3"
+                  "observation_0b7ed9c20e5a213a8970e97a34cc74a599377e83"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 211,
                     "end": 230,
                     "quote": "Practical portfolio"
@@ -1029,12 +1029,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_c00d5ac04f4ae6a47a92433bf1a51315b6c23125"
+                  "observation_0025da644a87a0e83a2ff8d40795704340310a94"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 183,
                     "end": 187,
                     "quote": "2026"
@@ -1046,12 +1046,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_2a6942abd7fc360111fad23bd2510604c7328b79"
+                  "observation_bd12730479edeee51b720c7598f394ad19597187"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-                    "segmentId": "segment_2a79b305fb37885683ee40507a76be96200d0ed9",
+                    "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+                    "segmentId": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
                     "start": 148,
                     "end": 170,
                     "quote": "Northbridge University"
@@ -1076,12 +1076,12 @@
               "code": {
                 "value": "AI301",
                 "observationIds": [
-                  "observation_c98c81ccf721e2aa4593d785a66b5a26b8d73922"
+                  "observation_07c927690e0ea21e1077eafc81b608d7776a9587"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 109,
                     "end": 114,
                     "quote": "AI301"
@@ -1093,12 +1093,12 @@
               "name": {
                 "value": "Machine Learning Systems",
                 "observationIds": [
-                  "observation_96934a6e9de4c5eec3a946fbd91d596e9718ec14"
+                  "observation_6385af7dfc615ea7f7cb8a302cbe547b7186e742"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 128,
                     "end": 152,
                     "quote": "Machine Learning Systems"
@@ -1110,12 +1110,12 @@
               "term": {
                 "value": "Spring",
                 "observationIds": [
-                  "observation_b8ea46d23e81b3d3903d6cd2b9513293229a4ab2"
+                  "observation_3dfab93bfa19ed1c42aee7abe6a2d55031658852"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 271,
                     "end": 277,
                     "quote": "Spring"
@@ -1127,12 +1127,12 @@
               "credits": {
                 "value": 8,
                 "observationIds": [
-                  "observation_e43fd5ec18595ce374cd590ae90fd515a10a11ea"
+                  "observation_2c1c1cbe40178e3f23b4b41a6f5db558a2aafff5"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 215,
                     "end": 216,
                     "quote": "8"
@@ -1145,12 +1145,12 @@
               "category": {
                 "value": "Elective",
                 "observationIds": [
-                  "observation_7768b0929bc92e365b623b86ed38b8c6efe3082c"
+                  "observation_7a33bc02be040b19ac8bc1f93f4501dfbee02a3f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 256,
                     "end": 264,
                     "quote": "Elective"
@@ -1162,12 +1162,12 @@
               "assessment": {
                 "value": "Research project",
                 "observationIds": [
-                  "observation_748b98a7dacab2a4aa270fd9d9bd6eb413877897"
+                  "observation_4ac36be2dfb60dd7753fffb1b3ac0dfccb0185c2"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 229,
                     "end": 245,
                     "quote": "Research project"
@@ -1179,12 +1179,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_0f8ac624feef72fbf49a8e3cce6605ef45ece5ea"
+                  "observation_a0ec83bded5935f7fbb8d3afd01fc171e9e41fd8"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 201,
                     "end": 205,
                     "quote": "2026"
@@ -1196,12 +1196,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_7c0bc658f6e5fc7b4ac1853a6d616256d6e137ec"
+                  "observation_fea3edd2e7495ee6f737e5ffcfda13081ece198f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 166,
                     "end": 188,
                     "quote": "Northbridge University"
@@ -1218,12 +1218,12 @@
                   ]
                 },
                 "observationIds": [
-                  "observation_96ae2a893cad460ab6e32de975f5c60e4d88ccb3"
+                  "observation_99e37af5bb560064696386107b7f2d6a65ea5f1a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-                    "segmentId": "segment_8a8c63c1bad03a2a7e84161ac083466509c74bd4",
+                    "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+                    "segmentId": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
                     "start": 297,
                     "end": 326,
                     "quote": "{\"allOf\": [\"DS201\", \"MA110\"]}"
@@ -1248,12 +1248,12 @@
               "code": {
                 "value": "DS201",
                 "observationIds": [
-                  "observation_9e0b98a844d03bd3997befa33929a68c9b51415b"
+                  "observation_d49a241853a42e104ac5436d0980c3e46c039ae1"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 100,
                     "end": 105,
                     "quote": "DS201"
@@ -1265,12 +1265,12 @@
               "name": {
                 "value": "Data Structures",
                 "observationIds": [
-                  "observation_d301c6971cc24042d16049edeed64245f13ca5f7"
+                  "observation_2281347ba11ea9df27de218799ef382c5c48ac25"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 119,
                     "end": 134,
                     "quote": "Data Structures"
@@ -1282,12 +1282,12 @@
               "term": {
                 "value": "Spring",
                 "observationIds": [
-                  "observation_8f8830f15bc8395ca1fdab2e23d63c4a3315d288"
+                  "observation_02da78c87b75d4b6a0203cb3ac010d04de9cf1ec"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 245,
                     "end": 251,
                     "quote": "Spring"
@@ -1299,12 +1299,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_a49c3c3f4a1be9ebfd218861a17e6e28d5758393"
+                  "observation_9092d4a5b48d4d9c87d2aee4c706a1ab4eec2a08"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 197,
                     "end": 198,
                     "quote": "6"
@@ -1317,12 +1317,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_3edc0f5768ce9ed145cc4ed608b4faf7b8120b7a"
+                  "observation_03fcf53c21ca0cfbf643ab80ca36987b0a5db25c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 234,
                     "end": 238,
                     "quote": "Core"
@@ -1334,12 +1334,12 @@
               "assessment": {
                 "value": "Written exam",
                 "observationIds": [
-                  "observation_0eb6669e932e070fbe5389886e67dc6f473a5504"
+                  "observation_344f3ddb9a581faccf81f1e397541c567e83eeba"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 211,
                     "end": 223,
                     "quote": "Written exam"
@@ -1351,12 +1351,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_45e3e6a12c162cae6e8d8320c36194c07d0042d6"
+                  "observation_339290bc8219a98c7955202562b5d57812f04495"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 183,
                     "end": 187,
                     "quote": "2026"
@@ -1368,12 +1368,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_52d8a2793c0b1d833a0bfde0d6e316a30bd068f5"
+                  "observation_42f4a2d6f77bbc032fa873bb7308623b35870a59"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 148,
                     "end": 170,
                     "quote": "Northbridge University"
@@ -1393,12 +1393,12 @@
                   ]
                 },
                 "observationIds": [
-                  "observation_a009e5b1b421dea86fb11b34d33659c1f4ea56fd"
+                  "observation_286de680eb3df40827e7dd3620eb7738a504caf4"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-                    "segmentId": "segment_6e4b337a5fd5cd334dcf96168a289d803c91b53a",
+                    "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+                    "segmentId": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
                     "start": 271,
                     "end": 347,
                     "quote": "{\"anyOf\": [\"CS101\", \"equivalent prior knowledge\"], \"recommended\": [\"CS102\"]}"
@@ -1423,12 +1423,12 @@
               "code": {
                 "value": "NW230",
                 "observationIds": [
-                  "observation_b276393b88bddd478a9e7a20f68623b0a40d2b29"
+                  "observation_f8c8fd36c3e171053ea92302160ba8a780fd9515"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 117,
                     "end": 122,
                     "quote": "NW230"
@@ -1440,12 +1440,12 @@
               "name": {
                 "value": "Networks and Distributed Systems",
                 "observationIds": [
-                  "observation_530efbaf23b2dc3fd9fb9ac1e61b9b0009116a6a"
+                  "observation_0b4f0530c677370ed252f8588d942cc11fe0feb5"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 136,
                     "end": 168,
                     "quote": "Networks and Distributed Systems"
@@ -1457,12 +1457,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_48e46ca06b3294f31c66f4f80094835f5c0a8d69"
+                  "observation_9f5153e3b77c551b1b466d2e5ab24027c722d9b2"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 283,
                     "end": 289,
                     "quote": "Autumn"
@@ -1474,12 +1474,12 @@
               "credits": {
                 "value": 6,
                 "observationIds": [
-                  "observation_d501be5de1c976bd089fc196f19a55baca90bac4"
+                  "observation_86a7ef0202ed5d5863916cdd7cc439af6561a232"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 231,
                     "end": 232,
                     "quote": "6"
@@ -1492,12 +1492,12 @@
               "category": {
                 "value": "Elective",
                 "observationIds": [
-                  "observation_4211b3adeef745f9945bb8421d00900a3f9218c9"
+                  "observation_2d55a1ddfc5c6f3297651b6a344e42ece422d9ff"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 268,
                     "end": 276,
                     "quote": "Elective"
@@ -1509,12 +1509,12 @@
               "assessment": {
                 "value": "Written exam",
                 "observationIds": [
-                  "observation_1f49b85f744f5eacdbd6d80fca6df1604bca1ebc"
+                  "observation_ab6be011407f1534611aa0f2893dc007277c4a6b"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 245,
                     "end": 257,
                     "quote": "Written exam"
@@ -1526,12 +1526,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_506bd9ce1e8a9269b14210d402c5f197a9218c47"
+                  "observation_5a2b632759583ba75ae8dd586763381136bc5234"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 217,
                     "end": 221,
                     "quote": "2026"
@@ -1543,12 +1543,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_334b9fd5717805a010f68e51ceae8c3ca664e294"
+                  "observation_8e3651fe3580efe7a2ee52fa9cdd6a83e0ba926d"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-                    "segmentId": "segment_964be20875ed2ef5d845cbc49baed828de0a62d8",
+                    "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+                    "segmentId": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
                     "start": 182,
                     "end": 204,
                     "quote": "Northbridge University"
@@ -1573,12 +1573,12 @@
               "code": {
                 "value": "CS101",
                 "observationIds": [
-                  "observation_1b0d6b33b967ba55fa2c1f20fcf02bb35032e91d"
+                  "observation_b9bdb0a1adc0e86a75843122f9ad641fdf30f959"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 109,
                     "end": 114,
                     "quote": "CS101"
@@ -1590,12 +1590,12 @@
               "name": {
                 "value": "Foundations of Computing",
                 "observationIds": [
-                  "observation_87142c5a8789679e516af856bd6c73c10a90f60e"
+                  "observation_7e919589e9a2e95544504f031b62ba6b73a44d75"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 128,
                     "end": 152,
                     "quote": "Foundations of Computing"
@@ -1607,12 +1607,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_71736e8ddf3964e58ba9a33327951bd380fbc513"
+                  "observation_5aac58b871a534614bc5b02a99615c84420aedcb"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 263,
                     "end": 269,
                     "quote": "Autumn"
@@ -1624,12 +1624,12 @@
               "credits": {
                 "value": 5,
                 "observationIds": [
-                  "observation_b43647544b948aa4938f6858d8e2114096e78b96"
+                  "observation_54bcae971c684fba5a25fb95d1a34f029ca47eb4"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 215,
                     "end": 216,
                     "quote": "5"
@@ -1642,12 +1642,12 @@
               "category": {
                 "value": "Core",
                 "observationIds": [
-                  "observation_8532e09a582a1e54e952fc31f16384b2ee313c22"
+                  "observation_fa06997935af38707de1700f7c9d72c55df01ca5"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 252,
                     "end": 256,
                     "quote": "Core"
@@ -1659,12 +1659,12 @@
               "assessment": {
                 "value": "Written exam",
                 "observationIds": [
-                  "observation_e35d040b4f4e286fcb715aed029707a10977976a"
+                  "observation_6fcd4d03edea46d32e7e482d93196a1e63c7a60c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 229,
                     "end": 241,
                     "quote": "Written exam"
@@ -1676,12 +1676,12 @@
               "curriculum": {
                 "value": "2025",
                 "observationIds": [
-                  "observation_b5dc1ef5f3aad2f1e3cd504497be4cf8f38d2a84"
+                  "observation_da3c90231fac4d8eb236f42c98414b77de8e4103"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 201,
                     "end": 205,
                     "quote": "2025"
@@ -1693,12 +1693,12 @@
               "institution": {
                 "value": "Northbridge University",
                 "observationIds": [
-                  "observation_2fd26981fc6e933fd763361bd2a6e6067318e0b7"
+                  "observation_774a58f3dd3c0db1e29d700343dbb0f517308d1e"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-                    "segmentId": "segment_77eb8f5923829abb886216019b38c4c7d989e294",
+                    "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+                    "segmentId": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
                     "start": 166,
                     "end": 188,
                     "quote": "Northbridge University"
@@ -1723,12 +1723,12 @@
               "code": {
                 "value": "ET250",
                 "observationIds": [
-                  "observation_1c50fde7187611dae9b578a8a293f67607da0f3b"
+                  "observation_658afaaa9d04ea374d30c25c1badaf44411bce73"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 106,
                     "end": 111,
                     "quote": "ET250"
@@ -1740,12 +1740,12 @@
               "name": {
                 "value": "Ethics of Information",
                 "observationIds": [
-                  "observation_7e0113ad98770f7588fa3f801981a7412f49003f"
+                  "observation_2a7509a6d5ba4ae36eee7620593a1559776b87c6"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 125,
                     "end": 146,
                     "quote": "Ethics of Information"
@@ -1757,12 +1757,12 @@
               "term": {
                 "value": "Autumn",
                 "observationIds": [
-                  "observation_608795c1bebeb33d48a62ad9cd2143fe4ea11f5f"
+                  "observation_bf6900d9b006169e64e27ae94a542ba86fa2f29c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 250,
                     "end": 256,
                     "quote": "Autumn"
@@ -1774,12 +1774,12 @@
               "credits": {
                 "value": 4,
                 "observationIds": [
-                  "observation_3c09ab024846a6d468a95798ca585640285c1378"
+                  "observation_1e934827aa07ba63f301e26120607d48e03fbedc"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 205,
                     "end": 206,
                     "quote": "4"
@@ -1792,12 +1792,12 @@
               "category": {
                 "value": "Elective",
                 "observationIds": [
-                  "observation_522e71e46590c435267ba6480b341a44e5a1c5e6"
+                  "observation_b24e961515e850a2e4c47b34ff1da9a92c962944"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 235,
                     "end": 243,
                     "quote": "Elective"
@@ -1809,12 +1809,12 @@
               "assessment": {
                 "value": "Essay",
                 "observationIds": [
-                  "observation_a7d46c2c705b86f2e17a4845c412d9d7335e5f9e"
+                  "observation_7f6651eaf91ad3189b1dafabef8089650c8df40b"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 219,
                     "end": 224,
                     "quote": "Essay"
@@ -1826,12 +1826,12 @@
               "curriculum": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_934b5b93634ec07321e8dc28420c3bb6210c9e10"
+                  "observation_431f74e67c7d293537e126b15a99f382f82487b1"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 191,
                     "end": 195,
                     "quote": "2026"
@@ -1843,12 +1843,12 @@
               "institution": {
                 "value": "Riverton Institute",
                 "observationIds": [
-                  "observation_eb7ca2ab2b94c2803a8e2798e08b5d9380311b52"
+                  "observation_51f9184f1a21a7c5c696365244f98e408cae23b1"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-                    "segmentId": "segment_010088809a9a0308677724c40bbe4a140ddb5c08",
+                    "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+                    "segmentId": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
                     "start": 160,
                     "end": 178,
                     "quote": "Riverton Institute"
@@ -1863,18 +1863,18 @@
           }
         ],
         "sourceVersionIds": [
-          "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
-          "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-          "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-          "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
-          "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
-          "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
-          "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-          "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-          "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-          "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
-          "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-          "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e"
+          "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+          "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+          "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+          "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+          "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+          "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+          "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+          "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+          "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+          "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+          "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+          "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00"
         ],
         "coverage": {
           "sources": 12,
@@ -1892,7 +1892,7 @@
           "2 unresolved audit findings remain.",
           "Synthetic demonstration data. These records are not real-world assertions."
         ],
-        "previousId": "publication_2a68793ab90fe279dbe35a13cc1081dac3c6deb8"
+        "previousId": "publication_44b797cba18400064b5e3df49fd50bbc48a64cd3"
       },
       "schema": {
         "id": "schema_d66ddff80e67346dc178a661c79e0f45284b22f3",
@@ -2010,88 +2010,186 @@
       },
       "sources": [
         {
-          "id": "sourceversion_28a5658c65a2ab4a7be2353055761b2f3275812f",
-          "url": "https://curricula.example/bi240/2026/10",
-          "title": "Computational Biology",
-          "fetchedAt": "2026-10-21T09:00:22.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_e624ab6fb3b0e376ec1157c6399840557412f70e",
-          "url": "https://curricula.example/cs101/2026/1",
-          "title": "Foundations of Computing",
-          "fetchedAt": "2026-10-21T09:00:27.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_35861a1e038a1e1567f390725e3efa8ccbb39c38",
+          "id": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
           "url": "https://curricula.example/et250/2026/11",
           "title": "Ethics of Information",
           "fetchedAt": "2026-10-21T09:00:32.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_8554cd4470f978d2d105d50a445121520b292e80",
-          "url": "https://curricula.example/cs102/2026/2",
-          "title": "Programming Studio",
-          "fetchedAt": "2026-10-21T09:00:37.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_7a3b99cffde5466f35b40618c5b007f4f687528c",
+          "id": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
           "url": "https://curricula.example/ds310/2026/12",
           "title": "Applied Data Science",
           "fetchedAt": "2026-10-21T09:00:42.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_804d3df81062a0b2d6091bb77a84428d0e53a187",
-          "url": "https://curricula.example/ma110/2026/3",
-          "title": "Discrete Mathematics",
-          "fetchedAt": "2026-10-21T09:00:47.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_2cc35cbf0edb8e048cdd7d29cb80d0ef0d7fdac7",
-          "url": "https://curricula.example/ds201/2026/4",
-          "title": "Data Structures",
-          "fetchedAt": "2026-10-21T09:00:52.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_85102e0f7718b8b35432024c084a437ad1b0eaa3",
-          "url": "https://curricula.example/ai301/2026/5",
-          "title": "Machine Learning Systems",
-          "fetchedAt": "2026-10-21T09:00:57.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_671c06c3a052ff8c2c13e1ef585fb0230a3fefa1",
+          "id": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
           "url": "https://curricula.example/db210/2026/6",
           "title": "Database Design",
           "fetchedAt": "2026-10-21T09:01:02.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_c4d97d0f3ce80fabe35ec96c3a2651b2ca16df45",
-          "url": "https://curricula.example/se220/2026/7",
-          "title": "Software Engineering",
-          "fetchedAt": "2026-10-21T09:01:07.000Z",
+          "id": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+          "url": "https://curricula.example/bi240/2026/10",
+          "title": "Computational Biology",
+          "fetchedAt": "2026-10-21T09:00:22.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_bf9641dfb97b73ca3cbe3f842b093796592b882a",
+          "id": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+          "url": "https://curricula.example/cs101/2026/1",
+          "title": "Foundations of Computing",
+          "fetchedAt": "2026-10-21T09:00:27.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+          "url": "https://curricula.example/ma110/2026/3",
+          "title": "Discrete Mathematics",
+          "fetchedAt": "2026-10-21T09:00:47.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+          "url": "https://curricula.example/ai301/2026/5",
+          "title": "Machine Learning Systems",
+          "fetchedAt": "2026-10-21T09:00:57.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
           "url": "https://curricula.example/nw230/2026/8",
           "title": "Networks and Distributed Systems",
           "fetchedAt": "2026-10-21T09:01:12.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_0051163797eff2f6aa695ee666864c8fa76408d9",
+          "id": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
           "url": "https://curricula.example/cs101/2025/9",
           "title": "Foundations of Computing",
           "fetchedAt": "2026-10-21T09:01:17.000Z",
           "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+          "url": "https://curricula.example/se220/2026/7",
+          "title": "Software Engineering",
+          "fetchedAt": "2026-10-21T09:01:07.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+          "url": "https://curricula.example/ds201/2026/4",
+          "title": "Data Structures",
+          "fetchedAt": "2026-10-21T09:00:52.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+          "url": "https://curricula.example/cs102/2026/2",
+          "title": "Programming Studio",
+          "fetchedAt": "2026-10-21T09:00:37.000Z",
+          "acquisition": "fixture"
+        }
+      ],
+      "passages": [
+        {
+          "id": "segment_35212819e4a083df178511f0d7296f6f28c6cc05",
+          "sourceVersionId": "sourceversion_c894c9e70068be33e4eb59f69100b9ccfcc23e0f",
+          "index": 0,
+          "text": "# Data Structures\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: DS201\nModule name: Data Structures\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 6\nAssessment: Written exam\nCategory: Core\nTerm: Spring\nPrerequisite rule: {\"anyOf\": [\"CS101\", \"equivalent prior knowledge\"], \"recommended\": [\"CS102\"]}",
+          "heading": "Data Structures",
+          "context": "Data Structures"
+        },
+        {
+          "id": "segment_4be932d6ffa840f041e764fa0de747c1b5f91466",
+          "sourceVersionId": "sourceversion_047e006288162f05791dadd89521d74dcc557228",
+          "index": 0,
+          "text": "# Ethics of Information\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: ET250\nModule name: Ethics of Information\nInstitution: Riverton Institute\nCurriculum: 2026\nCredits: 4\nAssessment: Essay\nCategory: Elective\nTerm: Autumn",
+          "heading": "Ethics of Information",
+          "context": "Ethics of Information"
+        },
+        {
+          "id": "segment_65c3855ae00554a95373fc409fba4506841ac001",
+          "sourceVersionId": "sourceversion_402e96ab2c3432ad7942de2bef32cb98b4262a71",
+          "index": 0,
+          "text": "# Discrete Mathematics\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: MA110\nModule name: Discrete Mathematics\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 6\nAssessment: Written exam\nCategory: Core\nTerm: Autumn",
+          "heading": "Discrete Mathematics",
+          "context": "Discrete Mathematics"
+        },
+        {
+          "id": "segment_9f8c4c5fc003cae7b37b2580da07c3636edeb857",
+          "sourceVersionId": "sourceversion_bc90bbcd0231b579229e53ed941e5007c6db9719",
+          "index": 0,
+          "text": "# Software Engineering\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: SE220\nModule name: Software Engineering\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 8\nAssessment: Team project\nCategory: Core\nTerm: Autumn",
+          "heading": "Software Engineering",
+          "context": "Software Engineering"
+        },
+        {
+          "id": "segment_a42d777dfa6aaf60c7bd0908f11f13b24bcd1d32",
+          "sourceVersionId": "sourceversion_de79f0ebf67af3fa6a6b8470709c88eaf7ee9d00",
+          "index": 0,
+          "text": "# Programming Studio\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: CS102\nModule name: Programming Studio\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 8\nAssessment: Practical portfolio\nCategory: Core\nTerm: Autumn",
+          "heading": "Programming Studio",
+          "context": "Programming Studio"
+        },
+        {
+          "id": "segment_bfb68057a707ed2ca49779ae5965fc9d8a5a38a6",
+          "sourceVersionId": "sourceversion_6c0acc747d0352e588afbea5903b18a800cfe612",
+          "index": 0,
+          "text": "# Networks and Distributed Systems\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: NW230\nModule name: Networks and Distributed Systems\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 6\nAssessment: Written exam\nCategory: Elective\nTerm: Autumn",
+          "heading": "Networks and Distributed Systems",
+          "context": "Networks and Distributed Systems"
+        },
+        {
+          "id": "segment_c610b25fc0a7ac72779aca93af1ecd51d2edae38",
+          "sourceVersionId": "sourceversion_325ae7249d0ba78a7f40d965cfecc2bed3b2a641",
+          "index": 0,
+          "text": "# Computational Biology\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: BI240\nModule name: Computational Biology\nInstitution: Riverton Institute\nCurriculum: 2026\nCredits: 6\nAssessment: Research project\nCategory: Elective\nTerm: Spring",
+          "heading": "Computational Biology",
+          "context": "Computational Biology"
+        },
+        {
+          "id": "segment_d9b2d3c3a51b80d72b251ac8f2467e249c274b6d",
+          "sourceVersionId": "sourceversion_275e1e9551ad3daf231f3e93d4ac8f226c81cb6a",
+          "index": 0,
+          "text": "# Database Design\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: DB210\nModule name: Database Design\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 6\nAssessment: Practical portfolio\nCategory: Core\nTerm: Spring",
+          "heading": "Database Design",
+          "context": "Database Design"
+        },
+        {
+          "id": "segment_e4f0e793485f70ae3f22a924e9f8e1c112a2e76c",
+          "sourceVersionId": "sourceversion_557983fef618986ad85b9dd63e4adfea432e2732",
+          "index": 0,
+          "text": "# Machine Learning Systems\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: AI301\nModule name: Machine Learning Systems\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 8\nAssessment: Research project\nCategory: Elective\nTerm: Spring\nPrerequisite rule: {\"allOf\": [\"DS201\", \"MA110\"]}",
+          "heading": "Machine Learning Systems",
+          "context": "Machine Learning Systems"
+        },
+        {
+          "id": "segment_f1dc6b6f815c07bb440afca1865fbfd0c7165909",
+          "sourceVersionId": "sourceversion_1989d51ba6f8cfbe54ca388893cf14a939dfea02",
+          "index": 0,
+          "text": "# Applied Data Science\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: DS310\nModule name: Applied Data Science\nInstitution: Riverton Institute\nCurriculum: 2026\nCredits: 10\nAssessment: Research project\nCategory: Elective\nTerm: Spring",
+          "heading": "Applied Data Science",
+          "context": "Applied Data Science"
+        },
+        {
+          "id": "segment_f8c009d07f4e36a6b5142bbac5fa21f106478a07",
+          "sourceVersionId": "sourceversion_32bb7ab3772c905341ff6046b733875055fba8c4",
+          "index": 0,
+          "text": "# Foundations of Computing\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: CS101\nModule name: Foundations of Computing\nInstitution: Northbridge University\nCurriculum: 2026\nCredits: 6\nAssessment: Written exam\nCategory: Core\nTerm: Autumn",
+          "heading": "Foundations of Computing",
+          "context": "Foundations of Computing"
+        },
+        {
+          "id": "segment_facc48ade7b8e93a33cd17cb27338d992eee7109",
+          "sourceVersionId": "sourceversion_b1f00c3162fd8bcc4702139ee6d53156c62839cc",
+          "index": 0,
+          "text": "# Foundations of Computing\n\nSynthetic curriculum fixture. Not an official university document.\n\nModule code: CS101\nModule name: Foundations of Computing\nInstitution: Northbridge University\nCurriculum: 2025\nCredits: 5\nAssessment: Written exam\nCategory: Core\nTerm: Autumn",
+          "heading": "Foundations of Computing",
+          "context": "Foundations of Computing"
         }
       ]
     },
@@ -2103,11 +2201,11 @@
         "mode": "demo"
       },
       "publication": {
-        "id": "publication_8362cc3b041a5315ac0a4c936a7af4ac9c210ca3",
+        "id": "publication_f6b6383b67c8530694d5772879305b3b0f6bca0a",
         "projectId": "project_procurement",
         "schemaId": "schema_ac45b9939100aa3a6f2374ea95d9f1bb828cd9d9",
         "version": 1,
-        "createdAt": "2026-10-21T09:13:33.000Z",
+        "createdAt": "2026-10-21T09:13:29.000Z",
         "records": [
           {
             "id": "record_f08fcf803ded508114f2c56660076fb9433acb3a",
@@ -2121,12 +2219,12 @@
               "name": {
                 "value": "Accessible public transport study",
                 "observationIds": [
-                  "observation_3b9c42df29cad1545bf43556978cda3032c5ab19"
+                  "observation_a29531211fcda73f9db4e724e37f829a2806898b"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 135,
                     "end": 168,
                     "quote": "Accessible public transport study"
@@ -2138,12 +2236,12 @@
               "year": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_d5716f4f2a6eec5818171c101966d14d3da9b05f"
+                  "observation_35fc7c3c72120224c7ee6677defb5b7194e79916"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 280,
                     "end": 284,
                     "quote": "2026"
@@ -2155,12 +2253,12 @@
               "region": {
                 "value": "North",
                 "observationIds": [
-                  "observation_35c309ed438fcb7496cf58218c1dda2817155b61"
+                  "observation_a04f3e49a30490f83a001682b23581c79860b794"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 268,
                     "end": 273,
                     "quote": "North"
@@ -2172,12 +2270,12 @@
               "category": {
                 "value": "Consulting",
                 "observationIds": [
-                  "observation_5ae742e12a5d3371b1c24e127c8de7355d89f552"
+                  "observation_89b526eaaed9787efe209a8e238d863b9d32cc59"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 249,
                     "end": 259,
                     "quote": "Consulting"
@@ -2189,12 +2287,12 @@
               "deadline": {
                 "value": "2026-12-18",
                 "observationIds": [
-                  "observation_2daf777675c75cce60b3aa62a351b84674f03dd8"
+                  "observation_ef079100e500177f131691ac0fa64c0183cc014a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 228,
                     "end": 238,
                     "quote": "2026-12-18"
@@ -2206,12 +2304,12 @@
               "authority": {
                 "value": "City of Meadow",
                 "observationIds": [
-                  "observation_63ac7b2809227cb8f4b2ee3cc2169a2c2ef86db3"
+                  "observation_6c0b7565dcfbb4424beb6efd6249efe3db82c64c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 180,
                     "end": 194,
                     "quote": "City of Meadow"
@@ -2223,12 +2321,12 @@
               "reference": {
                 "value": "DL-2026-105",
                 "observationIds": [
-                  "observation_b82e3beedc8fb8b649949bb12fb88890eae94f17"
+                  "observation_cf59da5dffc1006c1e31277515d1c65527e613a1"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 116,
                     "end": 127,
                     "quote": "DL-2026-105"
@@ -2240,12 +2338,12 @@
               "estimatedValue": {
                 "value": 95000,
                 "observationIds": [
-                  "observation_653716503d24e988033c2b8d92f9960c2e54ea40"
+                  "observation_17cb810b5b3bf368a6ed93ea3793ca41c891f84a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-                    "segmentId": "segment_a03da121c071f0b928f61adbe14faed3f8b61da3",
+                    "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+                    "segmentId": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
                     "start": 212,
                     "end": 217,
                     "quote": "95000"
@@ -2271,12 +2369,12 @@
               "name": {
                 "value": "School cleaning framework",
                 "observationIds": [
-                  "observation_c81565b3c0550cf3abd5427c59d14dc4a6ea323f"
+                  "observation_92b5b512034fd5b9bb45d92cde43763cec482f8f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 127,
                     "end": 152,
                     "quote": "School cleaning framework"
@@ -2288,12 +2386,12 @@
               "year": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_ce3224c7ab2a1b82df2b70f2d638ee70a5f34da1"
+                  "observation_bdb0011690a29d213bb12c1193880352e981ce6e"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 273,
                     "end": 277,
                     "quote": "2026"
@@ -2305,12 +2403,12 @@
               "region": {
                 "value": "South",
                 "observationIds": [
-                  "observation_6e9a48ec74f2928bdac27a56224be3af9edaafd2"
+                  "observation_39e5146338ea0563ddd47e94b07c5feffda3efb8"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 261,
                     "end": 266,
                     "quote": "South"
@@ -2322,12 +2420,12 @@
               "category": {
                 "value": "Facility services",
                 "observationIds": [
-                  "observation_92f454216b056f54a30797997a76fc3e954cef4b"
+                  "observation_f54cdbb02a9b6ca68d6748bc7406531464babd85"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 235,
                     "end": 252,
                     "quote": "Facility services"
@@ -2339,12 +2437,12 @@
               "deadline": {
                 "value": "2026-12-12",
                 "observationIds": [
-                  "observation_2aa029a6e3a242f314dd37fca3ed77bf399de591"
+                  "observation_8b7298b5cd94c2ef7e5e2cbedb108bedbc08ebab"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 214,
                     "end": 224,
                     "quote": "2026-12-12"
@@ -2356,12 +2454,12 @@
               "authority": {
                 "value": "County of Birch",
                 "observationIds": [
-                  "observation_d3ccea1843e8d8ceca2a36c8603bdc787e077200"
+                  "observation_8d64c030ffebc2357e6527f8ba3164d2293bb1ed"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 164,
                     "end": 179,
                     "quote": "County of Birch"
@@ -2373,12 +2471,12 @@
               "reference": {
                 "value": "DL-2026-103",
                 "observationIds": [
-                  "observation_582d9f503bf052b99224a624a099b9f9b66c9c63"
+                  "observation_2264ea8e7893bf25c69f1f01fe64bb56f3c4e30f"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 108,
                     "end": 119,
                     "quote": "DL-2026-103"
@@ -2390,12 +2488,12 @@
               "estimatedValue": {
                 "value": 360000,
                 "observationIds": [
-                  "observation_6473f5b66834d4f88d07ec14bff073b493572344"
+                  "observation_755a87ad1740b7436de08a9fca3f00b3358c83f7"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-                    "segmentId": "segment_d38b942b3bf3b1803ad00ddb0ba255b27c5acd4b",
+                    "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+                    "segmentId": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
                     "start": 197,
                     "end": 203,
                     "quote": "360000"
@@ -2421,20 +2519,20 @@
               "name": {
                 "value": "Municipal cloud infrastructure",
                 "observationIds": [
-                  "observation_03ada441a724220f28611d53b12a4a437fc7659c",
-                  "observation_4ecf725373b81eceaaf22edf5a10839c8d4b9df6"
+                  "observation_3734c7ae8962521fe7f396618c5f939e2005fd36",
+                  "observation_469f6193882380d2784ec22adc925b1f5f16062c"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 132,
                     "end": 162,
                     "quote": "Municipal cloud infrastructure"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 132,
                     "end": 162,
                     "quote": "Municipal cloud infrastructure"
@@ -2446,20 +2544,20 @@
               "year": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_cb30f4b278c4ac4f24ef67220add62a2bced3d28",
-                  "observation_e0bba1a05e28533e623e3522707f4bf54e5d1c1a"
+                  "observation_9e65c11ea0e7eec03f084ddc76769c877bc7715b",
+                  "observation_d4fab799895eaf40f077b953a4f9b767a207046a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 276,
                     "end": 280,
                     "quote": "2026"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 276,
                     "end": 280,
                     "quote": "2026"
@@ -2471,20 +2569,20 @@
               "region": {
                 "value": "North",
                 "observationIds": [
-                  "observation_6d8f4a1480970b9c23c1b97967d7b4b0b3707e77",
-                  "observation_d1b1d00b205bc5af48180ee7d8d0a47024194a15"
+                  "observation_2d535bcf94a783f335242dce33a7351267f4b874",
+                  "observation_e649629d511f41cedd098e52880056d9f473bddf"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 264,
                     "end": 269,
                     "quote": "North"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 264,
                     "end": 269,
                     "quote": "North"
@@ -2496,20 +2594,20 @@
               "category": {
                 "value": "IT services",
                 "observationIds": [
-                  "observation_1165c5f4e835b6ee71d6aeda18a12caf1297a8cf",
-                  "observation_127a71c5c416d97c7a542deff852539ffe144679"
+                  "observation_342bd614056f97b6115473dc56933702bdf76b73",
+                  "observation_b78bce4f19f46bac5cc709d5caf1afc5bb832239"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 244,
                     "end": 255,
                     "quote": "IT services"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 244,
                     "end": 255,
                     "quote": "IT services"
@@ -2521,20 +2619,20 @@
               "deadline": {
                 "value": "2026-12-04",
                 "observationIds": [
-                  "observation_355130b95afa690c40fe9deea82ff91846bab40a",
-                  "observation_85cf43fd0dad69bc93f2b5bc87396228430be284"
+                  "observation_4d413abf05df958a6f5b52f7cba5bf9f3590d301",
+                  "observation_f687914ec8ece2f4062f5755e5d925a14272178d"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 223,
                     "end": 233,
                     "quote": "2026-12-04"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 223,
                     "end": 233,
                     "quote": "2026-12-04"
@@ -2546,20 +2644,20 @@
               "authority": {
                 "value": "City of Linden",
                 "observationIds": [
-                  "observation_80bf52dde727981b0a44a28e2898a42d9d3d1a9d",
-                  "observation_d90d86c62565990dedf9f2091d9c51cbca3786be"
+                  "observation_8665f7064115b8a51f8ca3bc67f32f065a20eb67",
+                  "observation_cc5365dbc81788e7c54e5bef7449d26cea184ff2"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 174,
                     "end": 188,
                     "quote": "City of Linden"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 174,
                     "end": 188,
                     "quote": "City of Linden"
@@ -2571,20 +2669,20 @@
               "reference": {
                 "value": "DL-2026-101",
                 "observationIds": [
-                  "observation_f2cf875f6bad8f91d28d8ad97e777400cb05f154",
-                  "observation_fcfe039b7b46aaee1203baeab36b69ad6630b5dc"
+                  "observation_846ad052a0d08f441c1bf5ead5e3f4f1927b6851",
+                  "observation_c3bf0070802329abfb769a8fe6311dcdd85ad880"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 113,
                     "end": 124,
                     "quote": "DL-2026-101"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 113,
                     "end": 124,
                     "quote": "DL-2026-101"
@@ -2596,20 +2694,20 @@
               "estimatedValue": {
                 "value": null,
                 "observationIds": [
-                  "observation_9585d422a011a2bb812a0675d1e4f9a19b36c8a4",
-                  "observation_b803561efaa9da797577dad952b53303d362cdeb"
+                  "observation_84489bce643f8f5470eff444c6b69118a05c138a",
+                  "observation_c2a6cf86bbfae0399b5c65c91e477c2c63f88608"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-                    "segmentId": "segment_f13cdd03aab48095220f709a201c3d9806a607ae",
+                    "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+                    "segmentId": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
                     "start": 206,
                     "end": 212,
                     "quote": "740000"
                   },
                   {
-                    "sourceVersionId": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-                    "segmentId": "segment_fbb68be409013744bd27ff98f20e04f8f266a3dd",
+                    "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+                    "segmentId": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
                     "start": 206,
                     "end": 212,
                     "quote": "780000"
@@ -2640,12 +2738,12 @@
               "name": {
                 "value": "Water quality monitoring",
                 "observationIds": [
-                  "observation_30bcad3466ebc30ded29e4e327f8927bd8961c35"
+                  "observation_d06fb694f3f75d8fd6871309d3dbd84d6b6b5028"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 126,
                     "end": 150,
                     "quote": "Water quality monitoring"
@@ -2657,12 +2755,12 @@
               "year": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_6fa9edeaceb95731f968fed03517043466ea7761"
+                  "observation_e978f95199110a6eb311524c6ce94fa872d55b5a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 274,
                     "end": 278,
                     "quote": "2026"
@@ -2674,12 +2772,12 @@
               "region": {
                 "value": "East",
                 "observationIds": [
-                  "observation_0b657199a9292bdb05a8fd0fcaab2393f2bb7ccc"
+                  "observation_fd91ade7feb08866a111bb40be0485fa945c7d39"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 263,
                     "end": 267,
                     "quote": "East"
@@ -2691,12 +2789,12 @@
               "category": {
                 "value": "Environmental services",
                 "observationIds": [
-                  "observation_a749900449f2471d026d20ac862d06f9e5754e1d"
+                  "observation_28d94b2b5c68861dc92eabad2d25adfbf1bb2c00"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 232,
                     "end": 254,
                     "quote": "Environmental services"
@@ -2708,12 +2806,12 @@
               "deadline": {
                 "value": "2026-11-22",
                 "observationIds": [
-                  "observation_9951d6cb71c62d083841554f603ff7c6d2af6c68"
+                  "observation_bdb4fbef00d2436fcaf990f585778df4f90e3e5a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 211,
                     "end": 221,
                     "quote": "2026-11-22"
@@ -2725,12 +2823,12 @@
               "authority": {
                 "value": "River District",
                 "observationIds": [
-                  "observation_b5e2c3a24ebbe35678c2aa76d9c4f7b5b8855976"
+                  "observation_303bbe6bbbfd6f704b5083e5afba75134dbc7f16"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 162,
                     "end": 176,
                     "quote": "River District"
@@ -2742,12 +2840,12 @@
               "reference": {
                 "value": "DL-2026-104",
                 "observationIds": [
-                  "observation_bb50b31b4dd64befd2c063d2e30cc0b585fee697"
+                  "observation_ac9984bc7cf4d020d462148d40d5214fafc1810a"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 107,
                     "end": 118,
                     "quote": "DL-2026-104"
@@ -2759,12 +2857,12 @@
               "estimatedValue": {
                 "value": 185000,
                 "observationIds": [
-                  "observation_e9415a8759fa32f28514d41f689c866c04825b19"
+                  "observation_bd7d2e8baa8383537e78bd2a03aefea781b9c313"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
-                    "segmentId": "segment_0763f70ab6fb49098aa369450a1288db7b2f5817",
+                    "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+                    "segmentId": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
                     "start": 194,
                     "end": 200,
                     "quote": "185000"
@@ -2790,12 +2888,12 @@
               "name": {
                 "value": "Library energy retrofit",
                 "observationIds": [
-                  "observation_a8a9a31fd2130b7ca0ae335a7cc6015c251c8e0d"
+                  "observation_7b8d323cc08ffc4b1ccebe0e5bb38b4bcac1a5ed"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 125,
                     "end": 148,
                     "quote": "Library energy retrofit"
@@ -2807,12 +2905,12 @@
               "year": {
                 "value": "2026",
                 "observationIds": [
-                  "observation_8e3ad7c8384889db07a2d429d6ecde2576e56924"
+                  "observation_7bd3fb32c2baf83832e9f1858074cac20bb9dc27"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 263,
                     "end": 267,
                     "quote": "2026"
@@ -2824,12 +2922,12 @@
               "region": {
                 "value": "West",
                 "observationIds": [
-                  "observation_dc63a4234d2a6673488379690002a6a07ea04811"
+                  "observation_d150ca2e9ddd929d81161becd444e2afb4c5a144"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 252,
                     "end": 256,
                     "quote": "West"
@@ -2841,12 +2939,12 @@
               "category": {
                 "value": "Construction",
                 "observationIds": [
-                  "observation_869a4b905ae4f2f96ca19953eedd1bd8d0efa73b"
+                  "observation_81727f66a405d969487421a86132cc3023c3f859"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 231,
                     "end": 243,
                     "quote": "Construction"
@@ -2858,12 +2956,12 @@
               "deadline": {
                 "value": "2026-11-28",
                 "observationIds": [
-                  "observation_2e14ec300fb474a1c2f9841aa9beacfb484b6b01"
+                  "observation_7f4db9ab433be4a3805c46b00f687c9a81a2a6ee"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 210,
                     "end": 220,
                     "quote": "2026-11-28"
@@ -2875,12 +2973,12 @@
               "authority": {
                 "value": "City of Harbor",
                 "observationIds": [
-                  "observation_1cb0e202b43f8b36b2544737bd7acef06cdebc37"
+                  "observation_233c00d4d9e731e3d76df1abfd7fc6df7202d462"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 160,
                     "end": 174,
                     "quote": "City of Harbor"
@@ -2892,12 +2990,12 @@
               "reference": {
                 "value": "DL-2026-102",
                 "observationIds": [
-                  "observation_f2a85644f2ff5216754ac1a8c644aadb57c2f188"
+                  "observation_a2e4c7d4b1eb4f26a66335ffa815a46b8ec6ce52"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 106,
                     "end": 117,
                     "quote": "DL-2026-102"
@@ -2909,12 +3007,12 @@
               "estimatedValue": {
                 "value": 1250000,
                 "observationIds": [
-                  "observation_8b23ce4230e84c9e998bca7b8d8872822f4d4f7e"
+                  "observation_e2052c577708cbe3aa16dfcf92ba4f9f21e0b7b7"
                 ],
                 "evidence": [
                   {
-                    "sourceVersionId": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-                    "segmentId": "segment_ba4a58230331248422a2e687544398df0f144dbc",
+                    "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+                    "segmentId": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
                     "start": 192,
                     "end": 199,
                     "quote": "1250000"
@@ -2930,12 +3028,12 @@
           }
         ],
         "sourceVersionIds": [
-          "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-          "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
-          "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
-          "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-          "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-          "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df"
+          "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+          "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+          "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+          "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+          "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+          "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e"
         ],
         "coverage": {
           "sources": 6,
@@ -3035,51 +3133,101 @@
           }
         ],
         "previousId": null,
-        "createdAt": "2026-10-21T09:11:31.000Z",
+        "createdAt": "2026-10-21T09:11:27.000Z",
         "rationale": "Represent the bounded questions and preserve institution/year scope."
       },
       "sources": [
         {
-          "id": "sourceversion_2e866abec52f13563a2899c8ca367fb7c5d1625f",
+          "id": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
           "url": "https://procurement.example/notices/6",
           "title": "Municipal cloud infrastructure",
-          "fetchedAt": "2026-10-21T09:11:01.000Z",
+          "fetchedAt": "2026-10-21T09:10:57.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_f41c54d50b7b6cd45126b48e272042b8ca14ceb6",
-          "url": "https://procurement.example/notices/1",
-          "title": "Municipal cloud infrastructure",
-          "fetchedAt": "2026-10-21T09:11:06.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_11d76f9883323d0bf52c61b3d0873af8f5358954",
-          "url": "https://procurement.example/notices/2",
-          "title": "Library energy retrofit",
-          "fetchedAt": "2026-10-21T09:11:11.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_f2d2073305030be0e07773ab72c6cd7d352f73ee",
-          "url": "https://procurement.example/notices/3",
-          "title": "School cleaning framework",
-          "fetchedAt": "2026-10-21T09:11:16.000Z",
-          "acquisition": "fixture"
-        },
-        {
-          "id": "sourceversion_fe262664ce3e1ef19c3d68fb57e34c58dcb5e6df",
+          "id": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
           "url": "https://procurement.example/notices/4",
           "title": "Water quality monitoring",
-          "fetchedAt": "2026-10-21T09:11:21.000Z",
+          "fetchedAt": "2026-10-21T09:11:17.000Z",
           "acquisition": "fixture"
         },
         {
-          "id": "sourceversion_5fef82925fd4a2b6efbbaebb9e81b3006c7b4073",
+          "id": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
           "url": "https://procurement.example/notices/5",
           "title": "Accessible public transport study",
-          "fetchedAt": "2026-10-21T09:11:26.000Z",
+          "fetchedAt": "2026-10-21T09:11:22.000Z",
           "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+          "url": "https://procurement.example/notices/3",
+          "title": "School cleaning framework",
+          "fetchedAt": "2026-10-21T09:11:12.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+          "url": "https://procurement.example/notices/1",
+          "title": "Municipal cloud infrastructure",
+          "fetchedAt": "2026-10-21T09:11:02.000Z",
+          "acquisition": "fixture"
+        },
+        {
+          "id": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+          "url": "https://procurement.example/notices/2",
+          "title": "Library energy retrofit",
+          "fetchedAt": "2026-10-21T09:11:07.000Z",
+          "acquisition": "fixture"
+        }
+      ],
+      "passages": [
+        {
+          "id": "segment_2b91498fc57e69c831940251be97d2af90fe45c2",
+          "sourceVersionId": "sourceversion_d6bdeeb85c56800b8987eee5148520665436def9",
+          "index": 0,
+          "text": "# Municipal cloud infrastructure\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-101\nTitle: Municipal cloud infrastructure\nAuthority: City of Linden\nEstimated value: 740000\nDeadline: 2026-12-04\nCategory: IT services\nRegion: North\nYear: 2026",
+          "heading": "Municipal cloud infrastructure",
+          "context": "Municipal cloud infrastructure"
+        },
+        {
+          "id": "segment_30b28882a58e813dcd399ccdc64149efeaeecd7e",
+          "sourceVersionId": "sourceversion_cbf479d71cc8aeac205be2f4a8ffe44db29eaacc",
+          "index": 0,
+          "text": "# Accessible public transport study\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-105\nTitle: Accessible public transport study\nAuthority: City of Meadow\nEstimated value: 95000\nDeadline: 2026-12-18\nCategory: Consulting\nRegion: North\nYear: 2026",
+          "heading": "Accessible public transport study",
+          "context": "Accessible public transport study"
+        },
+        {
+          "id": "segment_493d604fbba34b1a6bf6c20090b8b9a1f2a89155",
+          "sourceVersionId": "sourceversion_5585413c948fbf1015ef68e72f7b015b976e6e14",
+          "index": 0,
+          "text": "# Municipal cloud infrastructure\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-101\nTitle: Municipal cloud infrastructure\nAuthority: City of Linden\nEstimated value: 780000\nDeadline: 2026-12-04\nCategory: IT services\nRegion: North\nYear: 2026",
+          "heading": "Municipal cloud infrastructure",
+          "context": "Municipal cloud infrastructure"
+        },
+        {
+          "id": "segment_497119ff5649fcd60712802c73100ef4ceebfa9f",
+          "sourceVersionId": "sourceversion_cc7b6e4b59e68d70a1561733e2e06e6727640bbb",
+          "index": 0,
+          "text": "# School cleaning framework\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-103\nTitle: School cleaning framework\nAuthority: County of Birch\nEstimated value: 360000\nDeadline: 2026-12-12\nCategory: Facility services\nRegion: South\nYear: 2026\nRenewal option: {\"years\": 2, \"maximumTotalYears\": 4}",
+          "heading": "School cleaning framework",
+          "context": "School cleaning framework"
+        },
+        {
+          "id": "segment_5cb1e06bbe1421ccf780dbb2a13425828a5125cc",
+          "sourceVersionId": "sourceversion_7caee3593012b1fcceafb2b7781f9baabd6a005a",
+          "index": 0,
+          "text": "# Water quality monitoring\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-104\nTitle: Water quality monitoring\nAuthority: River District\nEstimated value: 185000\nDeadline: 2026-11-22\nCategory: Environmental services\nRegion: East\nYear: 2026",
+          "heading": "Water quality monitoring",
+          "context": "Water quality monitoring"
+        },
+        {
+          "id": "segment_9e324e3c770ce49aa45690dbfc3769a5ffd12854",
+          "sourceVersionId": "sourceversion_f5228f85e8838c6a8ec0efa7fed114ef6459933e",
+          "index": 0,
+          "text": "# Library energy retrofit\n\nSynthetic procurement fixture. Not an active public tender.\n\nNotice reference: DL-2026-102\nTitle: Library energy retrofit\nAuthority: City of Harbor\nEstimated value: 1250000\nDeadline: 2026-11-28\nCategory: Construction\nRegion: West\nYear: 2026",
+          "heading": "Library energy retrofit",
+          "context": "Library energy retrofit"
         }
       ]
     }

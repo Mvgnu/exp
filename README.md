@@ -36,7 +36,7 @@ pnpm cli demo --persist
 pnpm api
 ```
 
-`init` creates `.env` with random operator and database credentials and refuses to overwrite an existing file. In the workbench, choose **Connect API**, enter `http://127.0.0.1:4310`, and use `DEEPLAKE_API_TOKEN` from your `.env`. The local API embeds a worker and shares one PGlite database with it. The token is held in the browser session, never in the static export.
+`init` creates `.env` with random operator and database credentials and refuses to overwrite an existing file. In the workbench, choose **Connect your data**, enter `http://127.0.0.1:4310`, and use `DEEPLAKE_API_TOKEN` from your `.env`. The local API embeds a worker and shares one PGlite database with it. The token is held in the browser session, never in the static export.
 
 Stop the API before running a CLI command against that same local database. For separate API/worker processes, use PostgreSQL as described below.
 

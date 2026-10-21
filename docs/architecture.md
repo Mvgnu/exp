@@ -71,7 +71,7 @@ Budget reservations are transactional and run-scoped. Costs are reconciled to re
 
 `WorkspaceSnapshot` is an authenticated operator read model containing source artifacts, findings, jobs, proposed schemas and usage. It is never a public catalog input.
 
-`PublicDataset` contains only the selected release, its approved schema, minimal project metadata and source references used by the publication. Catalog imports validate this boundary. Browser credentials are session-local; server provider keys never enter static bundles. The demo exporter refuses live project snapshots.
+`PublicDataset` contains only the selected release, its approved schema, minimal project metadata, contributing source metadata and parsed passages cited by the publication. `buildPublicDataset` revalidates source relationships and exact spans, refuses missing context and strips private metadata; unrelated segments are excluded. Source context is shown as a document's statement, not as additional asserted facts. Catalog imports validate the same boundary. Browser credentials are session-local; server provider keys never enter static bundles. The demo exporter refuses live project snapshots.
 
 ## External design references
 
