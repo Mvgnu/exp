@@ -49,6 +49,17 @@ describe('URL discovery and source contents', () => {
 });
 describe('Anthropic typed response envelope', () => {
   const models = {planner:'planner-model',architect:'architect-model',auditor:'auditor-model',resolver:'resolver-model'};
+  it('changes cache identity with any role model while excluding credentials',()=>{
+    const initial=createAnthropicReasoner({apiKey:'first-secret',models});
+    const same=createAnthropicReasoner({apiKey:'second-secret',models:{...models}});
+    expect(initial.name).toBe(same.name);
+    for (const role of ['planner','architect','auditor','resolver']) {
+      const changed=createAnthropicReasoner({apiKey:'first-secret',models:{...models,[role]:`new-${role}`}});
+      expect(initial.name).not.toBe(changed.name);
+    }
+    expect(initial.name).toMatch(/^anthropic\/1\.1\.0:[a-f0-9]{24}$/);
+    expect(initial.name).not.toContain('first-secret');
+  });
   it('uses configured role model, auto tool choice and validates the result', async () => {
     const fetch = vi.fn(async (_url: string, _init?: RequestInit)=>json({model:'architect-model',content:[{type:'tool_use',name:'emit_result',input:{count:3}}],stop_reason:'tool_use',usage:{input_tokens:30,output_tokens:5}}));
     const provider = createAnthropicReasoner({apiKey:'test',models,fetch});

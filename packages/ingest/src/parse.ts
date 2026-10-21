@@ -10,9 +10,9 @@ import type { ParseOptions, CollectionEntry } from './contract.js';
 import { AcquisitionError, canonicalizeUrl } from './url.js';
 
 const execFileAsync = promisify(execFile);
-export const PARSER_VERSION = 'deeplake-parser/1.0.0';
+export const PARSER_VERSION = 'deeplake-parser/1.1.0';
 type SegmentInput = ParsedDocument['segments'][number];
-interface TextInput { title: string; text: string; warnings: string[]; links: string[]; pdf?: boolean; records?: Array<{ start: number; end: number; heading: string; context: string }> }
+interface TextInput { title: string; text: string; warnings: string[]; links: string[]; pdf?: boolean; isolatedRanges?: Array<{ start: number; end: number; label: string }>; records?: Array<{ start: number; end: number; heading: string; context: string }> }
 const cleanLine = (text: string) => text.replace(/[\t\r ]+/g, ' ').trim();
 const cleanText = (text: string) => text.replace(/\r\n?/g, '\n').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
 function safeLink(value: string, base: string): string | null { try { return canonicalizeUrl(new URL(value, base).toString()); } catch { return null; } }
@@ -27,6 +27,20 @@ function htmlText(source: string, url: string): TextInput {
   $('script, style, nav, footer, aside, noscript, iframe, form, svg, canvas, [hidden], [aria-hidden="true"]').remove();
   const root = $('main').first().length ? $('main').first() : $('article').length === 1 ? $('article').first() : $('body');
   const links = [...new Set(root.find('a[href]').toArray().flatMap((node) => { const link = safeLink($(node).attr('href') ?? '', url); return link ? [link] : []; }))];
+  // Article boundaries are stronger than heading heuristics. Preserve them through
+  // text normalization without adding synthetic evidence to the final artifact.
+  let markerPrefix = '\uE000DEEPLAKE_RECORD';
+  while (source.includes(markerPrefix)) markerPrefix += '_';
+  const articleMarkers: Array<{ start: string; end: string; label: string }> = [];
+  root.find('article').each((index, article) => {
+    if ($(article).siblings('article').length === 0) return;
+    const start = `${markerPrefix}_${index}_START\uE001`;
+    const end = `${markerPrefix}_${index}_END\uE001`;
+    const label = cleanLine($(article).find('h1,h2,h3,h4,h5,h6').first().text()) || `Article ${index + 1}`;
+    articleMarkers.push({ start, end, label });
+    $(article).prepend($('<span></span>').text(`\n${start}\n`));
+    $(article).append($('<span></span>').text(`\n${end}\n`));
+  });
   root.find('br').replaceWith('\n');
   root.find('table').each((_, table) => {
     const header = $(table).find('tr').first().find('th,td').toArray().map((cell) => cleanLine($(cell).text()));
@@ -42,10 +56,27 @@ function htmlText(source: string, url: string): TextInput {
   root.find('h1,h2,h3,h4,h5,h6').each((_, heading) => { const level = Number(heading.tagName.slice(1)); $(heading).replaceWith($('<div></div>').text(`\n\n${'#'.repeat(level)} ${cleanLine($(heading).text())}\n\n`)); });
   root.find('li').each((_, node) => { $(node).prepend('\n- '); $(node).append('\n'); });
   root.find('p,div,section,article,header,dl,dt,dd,pre,blockquote').each((_, node) => { $(node).prepend('\n'); $(node).append('\n'); });
-  const text = cleanText(root.text().split('\n').map(cleanLine).join('\n'));
+  let text = cleanText(root.text().split('\n').map(cleanLine).join('\n'));
+  const isolatedRanges: NonNullable<TextInput['isolatedRanges']> = [];
+  const occurrences = articleMarkers.flatMap((marker) => [
+    { token: marker.start, offset: text.indexOf(marker.start), opening: true, marker },
+    { token: marker.end, offset: text.indexOf(marker.end), opening: false, marker },
+  ]).filter((entry) => entry.offset >= 0).sort((a,b) => a.offset - b.offset);
+  const starts = new Map<string,number>();
+  let removed = 0;
+  for (const occurrence of occurrences) {
+    const position = occurrence.offset - removed;
+    text = text.slice(0,position) + text.slice(position + occurrence.token.length);
+    removed += occurrence.token.length;
+    if (occurrence.opening) starts.set(occurrence.marker.start,position);
+    else {
+      const start = starts.get(occurrence.marker.start);
+      if (start !== undefined) isolatedRanges.push({ start, end: position, label: occurrence.marker.label });
+    }
+  }
   const warnings: string[] = [];
   if (text.length < 40) warnings.push('short_document: little readable source text; inspect acquisition before extracting');
-  return { title, text, warnings, links };
+  return { title, text, warnings, links, isolatedRanges };
 }
 function isRecord(value: unknown): value is Record<string,unknown> { return value !== null && typeof value === 'object' && !Array.isArray(value); }
 function stringify(value: unknown): string { return JSON.stringify(value, null, 2); }
@@ -116,19 +147,43 @@ function segment(input: TextInput, options: ParseOptions): SegmentInput[] {
       return pieces;
     }).map((entry,index) => ({ ...entry, index }));
   }
-  const headings = [...text.matchAll(/^(#{1,6})\s+(.+)$/gm)];
-  const headingLevels = headings.map((entry) => entry[1]?.length ?? 1).filter((level) => level >= 2);
-  const recordLevel = headingLevels.length ? Math.min(...headingLevels) : 1;
+  const headings = [...text.matchAll(/^(#{1,6})\s+(.+)$/gm)].map((match) => ({ index: match.index, level: match[1]?.length ?? 1, label: match[2] ?? '', parent: -1 }));
+  const hierarchy: typeof headings = [];
+  const siblingGroups = new Map<string,typeof headings>();
+  for (const heading of headings) {
+    while (hierarchy.length && (hierarchy.at(-1)?.level ?? 0) >= heading.level) hierarchy.pop();
+    heading.parent = hierarchy.at(-1)?.index ?? -1;
+    const key = `${heading.parent}:${heading.level}`;
+    const siblings = siblingGroups.get(key) ?? [];
+    siblings.push(heading); siblingGroups.set(key,siblings);
+    hierarchy.push(heading);
+  }
   const boundaries = new Set<number>([0, text.length]);
-  for (const heading of headings) if ((heading[1]?.length ?? 1) === recordLevel || /^Table record /i.test(heading[2] ?? '')) boundaries.add(heading.index);
+  for (const range of input.isolatedRanges ?? []) { boundaries.add(range.start); boundaries.add(range.end); }
+  for (const siblings of siblingGroups.values()) {
+    if (siblings.length < 2) continue;
+    for (const heading of siblings) {
+      // Explicit sibling articles retain their own descendant sections. A page's
+      // shallower wrapper heading must never join multiple articles or headings.
+      if (!(input.isolatedRanges ?? []).some((range) => heading.index >= range.start && heading.index < range.end)) boundaries.add(heading.index);
+    }
+  }
+  for (const heading of headings) if (/^Table record /i.test(heading.label)) boundaries.add(heading.index);
   for (const page of text.matchAll(/\f/g)) boundaries.add(page.index + 1);
+  const ancestorsAt = (position: number) => {
+    const stack: typeof headings = [];
+    for (const heading of headings) {
+      if (heading.index > position) break;
+      while (stack.length && (stack.at(-1)?.level ?? 0) >= heading.level) stack.pop();
+      stack.push(heading);
+    }
+    return stack;
+  };
   const ordered = [...boundaries].sort((a,b) => a-b);
   const segments: SegmentInput[] = [];
   for (let i=0; i<ordered.length-1; i++) {
     let start = ordered[i] ?? 0; const sectionEnd = ordered[i+1] ?? text.length;
-    const before = headings.filter((entry) => entry.index <= start);
-    const heading = before.at(-1)?.[2] ?? input.title;
-    const context = [input.title, ...before.filter((entry) => (entry[1]?.length ?? 1) < recordLevel).slice(-3).map((entry) => entry[2])].filter(Boolean).join(' / ');
+
     while (start < sectionEnd) {
       while (start < sectionEnd && /\s/.test(text[start] ?? '')) start++;
       if (start >= sectionEnd) break;
@@ -138,6 +193,12 @@ function segment(input: TextInput, options: ParseOptions): SegmentInput[] {
       if (end <= start) end = Math.min(sectionEnd, start+max);
       const warnings = [...input.warnings];
       if (split || start > (ordered[i] ?? 0) + max) warnings.push('segment_split: a source section exceeded the size limit; identity/context must be audited');
+      const ancestry = ancestorsAt(start);
+      const enclosing = (input.isolatedRanges ?? []).filter((range) => start >= range.start && start < range.end).at(-1);
+      const leaf = ancestry.at(-1);
+      const heading = leaf && /^Table record /i.test(leaf.label) ? leaf.label : enclosing?.label ?? leaf?.label ?? input.title;
+      const ancestors = ancestry.filter((entry) => entry.label !== heading && !(input.isolatedRanges ?? []).some((range) => range !== enclosing && entry.index >= range.start && entry.index < range.end));
+      const context = [input.title, ...ancestors.map((entry) => entry.label)].filter((entry,index,all) => Boolean(entry) && all.indexOf(entry) === index).join(' / ');
       const value = text.slice(start,end);
       const blocked = !/[\p{L}\p{N}]/u.test(value) || (input.pdf && value.trim().length < 20);
       segments.push({ index: segments.length, text: value, heading, start, end, context, parserVersion: PARSER_VERSION, quality: blocked ? 'blocked' : warnings.length ? 'warning' : 'ok', warnings, ...(input.pdf ? { page: text.slice(0,start).split('\f').length } : {}) });

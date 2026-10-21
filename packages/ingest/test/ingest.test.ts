@@ -58,6 +58,34 @@ describe('Document parsing and record segmentation',()=>{
     expect(a?.text).toContain('Capacity: 10'); expect(a?.text).not.toContain('Record B'); expect(b?.context).toContain('Curriculum 2026');
     for(const entry of parsed.segments) expect(parsed.text.slice(entry.start,entry.end)).toBe(entry.text);
   });
+  it('isolates sibling articles nested below wrapper headings and keeps each article subtree intact',async()=>{
+    const html='<title>Inventory</title><main><h1>Warehouse lots</h1><h2>Items</h2><article><h3>Widget A</h3><p>SKU: A-1</p><p>Batch: 2026</p><h4>Capacity</h4><p>Capacity: 10 units</p><h4>Handling</h4><p>Dry storage</p></article><article><h3>Widget B</h3><p>SKU: B-1</p><p>Batch: 2027</p><h4>Capacity</h4><p>Capacity: 20 units</p></article></main>';
+    const parsed=await createParser().parse(doc(html));
+    const first=parsed.segments.find((entry)=>entry.text.includes('SKU: A-1'));
+    const second=parsed.segments.find((entry)=>entry.text.includes('SKU: B-1'));
+    expect(first).toBeDefined(); expect(second).toBeDefined();
+    expect(first?.text).toContain('Capacity: 10 units'); expect(first?.text).toContain('Dry storage');
+    expect(first?.text).not.toContain('B-1'); expect(second?.text).not.toContain('A-1');
+    expect(second?.text).not.toContain('2026'); expect(second?.context).toContain('Items'); expect(second?.context).not.toContain('Widget A');
+    for(const entry of parsed.segments) expect(parsed.text.slice(entry.start,entry.end)).toBe(entry.text);
+    expect(parsed.text).not.toContain('DEEPLAKE_RECORD');
+  });
+  it('isolates repeated heading subtrees at h3 and h4 in both HTML and Markdown',async()=>{
+    for(const level of [3,4]) for(const format of ['html','markdown']) {
+      const text=format==='html'
+        ? `<main><h1>Inventory</h1><h2>Items</h2><h${level}>Widget A</h${level}><p>SKU: A-1</p><p>Capacity: 10 units</p><h${level}>Widget B</h${level}><p>SKU: B-1</p><p>Capacity: 20 units</p></main>`
+        : `# Inventory\n\n## Items\n\n${'#'.repeat(level)} Widget A\nSKU: A-1\nCapacity: 10 units\n\n${'#'.repeat(level)} Widget B\nSKU: B-1\nCapacity: 20 units`;
+      const parsed=await createParser().parse(doc(text,format==='html'?'text/html':'text/markdown'));
+      const second=parsed.segments.find((entry)=>entry.text.includes('Capacity: 20'));
+      expect(second?.heading).toBe('Widget B'); expect(second?.text).not.toContain('A-1'); expect(second?.context).not.toContain('Widget A');
+      expect(parsed.segments.some((entry)=>entry.text.includes('A-1')&&entry.text.includes('B-1'))).toBe(false);
+    }
+  });
+  it('does not carry a previous article heading into a headingless sibling context',async()=>{
+    const parsed=await createParser().parse(doc('<main><h1>Inventory</h1><article><h3>Widget A</h3><p>SKU: A-1</p></article><article><p>SKU: B-1</p><p>Capacity: 20</p></article></main>'));
+    const second=parsed.segments.find((entry)=>entry.text.includes('B-1'));
+    expect(second?.text).not.toContain('A-1'); expect(second?.context).not.toContain('Widget A');
+  });
   it('keeps table row identity with each labelled value',async()=>{
     const parsed=await createParser().parse(doc('<main><h1>Table</h1><table><tr><th>Name</th><th>Capacity</th></tr><tr><td>A</td><td>10</td></tr><tr><td>B</td><td>20</td></tr></table></main>'));
     const rows=parsed.segments.filter((entry)=>entry.heading.startsWith('Table record'));
