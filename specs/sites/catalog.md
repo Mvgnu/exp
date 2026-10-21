@@ -22,3 +22,7 @@ Use the frozen CatalogData/PublicDataset projection contracts; the public site m
 Workbench includes overview, project creation, sources with evidence excerpts, schema history/proposals with approve/reject, audit queue, runs/jobs, usage and release explorer. Demo interaction is clearly local preview or read-only. Live actions call documented API and refresh actual state. Catalog has static entity detail routes, faceted query filter, crawlable metadata and provenance. No server dependencies in site code. Config/data switch must support a second domain without package changes.
 
 Fresh critic must inspect rendered static export and exercise a full user journey at 390px and desktop. Log largest remaining gap in docs/quality.md via PM.
+
+## Evidence inspection amendment
+
+The public projection includes only parsed passages cited by the pinned publication. Every value's evidence must distinguish its source by URL path and immutable version, expose its heading/page/segment locator, and let a visitor inspect the preserved passage with the exact half-open evidence span highlighted. Synthetic sources remain clearly labeled and locally inspectable; an external `.example` link is not an inspection route. Old projections without passage context must state that limitation instead of fabricating text. Supporting source text is context, not an additional asserted fact. Never ship the private workspace snapshot to satisfy this requirement.

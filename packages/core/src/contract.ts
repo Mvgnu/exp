@@ -63,12 +63,13 @@ export const IMMUTABLE_COLLECTIONS: ReadonlySet<Collection> = new Set(['schemas'
 export const WorkspaceSnapshotSchema = z.object({ version: z.literal(1), generatedAt: IsoDateSchema, mode: z.enum(['demo','live']), projects: z.array(ProjectSchema), schemas: z.array(DomainSchemaSchema), sources: z.array(SourceSchema), sourceVersions: z.array(SourceVersionSchema), segments: z.array(SegmentSchema), entities: z.array(EntitySchema), observations: z.array(ObservationSchema), findings: z.array(FindingSchema), proposals: z.array(ProposalSchema), runs: z.array(RunSchema), events: z.array(EventSchema), jobs: z.array(JobSchema), publications: z.array(PublicationSchema), usage: z.array(UsageSchema) });
 export type WorkspaceSnapshot = z.infer<typeof WorkspaceSnapshotSchema>;
 
-/** Public site input: no operator runs, credentials, raw documents or unpublished claims. */
+/** Public site input: only released claims and their supporting parsed passages, never operator state or raw blobs. */
 export const PublicDatasetSchema = z.object({
   project: ProjectSchema.pick({ id: true, name: true, description: true, mode: true }),
   publication: PublicationSchema,
   schema: DomainSchemaSchema,
   sources: z.array(SourceVersionSchema.pick({ id: true, url: true, title: true, fetchedAt: true, acquisition: true })),
+  passages: z.array(SegmentSchema.pick({ id: true, sourceVersionId: true, index: true, text: true, heading: true, page: true, context: true })).default([]),
 });
 export type PublicDataset = z.infer<typeof PublicDatasetSchema>;
 export const CatalogDataSchema = z.object({ datasets: z.array(PublicDatasetSchema) });

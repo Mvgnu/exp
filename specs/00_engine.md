@@ -51,6 +51,8 @@ Workbench: overview/projects, source frontier and document evidence, schema vers
 
 Public catalog: thin configurable Next.js site reading a published projection, faceted search with URL persistence, entity detail with sources and caveats, crawlable static entity pages. A second domain must require data/config only, not package edits.
 
+Public projection provenance includes the metadata of contributing source versions and only the parsed segments explicitly cited by the pinned publication. The catalog exposes source identity, a passage locator and preserved context with exact highlighting, including for offline synthetic fixtures. Operator events, unpublished observations, unrelated segments, original blobs and credentials do not enter this export.
+
 ## Acceptance
 
 `pnpm check`, `pnpm test`, `pnpm test:architecture`, `pnpm demo`, `pnpm build`, `pnpm test:e2e`. Integration evidence must include duplicate retry, restart-safe state, source change, schema gap → proposal → approval → replay, blocked unsupported claim, two scopes, disagreement preservation, invalid evidence rejection, expired lease fencing, budget exhaustion, API auth and a second domain.
