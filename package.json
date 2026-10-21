@@ -21,15 +21,16 @@
     "verify": "pnpm check && pnpm test && pnpm test:architecture && pnpm demo && pnpm build && pnpm test:e2e"
   },
   "devDependencies": {
+    "@deeplake/core": "workspace:*",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.0.0",
     "@types/pg": "^8.15.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "5.9.3",
+    "prettier": "^3.9.10",
     "tsx": "^4.20.0",
-    "vitest": "5.0.5",
-    "@deeplake/core": "workspace:*"
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
   },
   "dependencies": {
     "zod": "3.25.76"

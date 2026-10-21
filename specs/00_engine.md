@@ -43,7 +43,7 @@ Parser evolution is an explicit `reparse(projectId, sourceVersionIds?)` operatio
 
 ## Model allocation
 
-Exa Auto for URL discovery, optional Lite and Brave; original fetch first and Exa text contents fallback. Exa answers/summaries are never used. Cloudflare `@cf/cloudflare/clairic` extracts explicitly stated values with companion evidence. Anthropic model IDs are configuration: planner, architect, auditor, resolver. Defaults documented from current official docs, overridable independently. Clef is deferred until measured routing savings justify it. Offline demonstration providers are explicitly labelled and never silently substitute for a missing live credential.
+Exa Auto for URL discovery, optional Lite and Brave; original fetch first and optional Exa text contents fallback after eligible HTTP 5xx origin failures. Policy/authentication/private-address/rate-limit/size failures must never invoke fallback; provider-extracted text retains its distinct provenance. Exa answers/summaries are never used. Cloudflare `@cf/cloudflare/clairic` extracts explicitly stated values with companion evidence. Anthropic model IDs are configuration: planner, architect, auditor, resolver. Defaults documented from current official docs, overridable independently. Clef is deferred until measured routing savings justify it. Offline demonstration providers are explicitly labelled and never silently substitute for a missing live credential.
 
 ## Required usable surfaces
 

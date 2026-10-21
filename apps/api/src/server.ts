@@ -7,29 +7,211 @@ import { BudgetSchema, JsonValueSchema, WorkspaceSnapshotSchema } from '@deeplak
 import { createProject } from '@deeplake/engine';
 import type { Engine } from '@deeplake/engine';
 import type { BlobStore, Repository } from '@deeplake/store';
-export interface ServerOptions { repository:Repository; blobs:BlobStore; getEngine:(projectId:string)=>Promise<Engine>; token:string; origins?:string[]; providerStatus?:Record<string,boolean>; logging?:boolean }
-const Params=z.object({id:z.string().min(1).max(240)});
-const CreateProject=z.object({name:z.string().min(1).max(160),description:z.string().max(2000).optional(),topic:z.string().min(3).max(2000),questions:z.array(z.string().min(3).max(1000)).min(1).max(30),inclusion:z.array(z.string()).optional(),exclusion:z.array(z.string()).optional(),sourceFamilies:z.array(z.string()).optional(),seedUrls:z.array(z.string().url()).max(100).optional(),mode:z.enum(['live']).default('live'),budget:BudgetSchema.partial().optional(),scope:z.record(z.string()).optional()}).strict();
-function equalToken(received:string,expected:string):boolean {const a=Buffer.from(received);const b=Buffer.from(expected);return a.length===b.length&&timingSafeEqual(a,b);}
-export async function createServer(options:ServerOptions){
-  if(options.token.length<24||options.token.startsWith('replace-with'))throw new Error('Set DEEPLAKE_API_TOKEN to a random token of at least 24 characters. Run pnpm cli init.');
-  const app=Fastify({logger:options.logging??false,bodyLimit:256*1024,requestTimeout:30000,disableRequestLogging:true});
-  await app.register(cors,{origin:options.origins??[],methods:['GET','POST','PATCH','OPTIONS'],allowedHeaders:['Authorization','Content-Type']});
-  await app.register(rateLimit,{max:180,timeWindow:'1 minute'});
-  app.addHook('onRequest',async(request,reply)=>{reply.header('X-Content-Type-Options','nosniff').header('Cache-Control','no-store');if(request.method==='OPTIONS'||request.url==='/api/health'||request.url.startsWith('/v1/'))return;const authorization=request.headers.authorization??'';if(!authorization.startsWith('Bearer ')||!equalToken(authorization.slice(7),options.token))return reply.code(401).send({error:'Operator authentication required.'});});
-  app.setErrorHandler((error,_request,reply)=>{if(error instanceof ZodError)return reply.code(400).send({error:'Invalid request',issues:error.issues.map(i=>({path:i.path.join('.'),message:i.message}))});const message=error instanceof Error?error.message:'Request failed';const status=/not found/i.test(message)?404:/stale|conflict|already|breaking|cannot publish|no supported|no schema/i.test(message)?409:400;return reply.code(status).send({error:message});});
-  app.get('/api/health',()=>({ok:true,service:'deeplake',version:'0.1.0'}));
-  app.get('/api/config',()=>({providers:options.providerStatus??{},publicationRequiresExplicitAction:true}));
-  app.get('/api/snapshot',async()=>WorkspaceSnapshotSchema.parse(await options.repository.snapshot()));
-  app.get('/api/projects',()=>options.repository.list('projects'));
-  app.post('/api/projects',async(request,reply)=>{const input=CreateProject.parse(request.body);const project=createProject(input);await options.repository.put('projects',project,{insertOnly:true});return reply.code(201).send(project);});
-  app.post('/api/projects/:id/run',async(request,reply)=>{const {id}=Params.parse(request.params);if(!await options.repository.get('projects',id))return reply.code(404).send({error:'Project not found'});const body=z.object({kind:z.enum(['cycle','ingest','maintenance','replay','reparse']).default('cycle'),sourceUrls:z.array(z.string().url()).max(100).optional(),sourceVersionIds:z.array(z.string()).max(10000).optional()}).strict().parse(request.body??{});if(body.kind==='ingest'&&!body.sourceUrls?.length)return reply.code(400).send({error:'Ingest requires sourceUrls.'});const payload:Record<string,z.infer<typeof JsonValueSchema>>={};if(body.sourceUrls)payload.sourceUrls=body.sourceUrls;if(body.sourceVersionIds)payload.sourceVersionIds=body.sourceVersionIds;const job=await options.repository.enqueue({projectId:id,kind:body.kind,key:`${body.kind}:${id}:${randomUUID()}`,payload});return reply.code(202).send(job);});
-  app.post('/api/projects/:id/publish',async(request,reply)=>{const {id}=Params.parse(request.params);const engine=await options.getEngine(id);return reply.code(201).send(await engine.publish(id));});
-  app.post('/api/projects/:id/rollback',async(request)=>{const {id}=Params.parse(request.params);const {publicationId}=z.object({publicationId:z.string()}).strict().parse(request.body);return(await options.getEngine(id)).rollback(id,publicationId);});
-  app.post('/api/proposals/:id/decision',async(request,reply)=>{const {id}=Params.parse(request.params);const proposal=await options.repository.get('proposals',id);if(!proposal)return reply.code(404).send({error:'Proposal not found'});const body=z.object({decision:z.enum(['approve','reject']),reason:z.string().min(5).max(4000),allowBreaking:z.boolean().default(false)}).strict().parse(request.body);const engine=await options.getEngine(proposal.projectId);return body.decision==='approve'?engine.approveProposal(id,body.reason,body.allowBreaking):engine.rejectProposal(id,body.reason);});
-  app.patch('/api/findings/:id',async(request,reply)=>{const {id}=Params.parse(request.params);const finding=await options.repository.get('findings',id);if(!finding)return reply.code(404).send({error:'Finding not found'});const body=z.object({status:z.enum(['resolved','dismissed']),resolution:z.string().min(5).max(4000)}).strict().parse(request.body);await options.repository.put('findings',{...finding,...body});return {...finding,...body};});
-  app.post('/api/jobs/:id/cancel',async(request,reply)=>{const {id}=Params.parse(request.params);const cancelled=await options.repository.cancel(id);return cancelled?{cancelled:true}:reply.code(409).send({error:'Job is terminal or does not exist.'});});
-  app.get('/api/sources/:id/original',async(request,reply)=>{const {id}=Params.parse(request.params);const version=await options.repository.get('sourceVersions',id);if(!version)return reply.code(404).send({error:'Source version not found'});const bytes=await options.blobs.get(version.blobKey);return reply.header('Content-Type','application/octet-stream').header('Content-Disposition',`attachment; filename="source-${version.contentHash.slice(0,16)}.bin"`).send(Buffer.from(bytes));});
-  app.get('/v1/projects/:id/publication',async(request,reply)=>{const {id}=Params.parse(request.params);const project=await options.repository.get('projects',id);if(!project?.publishedReleaseId)return reply.code(404).send({error:'No published release'});const publication=await options.repository.get('publications',project.publishedReleaseId);if(!publication)return reply.code(404).send({error:'Published release is unavailable'});const schema=await options.repository.get('schemas',publication.schemaId);const sources=(await options.repository.list('sourceVersions',{projectId:id})).filter(v=>publication.sourceVersionIds.includes(v.id)).map(({id,url,title,fetchedAt,acquisition})=>({id,url,title,fetchedAt,acquisition}));reply.header('Cache-Control','public, max-age=60').header('ETag',`"${publication.id}"`);return {project:{id:project.id,name:project.name,description:project.description,mode:project.mode},publication,schema,sources};});
+export interface ServerOptions {
+  repository: Repository;
+  blobs: BlobStore;
+  getEngine: (projectId: string) => Promise<Engine>;
+  token: string;
+  origins?: string[];
+  providerStatus?: Record<string, boolean>;
+  logging?: boolean;
+}
+const Params = z.object({ id: z.string().min(1).max(240) });
+const CreateProject = z
+  .object({
+    name: z.string().min(1).max(160),
+    description: z.string().max(2000).optional(),
+    topic: z.string().min(3).max(2000),
+    questions: z.array(z.string().min(3).max(1000)).min(1).max(30),
+    inclusion: z.array(z.string()).optional(),
+    exclusion: z.array(z.string()).optional(),
+    sourceFamilies: z.array(z.string()).optional(),
+    seedUrls: z.array(z.string().url()).max(100).optional(),
+    mode: z.enum(['live']).default('live'),
+    budget: BudgetSchema.partial().optional(),
+    scope: z.record(z.string()).optional(),
+  })
+  .strict();
+function equalToken(received: string, expected: string): boolean {
+  const a = Buffer.from(received);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+export async function createServer(options: ServerOptions) {
+  if (options.token.length < 24 || options.token.startsWith('replace-with'))
+    throw new Error(
+      'Set DEEPLAKE_API_TOKEN to a random token of at least 24 characters. Run pnpm cli init.',
+    );
+  const app = Fastify({
+    logger: options.logging ?? false,
+    bodyLimit: 256 * 1024,
+    requestTimeout: 30000,
+    disableRequestLogging: true,
+  });
+  await app.register(cors, {
+    origin: options.origins ?? [],
+    methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
+  });
+  await app.register(rateLimit, { max: 180, timeWindow: '1 minute' });
+  app.addHook('onRequest', async (request, reply) => {
+    reply.header('X-Content-Type-Options', 'nosniff').header('Cache-Control', 'no-store');
+    if (
+      request.method === 'OPTIONS' ||
+      request.url === '/api/health' ||
+      request.url.startsWith('/v1/')
+    )
+      return;
+    const authorization = request.headers.authorization ?? '';
+    if (!authorization.startsWith('Bearer ') || !equalToken(authorization.slice(7), options.token))
+      return reply.code(401).send({ error: 'Operator authentication required.' });
+  });
+  app.setErrorHandler((error, _request, reply) => {
+    if (error instanceof ZodError)
+      return reply
+        .code(400)
+        .send({
+          error: 'Invalid request',
+          issues: error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
+        });
+    const message = error instanceof Error ? error.message : 'Request failed';
+    const status = /not found/i.test(message)
+      ? 404
+      : /stale|conflict|already|breaking|cannot publish|no supported|no schema/i.test(message)
+        ? 409
+        : 400;
+    return reply.code(status).send({ error: message });
+  });
+  app.get('/api/health', () => ({ ok: true, service: 'deeplake', version: '0.1.0' }));
+  app.get('/api/config', () => ({
+    providers: options.providerStatus ?? {},
+    publicationRequiresExplicitAction: true,
+  }));
+  app.get('/api/snapshot', async () =>
+    WorkspaceSnapshotSchema.parse(await options.repository.snapshot()),
+  );
+  app.get('/api/projects', () => options.repository.list('projects'));
+  app.post('/api/projects', async (request, reply) => {
+    const input = CreateProject.parse(request.body);
+    const project = createProject(input);
+    await options.repository.put('projects', project, { insertOnly: true });
+    return reply.code(201).send(project);
+  });
+  app.post('/api/projects/:id/run', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    if (!(await options.repository.get('projects', id)))
+      return reply.code(404).send({ error: 'Project not found' });
+    const body = z
+      .object({
+        kind: z.enum(['cycle', 'ingest', 'maintenance', 'replay', 'reparse']).default('cycle'),
+        sourceUrls: z.array(z.string().url()).max(100).optional(),
+        sourceVersionIds: z.array(z.string()).max(10000).optional(),
+      })
+      .strict()
+      .parse(request.body ?? {});
+    if (body.kind === 'ingest' && !body.sourceUrls?.length)
+      return reply.code(400).send({ error: 'Ingest requires sourceUrls.' });
+    const payload: Record<string, z.infer<typeof JsonValueSchema>> = {};
+    if (body.sourceUrls) payload.sourceUrls = body.sourceUrls;
+    if (body.sourceVersionIds) payload.sourceVersionIds = body.sourceVersionIds;
+    const job = await options.repository.enqueue({
+      projectId: id,
+      kind: body.kind,
+      key: `${body.kind}:${id}:${randomUUID()}`,
+      payload,
+    });
+    return reply.code(202).send(job);
+  });
+  app.post('/api/projects/:id/publish', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const engine = await options.getEngine(id);
+    return reply.code(201).send(await engine.publish(id));
+  });
+  app.post('/api/projects/:id/rollback', async (request) => {
+    const { id } = Params.parse(request.params);
+    const { publicationId } = z.object({ publicationId: z.string() }).strict().parse(request.body);
+    return (await options.getEngine(id)).rollback(id, publicationId);
+  });
+  app.post('/api/proposals/:id/decision', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const proposal = await options.repository.get('proposals', id);
+    if (!proposal) return reply.code(404).send({ error: 'Proposal not found' });
+    const body = z
+      .object({
+        decision: z.enum(['approve', 'reject']),
+        reason: z.string().min(5).max(4000),
+        allowBreaking: z.boolean().default(false),
+      })
+      .strict()
+      .parse(request.body);
+    const engine = await options.getEngine(proposal.projectId);
+    return body.decision === 'approve'
+      ? engine.approveProposal(id, body.reason, body.allowBreaking)
+      : engine.rejectProposal(id, body.reason);
+  });
+  app.patch('/api/findings/:id', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const finding = await options.repository.get('findings', id);
+    if (!finding) return reply.code(404).send({ error: 'Finding not found' });
+    const body = z
+      .object({
+        status: z.enum(['resolved', 'dismissed']),
+        resolution: z.string().min(5).max(4000),
+      })
+      .strict()
+      .parse(request.body);
+    await options.repository.put('findings', { ...finding, ...body });
+    return { ...finding, ...body };
+  });
+  app.post('/api/jobs/:id/cancel', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const cancelled = await options.repository.cancel(id);
+    return cancelled
+      ? { cancelled: true }
+      : reply.code(409).send({ error: 'Job is terminal or does not exist.' });
+  });
+  app.get('/api/sources/:id/original', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const version = await options.repository.get('sourceVersions', id);
+    if (!version) return reply.code(404).send({ error: 'Source version not found' });
+    const bytes = await options.blobs.get(version.blobKey);
+    return reply
+      .header('Content-Type', 'application/octet-stream')
+      .header(
+        'Content-Disposition',
+        `attachment; filename="source-${version.contentHash.slice(0, 16)}.bin"`,
+      )
+      .send(Buffer.from(bytes));
+  });
+  app.get('/v1/projects/:id/publication', async (request, reply) => {
+    const { id } = Params.parse(request.params);
+    const project = await options.repository.get('projects', id);
+    if (!project?.publishedReleaseId)
+      return reply.code(404).send({ error: 'No published release' });
+    const publication = await options.repository.get('publications', project.publishedReleaseId);
+    if (!publication) return reply.code(404).send({ error: 'Published release is unavailable' });
+    const schema = await options.repository.get('schemas', publication.schemaId);
+    const sources = (await options.repository.list('sourceVersions', { projectId: id }))
+      .filter((v) => publication.sourceVersionIds.includes(v.id))
+      .map(({ id, url, title, fetchedAt, acquisition }) => ({
+        id,
+        url,
+        title,
+        fetchedAt,
+        acquisition,
+      }));
+    reply.header('Cache-Control', 'public, max-age=60').header('ETag', `"${publication.id}"`);
+    return {
+      project: {
+        id: project.id,
+        name: project.name,
+        description: project.description,
+        mode: project.mode,
+      },
+      publication,
+      schema,
+      sources,
+    };
+  });
   return app;
 }

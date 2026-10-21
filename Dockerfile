@@ -2,7 +2,9 @@ FROM node:24-bookworm-slim AS runtime
 RUN apt-get update && apt-get install -y --no-install-recommends poppler-utils ca-certificates && rm -rf /var/lib/apt/lists/*
 RUN npm install --global pnpm@11.25.0
 WORKDIR /app
-COPY . .
+RUN mkdir -p /data && chown node:node /app /data
+COPY --chown=node:node . .
+USER node
 RUN pnpm install --frozen-lockfile
 ENV NODE_ENV=production
 EXPOSE 4310

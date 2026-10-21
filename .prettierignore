@@ -1,0 +1,10 @@
+pnpm-lock.yaml
+sites/*/data/
+fixtures/
+node_modules/
+.next/
+out/
+dist/
+.deeplake/
+test-results/
+playwright-report/

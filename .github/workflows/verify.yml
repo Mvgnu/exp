@@ -39,6 +39,8 @@ jobs:
       - run: pnpm demo
       - run: pnpm build
       - run: pnpm test:e2e
+      - run: pnpm cli init && docker compose config --quiet
+      - run: docker build --target catalog --tag deeplake-catalog:ci .
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
