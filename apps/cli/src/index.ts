@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createStore, FileBlobStore } from '@deeplake/store';
 import { createProject } from '@deeplake/engine';
+import { buildPublicDataset } from '@deeplake/core';
 import { configuration, createRuntime, loadEnvironment } from './runtime.js';
 import { exportDemo, seedDemo } from './demo.js';
 import { repositoryRoot } from './demo-providers.js';
@@ -145,31 +146,17 @@ async function main() {
       const publication = await runtime.repository.get('publications', project.publishedReleaseId);
       if (!publication) throw new Error('Release not found');
       const schema = await runtime.repository.get('schemas', publication.schemaId);
-      const sources = (await runtime.repository.list('sourceVersions', { projectId: id }))
-        .filter((v) => publication.sourceVersionIds.includes(v.id))
-        .map(({ id, url, title, fetchedAt, acquisition }) => ({
-          id,
-          url,
-          title,
-          fetchedAt,
-          acquisition,
-        }));
+      if (!schema) throw new Error('Published schema not found');
+      const [sourceVersions, segments] = await Promise.all([
+        runtime.repository.list('sourceVersions', { projectId: id }),
+        runtime.repository.list('segments', { projectId: id }),
+      ]);
       const output = resolve(values.out ?? 'publication.json');
       await mkdir(resolve(output, '..'), { recursive: true });
       await writeFile(
         output,
         JSON.stringify(
-          {
-            project: {
-              id: project.id,
-              name: project.name,
-              description: project.description,
-              mode: project.mode,
-            },
-            publication,
-            schema,
-            sources,
-          },
+          buildPublicDataset({ project, publication, schema, sourceVersions, segments }),
           null,
           2,
         ) + '\n',

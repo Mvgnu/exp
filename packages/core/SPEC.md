@@ -30,3 +30,5 @@ Meaningful adversarial tests and a usable integration surface; no mirror-only te
 ## Implementation notes
 
 The publication gate additionally requires supported identity and schema-defined scope observations. Current source versions come from Source.latestVersionId. Derived values are withheld pending a derivation-provenance contract. `normalizeScope` and `validateFieldValue` are additional deterministic exports. JSON schema validation does not fetch remote references.
+
+`buildPublicDataset` exports a pinned release with only its contributing source metadata and cited parsed passages. It revalidates evidence spans, rejects missing context or mismatched project/schema, excludes unrelated segments and strips operator/blob metadata through the public Zod boundary. Historical releases retain their own schema and original parsed context after later approval or reparse.

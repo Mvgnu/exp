@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createEngine, createProject } from '@deeplake/engine';
 import { createParser } from '@deeplake/ingest';
-import { WorkspaceSnapshotSchema, CatalogDataSchema } from '@deeplake/core';
+import { WorkspaceSnapshotSchema, CatalogDataSchema, buildPublicDataset } from '@deeplake/core';
 import type { WorkspaceSnapshot } from '@deeplake/core';
 import type { BlobStore, Repository } from '@deeplake/store';
 import { createDemoProviders, demoClock, repositoryRoot } from './demo-providers.js';
@@ -124,25 +124,13 @@ export async function exportDemo(snapshot: WorkspaceSnapshot): Promise<void> {
     if (!publication) throw new Error('Missing demo publication');
     const schema = snapshot.schemas.find((s) => s.id === publication.schemaId);
     if (!schema) throw new Error('Missing demo schema');
-    return {
-      project: {
-        id: project.id,
-        name: project.name,
-        description: project.description,
-        mode: project.mode,
-      },
+    return buildPublicDataset({
+      project,
       publication,
       schema,
-      sources: snapshot.sourceVersions
-        .filter((v) => publication.sourceVersionIds.includes(v.id))
-        .map(({ id, url, title, fetchedAt, acquisition }) => ({
-          id,
-          url,
-          title,
-          fetchedAt,
-          acquisition,
-        })),
-    };
+      sourceVersions: snapshot.sourceVersions,
+      segments: snapshot.segments,
+    });
   });
   const catalogPath = resolve(repositoryRoot, 'sites/catalog/data');
   await mkdir(catalogPath, { recursive: true });

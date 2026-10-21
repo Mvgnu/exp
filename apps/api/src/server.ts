@@ -3,7 +3,12 @@ import cors from '@fastify/cors';
 import rateLimit from '@fastify/rate-limit';
 import { timingSafeEqual, randomUUID } from 'node:crypto';
 import { z, ZodError } from 'zod';
-import { BudgetSchema, JsonValueSchema, WorkspaceSnapshotSchema } from '@deeplake/core';
+import {
+  BudgetSchema,
+  JsonValueSchema,
+  WorkspaceSnapshotSchema,
+  buildPublicDataset,
+} from '@deeplake/core';
 import { createProject } from '@deeplake/engine';
 import type { Engine } from '@deeplake/engine';
 import type { BlobStore, Repository } from '@deeplake/store';
@@ -68,12 +73,10 @@ export async function createServer(options: ServerOptions) {
   });
   app.setErrorHandler((error, _request, reply) => {
     if (error instanceof ZodError)
-      return reply
-        .code(400)
-        .send({
-          error: 'Invalid request',
-          issues: error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
-        });
+      return reply.code(400).send({
+        error: 'Invalid request',
+        issues: error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
+      });
     const message = error instanceof Error ? error.message : 'Request failed';
     const status = /not found/i.test(message)
       ? 404
@@ -191,27 +194,13 @@ export async function createServer(options: ServerOptions) {
     const publication = await options.repository.get('publications', project.publishedReleaseId);
     if (!publication) return reply.code(404).send({ error: 'Published release is unavailable' });
     const schema = await options.repository.get('schemas', publication.schemaId);
-    const sources = (await options.repository.list('sourceVersions', { projectId: id }))
-      .filter((v) => publication.sourceVersionIds.includes(v.id))
-      .map(({ id, url, title, fetchedAt, acquisition }) => ({
-        id,
-        url,
-        title,
-        fetchedAt,
-        acquisition,
-      }));
+    if (!schema) return reply.code(404).send({ error: 'Published schema is unavailable' });
+    const [sourceVersions, segments] = await Promise.all([
+      options.repository.list('sourceVersions', { projectId: id }),
+      options.repository.list('segments', { projectId: id }),
+    ]);
     reply.header('Cache-Control', 'public, max-age=60').header('ETag', `"${publication.id}"`);
-    return {
-      project: {
-        id: project.id,
-        name: project.name,
-        description: project.description,
-        mode: project.mode,
-      },
-      publication,
-      schema,
-      sources,
-    };
+    return buildPublicDataset({ project, publication, schema, sourceVersions, segments });
   });
   return app;
 }

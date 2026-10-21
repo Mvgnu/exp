@@ -1,5 +1,5 @@
-import { EvidenceSchema, PublicationSchema } from './contract.js';
-import type { Evidence, Observation, ProjectionInput, Publication, PublishedField, PublishedRecord, Segment } from './contract.js';
+import { EvidenceSchema, PublicationSchema, PublicDatasetSchema } from './contract.js';
+import type { Evidence, Observation, ProjectionInput, Publication, PublicDataset, PublicDatasetInput, PublishedField, PublishedRecord, Segment } from './contract.js';
 import { normalizeScope, stableId, stableStringify } from './canonical.js';
 import { validateDomainSchema, validateFieldValue } from './schema.js';
 
@@ -9,6 +9,37 @@ export function validateEvidence(input: Evidence, segment: Segment): boolean {
   if (!result.success || segment.quality === 'blocked') return false;
   const evidence = result.data;
   return evidence.sourceVersionId === segment.sourceVersionId && evidence.segmentId === segment.id && evidence.end > evidence.start && evidence.end <= segment.text.length && segment.text.slice(evidence.start,evidence.end) === evidence.quote && (evidence.page === undefined || evidence.page === segment.page);
+}
+
+/** Export the pinned release with only the source metadata and context its evidence cites. */
+export function buildPublicDataset(input: PublicDatasetInput): PublicDataset {
+  const { project, publication, schema } = input;
+  if (publication.projectId !== project.id || schema.projectId !== project.id || publication.schemaId !== schema.id) {
+    throw new Error('Public projection requires the release’s own project and pinned schema');
+  }
+  const versions = new Map(input.sourceVersions.filter(value => value.projectId === project.id).map(value => [value.id, value]));
+  const segments = new Map(input.segments.filter(value => value.projectId === project.id).map(value => [value.id, value]));
+  const cited = new Set<string>();
+  for (const record of publication.records) {
+    for (const field of Object.values(record.fields)) {
+      for (const evidence of field.evidence) {
+        const segment = segments.get(evidence.segmentId);
+        if (!publication.sourceVersionIds.includes(evidence.sourceVersionId) || !versions.has(evidence.sourceVersionId) || !segment || !validateEvidence(evidence, segment)) {
+          throw new Error(`Published evidence context is missing or invalid: ${evidence.segmentId}`);
+        }
+        cited.add(segment.id);
+      }
+    }
+  }
+  const sources = publication.sourceVersionIds.map(id => {
+    const source = versions.get(id);
+    if (!source) throw new Error(`Published source version is unavailable: ${id}`);
+    return source;
+  });
+  return PublicDatasetSchema.parse({
+    project, publication, schema, sources,
+    passages: [...cited].sort().map(id => segments.get(id)),
+  });
 }
 
 export function buildPublication(input: ProjectionInput): Publication {

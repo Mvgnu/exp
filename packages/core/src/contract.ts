@@ -72,6 +72,7 @@ export const PublicDatasetSchema = z.object({
   passages: z.array(SegmentSchema.pick({ id: true, sourceVersionId: true, index: true, text: true, heading: true, page: true, context: true })).default([]),
 });
 export type PublicDataset = z.infer<typeof PublicDatasetSchema>;
+export interface PublicDatasetInput { project: Project; publication: Publication; schema: DomainSchema; sourceVersions: SourceVersion[]; segments: Segment[] }
 export const CatalogDataSchema = z.object({ datasets: z.array(PublicDatasetSchema) });
 export type CatalogData = z.infer<typeof CatalogDataSchema>;
 
