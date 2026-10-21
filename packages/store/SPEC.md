@@ -30,3 +30,7 @@ Meaningful adversarial tests and a usable integration surface; no mirror-only te
 ## Implementation notes
 
 Repository.transaction runs SERIALIZABLE on PostgreSQL and propagates a retryable conflict instead of repeating arbitrary callbacks. Nested transactions use savepoints. Production migration startup has a separate READ COMMITTED advisory-lock transaction. The optional TEST_DATABASE_URL test exercises multiple PostgreSQL connections; all normal tests use real embedded PGlite. A shared mounted filesystem is the implemented production BlobStore; S3 remains an interface extension.
+
+## PostgreSQL concurrency verification
+
+2026-10-21: the real PostgreSQL 18 multi-connection gate exposed a serialization conflict in simultaneous queue claims. Internal database-only operations now retry a complete transaction with bounded backoff; arbitrary caller callbacks still surface RetryableTransactionError. The regression requires both claim calls to succeed with distinct leases and both budget calls to complete, with exactly one reservation accepted. The focused external gate passed after the fix.

@@ -176,8 +176,10 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)('external PostgreSQL multi-worke
       expect(leases.every(Boolean)).toBe(true);
       for(const lease of leases) if(lease?.leaseToken) await first.complete(lease.id,lease.leaseToken);
       const results=await Promise.allSettled([first.reserveBudget(id,id,`${id}-a`,0.6,1),second.reserveBudget(id,id,`${id}-b`,0.6,1)]);
+      expect(results.filter(result=>result.status==='rejected')).toHaveLength(0);
       const successes=results.filter(result=>result.status==='fulfilled'&&result.value);
       expect(successes).toHaveLength(1);
+      expect(results.filter(result=>result.status==='fulfilled'&&!result.value)).toHaveLength(1);
     } finally {await first.close();await second.close();}
   });
 });

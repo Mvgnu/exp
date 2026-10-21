@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { CollectionSchemas, IMMUTABLE_COLLECTIONS, JobSchema, WorkspaceSnapshotSchema, stableId, stableStringify } from '@deeplake/core';
 import type { Collection, RecordsByCollection, Job, WorkspaceSnapshot } from '@deeplake/core';
 import type { EnqueueInput, ListOptions, PutOptions, Repository, StoreOptions } from './contract.js';
-import { migrate, openDatabase } from './database.js';
+import { isSerializationConflict, migrate, openDatabase } from './database.js';
 import type { SqlDatabase, SqlSession } from './database.js';
 
 const parsers: { [K in Collection]: { parse(input: unknown): RecordsByCollection[K] } } = CollectionSchemas;
@@ -29,17 +29,27 @@ class SqlRepository implements Repository {
   private active=true;
   constructor(private readonly db:SqlDatabase,private readonly session:SqlSession=db,private readonly nested=false,private readonly state={closed:false}) {}
   private ensure():void { if (!this.active || this.state.closed) throw new Error('Repository or transaction is closed'); }
-  private async atomic<T>(fn:(repo:SqlRepository)=>Promise<T>):Promise<T> {
+  private async atomic<T>(fn:(repo:SqlRepository)=>Promise<T>,retry=true):Promise<T> {
     this.ensure();
     if (this.nested) return fn(this);
-    return this.db.transaction(async session => {
-      const child=new SqlRepository(this.db,session,true,this.state);
-      try { return await fn(child); } finally { child.active=false; }
-    });
+    for(let attempt=0;;attempt++) {
+      try {
+        return await this.db.transaction(async session => {
+          const child=new SqlRepository(this.db,session,true,this.state);
+          try { return await fn(child); } finally { child.active=false; }
+        });
+      } catch(error) {
+        // Internal operations contain only database effects and can safely retry
+        // the entire transaction. Caller-supplied callbacks must decide their own
+        // retry policy because they may also perform external side effects.
+        if(!retry||!isSerializationConflict(error)||attempt>=4)throw error;
+        await new Promise<void>(resolve=>setTimeout(resolve,10*2**attempt));
+      }
+    }
   }
   async transaction<T>(fn:(repository:Repository)=>Promise<T>):Promise<T> {
     this.ensure();
-    if (!this.nested) return this.atomic(fn);
+    if (!this.nested) return this.atomic(fn,false);
     const savepoint=`sp_${randomUUID().replaceAll('-','')}`;
     await this.session.query(`SAVEPOINT ${savepoint}`);
     const child=new SqlRepository(this.db,this.session,true,this.state);
