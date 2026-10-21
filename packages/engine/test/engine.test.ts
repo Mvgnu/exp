@@ -266,9 +266,14 @@ it('does not assign one structured source record to two ambiguous schema types',
   await expect(s.engine.publish(s.project.id)).rejects.toThrow('No supported records');
 });
 
-it('publishes sibling HTML records without attaching the last record score to the first identity', async () => {
+it.each([
+  ['HTML articles', '<!doctype html><html><title>Inventory</title><main><h1>Warehouse assets</h1><h2>Items</h2><article><h3>First asset</h3><p>Code: A-01</p><p>Name: Beacon</p><p>Edition: 2025</p><p>Score: 4</p></article><article><h3>Second asset</h3><p>Code: B-02</p><p>Name: Aurora</p><p>Edition: 2026</p><p>Score: 9</p></article></main></html>'],
+  ['HTML list', '<!doctype html><html><title>Inventory</title><main><h1>Warehouse assets</h1><ul><li>Code: A-01; Name: Beacon; Edition: 2025; Score: 4</li><li>Code: B-02; Name: Aurora; Edition: 2026; Score: 9</li></ul></main></html>'],
+  ['Markdown numbered list', '# Warehouse assets\n\n1. Code: A-01; Name: Beacon; Edition: 2025; Score: 4\n2. Code: B-02; Name: Aurora; Edition: 2026; Score: 9'],
+  ['Markdown table', '# Warehouse assets\n\n| Code | Name | Edition | Score |\n| --- | --- | --- | --- |\n| A-01 | Beacon | 2025 | 4 |\n| B-02 | Aurora | 2026 | 9 |'],
+])('publishes sibling %s records without attaching the last score to the first identity', async (_format, source) => {
   const s = await open();
-  s.documents.set(s.url, '<!doctype html><html><title>Inventory</title><main><h1>Warehouse assets</h1><h2>Items</h2><article><h3>First asset</h3><p>Code: A-01</p><p>Name: Beacon</p><p>Edition: 2025</p><p>Score: 4</p></article><article><h3>Second asset</h3><p>Code: B-02</p><p>Name: Aurora</p><p>Edition: 2026</p><p>Score: 9</p></article></main></html>');
+  s.documents.set(s.url, source);
   // Deliberately choose the final score but the first identity. Correct record boundaries
   // make this otherwise plausible exact-span provider response unable to cross records.
   s.setExtract((segment, type) => Object.fromEntries(type.fields.map(field => {

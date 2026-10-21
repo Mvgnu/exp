@@ -107,6 +107,26 @@ export function createEngine(deps: EngineDependencies): Engine {
       return updated;
     });
   }
+  async function recordCancellation(execution: Execution): Promise<void> {
+    if (!execution.job) return;
+    const cancelled = await transactionRetry(async tx => {
+      const job = (await tx.listJobs(execution.project.id)).find(item => item.id === execution.job?.id);
+      // Only a durable, terminal operator cancellation permits this exceptional write.
+      // Lease expiry or a replacement worker must never let an old owner alter its run.
+      if (job?.status !== 'cancelled') return null;
+      const current = await tx.get('runs', execution.run.id);
+      if (!current || current.status === 'completed' || current.status === 'cancelled') return current;
+      const run = RunSchema.parse({ ...current, status: 'cancelled', phase: 'cancelled', completedAt: clock.now(), error: 'Cancelled by operator' });
+      await tx.put('runs', run);
+      const eventId = stableId('event', run.id, 'cancelled');
+      if (!await tx.get('events', eventId)) await tx.put('events', { id: eventId, projectId: run.projectId, runId: run.id, phase: 'cancelled', message: 'Run cancelled; no further workflow effects will be applied', data: { jobId: job.id }, level: 'warning', createdAt: clock.now() }, { insertOnly: true });
+      const active = await tx.list('runs', { projectId: run.projectId, where: { status: 'running' } });
+      const project = await requireProject(run.projectId, tx);
+      if (!active.length && project.status !== 'paused') await tx.put('projects', { ...project, status: 'review', updatedAt: clock.now() });
+      return run;
+    });
+    if (cancelled) execution.run = cancelled;
+  }
   async function event(execution: Execution, phase: string, message: string, data: Record<string, JsonValue> = {}, level: EngineEvent['level'] = 'info'): Promise<void> {
     await fence(execution);
     const record: EngineEvent = {
@@ -611,7 +631,7 @@ export function createEngine(deps: EngineDependencies): Engine {
       await event(execution, 'completed', 'Run completed; publication remains explicit', { observations: execution.run.stats.observations, findings: execution.run.stats.findings });
       return execution.run;
     } catch (error) {
-      if (error instanceof LeaseLostError) throw error;
+      if (error instanceof LeaseLostError) { await recordCancellation(execution); throw error; }
       execution.run.status = error instanceof BudgetExceededError ? 'budget_exhausted' : 'failed';
       execution.run.phase = execution.run.status; execution.run.error = errorText(error); execution.run.completedAt = clock.now();
       await updateRun(execution);
@@ -706,7 +726,7 @@ export function createEngine(deps: EngineDependencies): Engine {
       await event(execution, 'published', 'Published a stable evidence-backed release', { publicationId: publication.id, version: publication.version, records: publication.records.length });
       return publication;
     } catch (error) {
-      if (error instanceof LeaseLostError) throw error;
+      if (error instanceof LeaseLostError) { await recordCancellation(execution); throw error; }
       execution.run.status = 'failed'; execution.run.completedAt = clock.now(); execution.run.error = errorText(error);
       await updateRun(execution);
       throw error;

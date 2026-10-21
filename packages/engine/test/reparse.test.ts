@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { hash } from '@deeplake/core';
+import { hash, stableId } from '@deeplake/core';
 import type { Parser } from '@deeplake/core';
 import { createParser } from '@deeplake/ingest';
 import { createEngine } from '../src/index.js';
@@ -56,6 +56,8 @@ describe('explicit preserved-source reparsing', () => {
     await expect(createEngine({ ...s.dependencies, parser: cancellingParser }).executeJob(cancelled!)).rejects.toThrow(/cancelled|lease/);
     expect(await s.repository.list('sourceVersions')).toHaveLength(versions);
     expect((await s.repository.list('sources'))[0]?.latestVersionId).toBe(next!.id);
+    expect((await s.repository.get('runs', stableId('run', cancelled!.id)))?.status).toBe('cancelled');
+    expect((await s.repository.list('events')).some(event => event.phase === 'cancelled' && event.data.jobId === cancelled!.id)).toBe(true);
   });
 
   it('keeps historical reparses out of the current view and defaults to current versions only', async () => {
@@ -119,5 +121,27 @@ describe('explicit preserved-source reparsing', () => {
     expect(await s.repository.list('sourceVersions')).toHaveLength(1);
     expect(await s.repository.list('segments')).toEqual(oldSegments);
     expect((await s.repository.list('sources'))[0]?.latestVersionId).toBe(original.id);
+  });
+
+  it('never writes cancellation state over a replacement worker after lease loss', async () => {
+    const s = await open();
+    await s.engine.runCycle(s.project.id);
+    await s.repository.enqueue({ projectId: s.project.id, kind: 'reparse', key: 'lease-replacement' });
+    const job = await s.repository.claim('old-worker', 60_000);
+    const parser: Parser = { async parse(document) {
+      const result = await createParser().parse(document);
+      const replacement = await s.repository.claim('new-worker', 60_000, new Date(Date.now() + 120_000).toISOString());
+      expect(replacement?.id).toBe(job!.id);
+      expect(replacement?.leaseToken).not.toBe(job!.leaseToken);
+      const run = await s.repository.get('runs', stableId('run', job!.id));
+      await s.repository.put('runs', { ...run!, phase: 'replacement-worker-owns-this-run' });
+      return result;
+    } };
+    await expect(createEngine({ ...s.dependencies, parser }).executeJob(job!)).rejects.toThrow(/cancelled|lease/);
+    const run = await s.repository.get('runs', stableId('run', job!.id));
+    expect(run?.status).toBe('running');
+    expect(run?.phase).toBe('replacement-worker-owns-this-run');
+    expect(await s.repository.list('sourceVersions')).toHaveLength(1);
+    expect((await s.repository.list('events')).some(event => event.phase === 'cancelled')).toBe(false);
   });
 });

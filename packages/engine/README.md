@@ -14,7 +14,7 @@ The engine composes durable evidence storage, bounded acquisition, deterministic
 - `rejectProposal(id, rationale)`: retain the candidate and record a rejection.
 - `publish(projectId)`: atomically save an immutable publication and update its public pointer, with unsupported observations withheld and disagreements unresolved.
 - `rollback(projectId, publicationId)`: change only the public pointer; preserve all evidence and current research schema.
-- `executeJob(claimedJob)`: run a leased job. The worker owns heartbeat, completion and retry. The engine fences stages against cancellation and token loss. A failed workflow throws for the worker; budget exhaustion is a visible terminal run outcome, not an infinite retry.
+- `executeJob(claimedJob)`: run a leased job. The worker owns heartbeat, completion and retry. The engine fences stages against cancellation and token loss. Durable operator cancellation records a cancelled run and event; an expired or stolen lease never permits the previous owner to overwrite its replacement's run. A failed workflow throws for the worker; budget exhaustion is a visible terminal run outcome, not an infinite retry.
 
 ## Reasoning task contracts
 
