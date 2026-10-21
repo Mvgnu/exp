@@ -26,3 +26,7 @@ Implement createStore(options): Promise<Repository> and FileBlobStore(directory)
 ## Required verification
 
 Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.
+
+## Implementation notes
+
+Repository.transaction runs SERIALIZABLE on PostgreSQL and propagates a retryable conflict instead of repeating arbitrary callbacks. Nested transactions use savepoints. Production migration startup has a separate READ COMMITTED advisory-lock transaction. The optional TEST_DATABASE_URL test exercises multiple PostgreSQL connections; all normal tests use real embedded PGlite. A shared mounted filesystem is the implemented production BlobStore; S3 remains an interface extension.

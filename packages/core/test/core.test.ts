@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { buildPublication, diffSchemas, entityId, hash, stableId, stableStringify, validateDomainSchema, validateEvidence, validateFieldValue } from '../src/index.js';
-import { entity, now, observation, projection, schema, segment, source, version } from './fixtures.js';
+import { entity, identityObservations, now, observation, projection, schema, segment, source, version } from './fixtures.js';
 
 describe('canonical evidence identities', () => {
   it('canonicalizes object keys, preserves array ordering, rejects lossy input and cycles', () => {
@@ -59,29 +59,48 @@ describe('conservative projections', () => {
   });
   it('withholds unsupported modes, wrong scope, null, unknown schema and forged spans', () => {
     for (const patch of [{mode:'estimated' as const},{mode:'derived' as const},{scope:{edition:'2025'}},{value:null},{status:'unverified' as const},{schemaId:'old'},{evidence:{...observation.evidence,quote:'7'}}]) {
-      expect(buildPublication(projection({observations:[{...observation,...patch}]})).records).toEqual([]);
+      expect(buildPublication(projection({observations:[...identityObservations,{...observation,...patch}]})).records[0]?.fields.amount).toBeUndefined();
     }
   });
   it('preserves disagreements without choosing the newest observed value', () => {
     const otherVersion = {...version,id:'v2',sourceId:'src2',url:'https://another.example/data'};
     const otherSegment = {...segment,id:'seg2',sourceVersionId:'v2',text:segment.text.replace('Amount 6','Amount 7')};
     const other = {...observation,id:'o2',value:7,evidence:{...observation.evidence,segmentId:'seg2',sourceVersionId:'v2',quote:'7'}};
-    const release = buildPublication(projection({sources:[source,{...source,id:'src2',url:otherVersion.url,latestVersionId:'v2'}],sourceVersions:[version,otherVersion],segments:[segment,otherSegment],observations:[observation,other]}));
+    const release = buildPublication(projection({sources:[source,{...source,id:'src2',url:otherVersion.url,latestVersionId:'v2'}],sourceVersions:[version,otherVersion],segments:[segment,otherSegment],observations:[...identityObservations,observation,other]}));
     expect(release.records[0]?.fields.amount).toMatchObject({value:null,conflict:true,alternatives:[6,7]});
     expect(release.records[0]?.sourceCount).toBe(2);
+    const reordered = buildPublication(projection({sources:[{...source,id:'src2',url:otherVersion.url,latestVersionId:'v2'},source],sourceVersions:[otherVersion,version],segments:[otherSegment,segment],observations:[other,observation,...identityObservations].reverse()}));
+    expect(reordered.id).toBe(release.id);
   });
   it('uses the source pointer, retains history and never interprets a missing update as absence', () => {
     const newest = {...version,id:'v2',fetchedAt:'2026-10-22T12:00:00.000Z'};
     const newSegment = {...segment,id:'seg2',sourceVersionId:'v2',text:'Code A. Edition 2026.'};
     const code = {...observation,id:'code',field:'code',value:'A',evidence:{sourceVersionId:'v2',segmentId:'seg2',start:5,end:6,quote:'A'}};
-    const release = buildPublication(projection({sources:[{...source,latestVersionId:'v2'}],sourceVersions:[version,newest],segments:[segment,newSegment],observations:[observation,code]}));
+    const currentBindings = identityObservations.map(value => ({...value,id:`${value.id}-new`,evidence:{...value.evidence,sourceVersionId:'v2',segmentId:'seg2'}}));
+    const release = buildPublication(projection({sources:[{...source,latestVersionId:'v2'}],sourceVersions:[version,newest],segments:[segment,newSegment],observations:[observation,code,...currentBindings]}));
     expect(release.records[0]?.fields.amount).toBeUndefined();
     expect(release.records[0]?.warnings.join(' ')).toContain('absence is not asserted');
     expect(observation.value).toBe(6);
   });
+  it('withholds records whose identity or applicability has no matching evidence', () => {
+    const missing = buildPublication(projection({observations:[observation]}));
+    expect(missing.records).toEqual([]);
+    expect(missing.coverage.supportedObservations).toBe(0);
+    expect(missing.warnings.join(' ')).toContain('entities withheld');
+    const misbound = buildPublication(projection({entities:[{...entity,identity:{code:'B'}}]}));
+    expect(misbound.records).toEqual([]);
+  });
+  it('does not apply source-specific historic critiques to a corrected source version', () => {
+    const currentVersion = {...version,id:'v2'};
+    const currentSegment = {...segment,id:'seg2',sourceVersionId:'v2'};
+    const currentObservations = [...identityObservations,observation].map(value => ({...value,id:`${value.id}-v2`,evidence:{...value.evidence,sourceVersionId:'v2',segmentId:'seg2'}}));
+    const oldFinding = {id:'old',projectId:'p',runId:'run',kind:'extraction' as const,severity:'critical' as const,title:'Historic error',description:'Wrong in the old source',action:'Correct source',evidence:[observation.evidence],entityId:entity.id,field:'amount',status:'open' as const,resolution:null,createdAt:now};
+    const release = buildPublication(projection({sources:[{...source,latestVersionId:'v2'}],sourceVersions:[version,currentVersion],segments:[segment,currentSegment],observations:currentObservations,findings:[oldFinding]}));
+    expect(release.records[0]?.fields.amount?.value).toBe(6);
+  });
   it('blocks critical extraction findings and prevents cross-project release chaining', () => {
     const finding = {id:'f',projectId:'p',runId:'run',kind:'extraction' as const,severity:'critical' as const,title:'Wrong assignment',description:'The value is attached to the wrong field',action:'Re-extract',evidence:[observation.evidence],entityId:entity.id,field:'amount',status:'open' as const,resolution:null,createdAt:now};
-    expect(buildPublication(projection({findings:[finding]})).records).toEqual([]);
+    expect(buildPublication(projection({findings:[finding]})).records[0]?.fields.amount).toBeUndefined();
     expect(() => buildPublication(projection({previous:{...buildPublication(projection()),projectId:'other'}}))).toThrow(/different project/);
   });
 });

@@ -3,7 +3,7 @@ import { DomainSchemaSchema, JsonValueSchema } from './contract.js';
 import type { DomainSchema, FieldDefinition, JsonValue, SchemaChange } from './contract.js';
 import { stableStringify } from './canonical.js';
 
-const ajv = new Ajv({ strict: true, allErrors: true, validateFormats: false });
+const ajv = new Ajv({ strict: true, allErrors: true, validateFormats: false, addUsedSchema: false });
 
 function duplicates(values: string[], label: string): void {
   if (new Set(values).size !== values.length) throw new Error(`Duplicate ${label}`);

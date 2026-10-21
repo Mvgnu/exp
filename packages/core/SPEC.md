@@ -26,3 +26,7 @@ Stable canonical serialization, SHA-256 content hashes, stable identifiers, scop
 ## Required verification
 
 Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.
+
+## Implementation notes
+
+The publication gate additionally requires supported identity and schema-defined scope observations. Current source versions come from Source.latestVersionId. Derived values are withheld pending a derivation-provenance contract. `normalizeScope` and `validateFieldValue` are additional deterministic exports. JSON schema validation does not fetch remote references.
