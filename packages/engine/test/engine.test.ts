@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { z } from 'zod';
 import { createStore } from '@deeplake/store';
+import { createParser } from '@deeplake/ingest';
 import { JsonValueSchema, hash } from '@deeplake/core';
 import type { ExtractedValue, Segment } from '@deeplake/core';
 import { createEngine, createProject, extractStructuredRecord } from '../src/index.js';
@@ -199,4 +200,58 @@ it('maps exact structured values with escape-aware JSON offsets and does not joi
   expect(values.score?.value).toBe(0);
   for (const value of Object.values(values)) if (value.quote !== null) expect(text.slice(value.start!, value.end!)).toBe(value.quote);
   expect(values.name?.quote).toBe(JSON.stringify('Beacon\n"Quoted"'));
+});
+
+it('withholds a numeric value that does not occur in its cited passage', async () => {
+  const s = await open();
+  s.documents.set(s.url, 'Code: A-01\nName: Beacon\nEdition: 2025\nScore: 4');
+  s.setExtract((segment, type) => Object.fromEntries(type.fields.map(field => {
+    const match = new RegExp(`${field.label}: ([^\\n]+)`).exec(segment.text);
+    if (!match?.[1]) return [field.id, { value: null, confidence: null, quote: null, start: null, end: null, warnings: [] } satisfies ExtractedValue];
+    const quote = match[1], start = segment.text.indexOf(quote, match.index);
+    return [field.id, { value: field.id === 'score' ? 99 : quote, confidence: 1, quote, start, end: start + quote.length, warnings: [] } satisfies ExtractedValue];
+  })));
+  const run = await s.engine.runCycle(s.project.id);
+  expect(run.status, run.error ?? '').toBe('completed');
+  const release = await s.engine.publish(s.project.id);
+  expect(release.records[0]?.fields.score).toBeUndefined();
+  expect((await s.repository.list('observations')).every(observation => observation.model === 'test')).toBe(true);
+  expect((await s.repository.list('findings')).some(finding => finding.title === 'Unsupported extracted value: Score')).toBe(true);
+});
+
+it('does not assign one structured source record to two ambiguous schema types', async () => {
+  const s = await open();
+  const now = s.clock.now();
+  const primary = testType();
+  const schema = { id: 'ambiguous-schema', projectId: s.project.id, version: 1, name: 'Ambiguous', description: 'Two types without a discriminator', entityTypes: [primary, { ...primary, id: 'otherAsset', label: 'Other asset' }], previousId: null, rationale: 'Test ambiguity boundary', createdAt: now };
+  await s.repository.put('schemas', schema);
+  await s.repository.put('projects', { ...s.project, currentSchemaId: schema.id });
+  const run = await s.engine.ingest(s.project.id, [s.url]);
+  expect(run.status, run.error ?? '').toBe('completed');
+  expect(await s.repository.list('entities')).toHaveLength(0);
+  expect((await s.repository.list('findings')).some(finding => finding.title === 'Structured record matches multiple entity types')).toBe(true);
+  await expect(s.engine.publish(s.project.id)).rejects.toThrow('No supported records');
+});
+
+it('publishes sibling HTML records without attaching the last record score to the first identity', async () => {
+  const s = await open();
+  s.documents.set(s.url, '<!doctype html><html><title>Inventory</title><main><h1>Warehouse assets</h1><h2>Items</h2><article><h3>First asset</h3><p>Code: A-01</p><p>Name: Beacon</p><p>Edition: 2025</p><p>Score: 4</p></article><article><h3>Second asset</h3><p>Code: B-02</p><p>Name: Aurora</p><p>Edition: 2026</p><p>Score: 9</p></article></main></html>');
+  // Deliberately choose the final score but the first identity. Correct record boundaries
+  // make this otherwise plausible exact-span provider response unable to cross records.
+  s.setExtract((segment, type) => Object.fromEntries(type.fields.map(field => {
+    const matches = [...segment.text.matchAll(new RegExp(`${field.label}: ([^\\n]+)`, 'g'))];
+    const match = field.id === 'score' ? matches.at(-1) : matches[0];
+    if (!match?.[1]) return [field.id, { value: null, confidence: null, quote: null, start: null, end: null, warnings: [] } satisfies ExtractedValue];
+    const quote = match[1].trim(), start = segment.text.indexOf(quote, match.index);
+    return [field.id, { value: field.id === 'score' ? Number(quote) : quote, confidence: 1, quote, start, end: start + quote.length, warnings: [] } satisfies ExtractedValue];
+  })));
+  const engine = createEngine({ ...s.dependencies, parser: createParser() });
+  const run = await engine.runCycle(s.project.id);
+  expect(run.status, run.error ?? '').toBe('completed');
+  const release = await engine.publish(s.project.id);
+  expect(release.records).toHaveLength(2);
+  expect(release.records.map(item => ({ code: item.fields.code?.value, edition: item.scope.edition, name: item.label, score: item.fields.score?.value })).sort((a, b) => String(a.code).localeCompare(String(b.code)))).toEqual([
+    { code: 'A-01', edition: '2025', name: 'Beacon', score: 4 },
+    { code: 'B-02', edition: '2026', name: 'Aurora', score: 9 },
+  ]);
 });

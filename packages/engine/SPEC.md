@@ -33,7 +33,7 @@ Exports `createEngine`, `createProject`, `BudgetExceededError`, `LeaseLostError`
 
 ## Verification record
 
-2026-10-21: domain typecheck passed and 13 real-store integration/adversarial tests passed. Tests cover discovery → schema gap → approval → replay → publication, preserved raw/version history, unchanged retry deduplication, source changes, scope separation, disagreement, stale/breaking approval, rollback version monotonicity, budget/source caps, invalid audit quarantine, missing identity, lease cancellation, database restart and escape-aware JSON evidence offsets. Root architecture/build gates run after PM integration.
+2026-10-21: domain typecheck/build passed and 16 real-store integration/adversarial tests passed. Tests cover discovery → schema gap → approval → replay → publication, preserved raw/version history, unchanged retry deduplication, source changes, scope separation, disagreement, stale/breaking approval, rollback version monotonicity, budget/source caps, invalid audit quarantine, missing identity, lease cancellation, database restart, escape-aware JSON evidence offsets, numeric-value grounding, ambiguous structured types, actual model lineage, and sibling HTML records through the real parser and publication. The sibling-record regression failed against parser 1.0.0 and passed against 1.1.0. Root architecture/build gates run after PM integration.
 
 ## Explicit remaining limits
 

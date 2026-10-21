@@ -31,20 +31,27 @@ interface AcquiredSource { source: Source; version: SourceVersion; segments: Seg
 const JsonStringArray = z.array(z.string());
 const ModelUsageSchema = z.object({ provider: z.string(), model: z.string(), inputTokens: z.number().nonnegative(), outputTokens: z.number().nonnegative(), estimatedCostUsd: z.number().nonnegative(), reportedCostUsd: z.number().nonnegative().nullable() });
 const MAX_AUDIT_CHARS = 60_000;
+// Change this when extraction/grounding prompts or validation semantics change.
+const EXTRACTION_PROTOCOL = 'deeplake-extraction/1.1.0';
+const AUDIT_PROTOCOL = 'deeplake-audit/1.0.0';
 
 function errorText(error: unknown): string { return error instanceof Error ? error.message : 'Unknown workflow error'; }
 function json(value: unknown): JsonValue { return JsonValueSchema.parse(value); }
 function asScalar(value: JsonValue | undefined): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : typeof value === 'number' || typeof value === 'boolean' ? String(value) : null;
 }
-function fieldValueValid(type: EntityType['fields'][number]['type'], value: JsonValue): boolean {
-  if (value === null) return false;
-  if (type === 'number') return typeof value === 'number' && Number.isFinite(value);
-  if (type === 'boolean') return typeof value === 'boolean';
-  if (type === 'list') return Array.isArray(value) && value.every(item => typeof item === 'string');
-  if (type === 'json') return typeof value === 'object';
-  if (type === 'date') return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
-  return typeof value === 'string' && value.trim().length > 0;
+function numberOccursInQuote(value: number, quote: string): boolean {
+  const tokens = quote.match(/[-+]?\d+(?:[.,\u00a0 ]\d+)*(?:[eE][-+]?\d+)?/g) ?? [];
+  return tokens.some(token => {
+    const compact = token.replace(/[ \u00a0]/g, '');
+    const variants = new Set<string>([compact]);
+    if (!/[eE]/.test(compact)) {
+      variants.add(compact.replace(/[.,]/g, ''));
+      const decimalAt = Math.max(compact.lastIndexOf('.'), compact.lastIndexOf(','));
+      if (decimalAt >= 0) variants.add(compact.slice(0, decimalAt).replace(/[.,]/g, '') + '.' + compact.slice(decimalAt + 1));
+    }
+    return [...variants].some(candidate => candidate.length > 0 && Number(candidate) === value);
+  });
 }
 function segmentEvidence(segment: Segment): Evidence | null {
   if (!segment.text.trim()) return null;
@@ -127,12 +134,13 @@ export function createEngine(deps: EngineDependencies): Engine {
     await usage(execution, operation, result.usage, key);
     return result.data;
   }
-  async function reason<T>(execution: Execution, role: ReasoningRequest['role'], task: string, input: unknown, schema: z.ZodType<T>, instructions: string): Promise<T> {
+  async function reason<T>(execution: Execution, role: ReasoningRequest['role'], task: string, input: unknown, schema: z.ZodType<T>, instructions: string, onModel?: (model: string) => void): Promise<T> {
     const payload = json(input);
     // Conservative configured-provider estimate, not an invoice guarantee. Actual reported use is retained.
     const estimate = Buffer.byteLength(stableStringify(payload)) / 1_000_000 * 10 + execution.project.budget.maxOutputTokens / 1_000_000 * 50;
     return billable(execution, task, estimate, async () => {
       const result = await deps.reasoner.complete({ role, task, system: `${EVIDENCE_SYSTEM}\n${instructions}`, input: payload, maxOutputTokens: execution.project.budget.maxOutputTokens }, schema);
+      onModel?.(result.usage.model);
       return { ...result, data: schema.parse(result.data) };
     });
   }
@@ -292,7 +300,7 @@ export function createEngine(deps: EngineDependencies): Engine {
   }
   async function extractSegment(execution: Execution, schema: DomainSchema, type: EntityType, segment: Segment): Promise<Observation[]> {
     if (segment.quality === 'blocked' || !segment.text.trim()) return [];
-    const specHash = hash(stableStringify({ entityType: type, schemaId: schema.id, parserVersion: segment.parserVersion, extractor: deps.extractor.name, reasoner: deps.reasoner.name }));
+    const specHash = hash(stableStringify({ protocol: EXTRACTION_PROTOCOL, system: EVIDENCE_SYSTEM, entityType: type, schemaId: schema.id, parserVersion: segment.parserVersion, extractor: deps.extractor.name, reasoner: deps.reasoner.name }));
     const key = stableId('extraction', execution.project.id, segment.sourceVersionId, segment.id, specHash);
     const completeId = stableId('event', execution.project.id, 'extraction-complete', key);
     if (await repository.get('events', completeId)) {
@@ -300,16 +308,17 @@ export function createEngine(deps: EngineDependencies): Engine {
     }
     const estimatedCost = Buffer.byteLength(segment.text + segment.context + stableStringify(type)) / 1_000_000 * 0.3;
     const directValues = extractStructuredRecord(type, segment);
-    const extracted = directValues ? { values: directValues, truncated: false } : await billable(execution, 'extract', Math.max(0.0001, estimatedCost), async () => {
+    const extracted = directValues ? { values: directValues, truncated: false, model: 'deterministic-json-v1' } : await billable(execution, 'extract', Math.max(0.0001, estimatedCost), async () => {
       const result = await deps.extractor.extract({ entityType: type, segment, schemaId: schema.id, sourceVersionId: segment.sourceVersionId, referenceDate: clock.now().slice(0, 10) });
-      return { data: { values: StructuredExtractionSchema.parse({ values: result.values }).values, truncated: z.boolean().parse(result.truncated) }, usage: result.usage };
+      return { data: { values: StructuredExtractionSchema.parse({ values: result.values }).values, truncated: z.boolean().parse(result.truncated), model: result.usage.model }, usage: result.usage };
     });
     let values = extracted.values;
+    let structuredModel = deps.reasoner.name;
     const relevantFields = type.fields.filter(field => field.type === 'json' || field.type === 'reference');
     if (relevantFields.length && !directValues) {
       const structured = await reason(execution, 'resolver', TASKS.structured, {
         project: { id: execution.project.id, contract: execution.project.contract }, schema, entityType: type, segment, fields: relevantFields,
-      }, StructuredExtractionSchema, 'Extract only the requested structured fields. Return exact evidence from segment.text. A non-existent value must be null. References must be explicit source identifiers, not guessed canonical IDs. Structured expressions must preserve alternatives, recommendations, conditions and exclusions.');
+      }, StructuredExtractionSchema, 'Extract only the requested structured fields. Return exact evidence from segment.text. A non-existent value must be null. References must be explicit source identifiers, not guessed canonical IDs. Structured expressions must preserve alternatives, recommendations, conditions and exclusions.', model => { structuredModel = model; });
       for (const field of relevantFields) if (structured.values[field.id]) values[field.id] = structured.values[field.id]!;
     }
     const fallbackEvidence = segmentEvidence(segment);
@@ -357,11 +366,11 @@ export function createEngine(deps: EngineDependencies): Engine {
       const evidence = evidenceFor(extractedValue, segment);
       const value = extractedValue.value;
       const supportedText = typeof value !== 'string' || field.type === 'date' || ((evidence?.quote.includes(value) ?? false) || (evidence?.quote.includes(JSON.stringify(value)) ?? false));
-      if (!evidence || !validateFieldValue(field, value) || !supportedText) {
+      if (!evidence || !validateFieldValue(field, value) || !supportedText || (typeof value === 'number' && !numberOccursInQuote(value, evidence.quote))) {
         await addFinding(execution, { kind: 'extraction', severity: 'critical', title: `Unsupported extracted value: ${field.label}`, description: 'The value failed type, enum or exact source-evidence validation. It has been withheld.', action: 'Inspect the source passage and repair extraction; do not approve unsupported data.', evidence: fallbackEvidence ? [fallbackEvidence] : [], entityId: id, field: field.id });
         continue;
       }
-      const observation = ObservationSchema.parse({ id: stableId('observation', key, id, field.id, value, evidence), projectId: execution.project.id, entityId: id, entityType: type.id, field: field.id, value, scope, evidence, schemaId: schema.id, runId: execution.run.id, extractionSpecHash: specHash, model: directValues ? 'deterministic-json-v1' : field.type === 'json' || field.type === 'reference' ? deps.reasoner.name : deps.extractor.name, mode: 'explicit', confidence: extractedValue.confidence, status: 'supported', validFrom: null, validTo: null, observedAt: clock.now() });
+      const observation = ObservationSchema.parse({ id: stableId('observation', key, id, field.id, value, evidence), projectId: execution.project.id, entityId: id, entityType: type.id, field: field.id, value, scope, evidence, schemaId: schema.id, runId: execution.run.id, extractionSpecHash: specHash, model: directValues ? extracted.model : field.type === 'json' || field.type === 'reference' ? structuredModel : extracted.model, mode: 'explicit', confidence: extractedValue.confidence, status: 'supported', validFrom: null, validTo: null, observedAt: clock.now() });
       const prior = await repository.get('observations', observation.id);
       await fence(execution);
       if (!prior) { await repository.put('observations', observation, { insertOnly: true }); execution.run.stats.observations++; }
@@ -402,7 +411,7 @@ export function createEngine(deps: EngineDependencies): Engine {
   }
   async function interpret(execution: Execution, schema: DomainSchema, source: AcquiredSource, forceAudit = false): Promise<void> {
     const usable = source.segments.filter(segment => segment.quality !== 'blocked' && segment.text.trim());
-    const auditKey = stableId('event', execution.project.id, 'audit-complete', source.version.id, schema.id, deps.reasoner.name);
+    const auditKey = stableId('event', execution.project.id, 'audit-complete', AUDIT_PROTOCOL, EVIDENCE_SYSTEM, source.version.id, schema.id, deps.reasoner.name);
     const priorAudit = await repository.get('events', auditKey);
     const randomAudit = parseInt(hash(`${execution.run.id}:${source.version.id}`).slice(0, 6), 16) % 20 === 0;
     const shouldAudit = forceAudit || !priorAudit || randomAudit;
@@ -410,7 +419,15 @@ export function createEngine(deps: EngineDependencies): Engine {
       // The representation auditor deliberately runs without extraction output, before extraction.
       if (shouldAudit) await audit(execution, schema, source, group, TASKS.representation);
       const observations: Observation[] = [];
-      for (const segment of group) for (const type of schema.entityTypes) observations.push(...await extractSegment(execution, schema, type, segment));
+      for (const segment of group) {
+        const structuredMatches = schema.entityTypes.filter(type => extractStructuredRecord(type, segment) !== null);
+        if (structuredMatches.length > 1) {
+          const evidence = segmentEvidence(segment);
+          await addFinding(execution, { kind: 'identity_scope', severity: 'critical', title: 'Structured record matches multiple entity types', description: `The same source record matches ${structuredMatches.map(type => type.id).join(', ')}. No type was chosen.`, action: 'Add an unambiguous identity or explicit source-to-type discriminator before replay.', evidence: evidence ? [evidence] : [], entityId: null, field: null });
+          continue;
+        }
+        for (const type of schema.entityTypes) observations.push(...await extractSegment(execution, schema, type, segment));
+      }
       if (shouldAudit) await audit(execution, schema, source, group, TASKS.extraction, observations);
     }
     if (shouldAudit && usable.length && !priorAudit) {

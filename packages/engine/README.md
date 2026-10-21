@@ -32,13 +32,13 @@ Schema metadata, IDs, version numbers, compatibility classification and decision
 
 ## Evidence and identity
 
-Source snapshots are content addressed. Parser/segment/schema/extraction-spec/provider identity participates in extraction cache keys. Retrying an unchanged source reuses source versions and immutable observations; completed record extractions are checkpointed even when no value exists.
+Source snapshots are content addressed. Parser/segment/schema/extraction-spec/provider identity and the prompt protocol participate in extraction cache keys. Retrying an unchanged source reuses source versions and immutable observations; completed record extractions are checkpointed even when no value exists. Each inferred observation records the model ID returned by its provider, rather than just the adapter name. Configure pinned model IDs and include model configuration in adapter names so model changes invalidate caches before the next call.
 
 Each entity requires supported identity fields and declared applicability fields. Project-level scope supplements the record; it does not fabricate a source claim. Cross-source equality is exact normalized identity+scope, not fuzzy name matching. References remain explicit source identifiers and require domain-specific resolution policy if a canonical relation is needed.
 
-Intact JSON/XML-derived record objects can map exact schema field names deterministically. An escape-aware scanner records exact JSON value spans. No coercion, aliases, positional array joins or nested lookalike keys are used. Other inputs use the extractor. `json`/`reference` fields use an explicit structured reasoning task if the source was not deterministically mapped. Final publication revalidates all values against schema, including JSON Schema.
+Intact JSON/XML-derived record objects can map exact schema field names deterministically. An escape-aware scanner records exact JSON value spans. No coercion, aliases, positional array joins or nested lookalike keys are used. A structured record that matches multiple schema types is withheld with an identity finding until the ambiguity is resolved. Other inputs use the extractor. `json`/`reference` fields use an explicit structured reasoning task if the source was not deterministically mapped. Final publication revalidates all values against schema, including JSON Schema.
 
-A null value is omitted, not converted into absence. Estimates and derived values are not created by this path. Truncated extraction results are withheld. Disagreements preserve both values and are visible in the publication.
+A null value is omitted, not converted into absence. Estimates and derived values are not created by this path. Truncated extraction results are withheld. Numeric values must occur as a numeric token in their cited passage; exact offsets alone cannot justify an unrelated number. The independent audit still checks whether a passage actually supports the field and its identity, units and qualifications. Disagreements preserve both values and are visible in the publication.
 
 ## Durability and budgets
 
