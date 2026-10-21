@@ -7,6 +7,7 @@ export interface Engine {
   ingest(projectId: string, urls: string[]): Promise<Run>;
   maintain(projectId: string): Promise<Run>;
   replay(projectId: string, sourceVersionIds?: string[]): Promise<Run>;
+  reparse(projectId: string, sourceVersionIds?: string[]): Promise<Run>;
   approveProposal(proposalId: string, decision: string, allowBreaking?: boolean): Promise<Proposal>;
   rejectProposal(proposalId: string, decision: string): Promise<Proposal>;
   publish(projectId: string): Promise<Publication>;

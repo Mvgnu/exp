@@ -39,6 +39,8 @@ Interpretation: snapshot → parse/quality report → record segmentation → co
 
 Evolution: finding → proposed schema → compatibility and regression assessment → operator decision → affected-source replay → candidate projection → explicit publication. Maintenance uses conditional fetch/content hashes first and reprocesses changed source versions; model routing is optional, not the sole skip gate.
 
+Parser evolution is an explicit `reparse(projectId, sourceVersionIds?)` operation, separate from schema replay. With no IDs it selects only each source's current version. It reads preserved original bytes without network access, creates an immutable parsed version keyed by content hash and parser version, preserves old segments, and interprets usable new segments under the current approved schema. A historical reparse must never move a source's latest pointer backward. Failed or unusable parsing leaves that pointer unchanged and records an actionable finding. Parser behavior changes require a parser version change. Reparse never publishes automatically.
+
 ## Model allocation
 
 Exa Auto for URL discovery, optional Lite and Brave; original fetch first and Exa text contents fallback. Exa answers/summaries are never used. Cloudflare `@cf/cloudflare/clairic` extracts explicitly stated values with companion evidence. Anthropic model IDs are configuration: planner, architect, auditor, resolver. Defaults documented from current official docs, overridable independently. Clef is deferred until measured routing savings justify it. Offline demonstration providers are explicitly labelled and never silently substitute for a missing live credential.
