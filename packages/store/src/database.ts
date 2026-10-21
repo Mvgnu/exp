@@ -90,7 +90,10 @@ export async function openDatabase(options: StoreOptions): Promise<SqlDatabase> 
   } catch (error) { await release(); throw error; }
 }
 
-export const migrationFiles = [new URL('../migrations/001_initial.sql',import.meta.url)] as const;
+export const migrationFiles = [
+  new URL('../migrations/001_initial.sql',import.meta.url),
+  new URL('../migrations/002_reparse_jobs.sql',import.meta.url),
+] as const;
 
 export async function migrate(database: SqlDatabase): Promise<void> {
   await database.transaction(async session => {
