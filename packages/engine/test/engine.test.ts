@@ -4,9 +4,10 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { z } from 'zod';
 import { createStore } from '@deeplake/store';
+import type { ListOptions, Repository } from '@deeplake/store';
 import { createParser } from '@deeplake/ingest';
 import { JsonValueSchema, hash } from '@deeplake/core';
-import type { ExtractedValue, Segment } from '@deeplake/core';
+import type { Collection, ExtractedValue, RecordsByCollection, Segment } from '@deeplake/core';
 import { createEngine, createProject, extractStructuredRecord } from '../src/index.js';
 import { evidence, fixture, initialDocument, record, segmentsOf, testType } from './fixture.js';
 
@@ -111,6 +112,38 @@ describe('durable discovery and schema evolution', () => {
     expect(three.version).toBe(3);
     expect(three.id).not.toBe(two.id);
     expect(await s.repository.list('publications')).toHaveLength(3);
+  });
+
+  it('preserves a concurrent schema approval and public rollback during a run status update', async () => {
+    const s = await open();
+    await s.engine.runCycle(s.project.id);
+    const first = await s.engine.publish(s.project.id);
+    await s.engine.publish(s.project.id);
+    const proposal = (await s.repository.list('proposals'))[0]!;
+    let interleaved = false;
+    const list: Repository['list'] = async <K extends Collection>(collection: K, options?: ListOptions): Promise<RecordsByCollection[K][]> => {
+      const result = await s.repository.list(collection, options);
+      if (!interleaved && collection === 'findings' && options?.where?.status === 'open' && Object.keys(options.where).length === 1) {
+        interleaved = true;
+        await s.engine.approveProposal(proposal.id, 'Concurrent operator approval');
+        await s.engine.rollback(s.project.id, first.id);
+        const current = await s.repository.get('projects', s.project.id);
+        await s.repository.put('projects', { ...current!, status: 'paused' });
+      }
+      return result;
+    };
+    const repository = new Proxy(s.repository, { get(target, key) {
+      if (key === 'list') return list;
+      const value = Reflect.get(target, key);
+      return typeof value === 'function' ? value.bind(target) : value;
+    } });
+    const run = await createEngine({ ...s.dependencies, repository }).ingest(s.project.id, [s.url]);
+    expect(run.status, run.error ?? '').toBe('completed');
+    expect(interleaved).toBe(true);
+    const project = await s.repository.get('projects', s.project.id);
+    expect(project?.currentSchemaId).toBe(proposal.candidate.id);
+    expect(project?.publishedReleaseId).toBe(first.id);
+    expect(project?.status).toBe('paused');
   });
 });
 
@@ -239,7 +272,7 @@ it('publishes sibling HTML records without attaching the last record score to th
   // Deliberately choose the final score but the first identity. Correct record boundaries
   // make this otherwise plausible exact-span provider response unable to cross records.
   s.setExtract((segment, type) => Object.fromEntries(type.fields.map(field => {
-    const matches = [...segment.text.matchAll(new RegExp(`${field.label}: ([^\\n]+)`, 'g'))];
+    const matches = [...segment.text.matchAll(new RegExp(`${field.label}: ([^\\n;]+)`, 'g'))];
     const match = field.id === 'score' ? matches.at(-1) : matches[0];
     if (!match?.[1]) return [field.id, { value: null, confidence: null, quote: null, start: null, end: null, warnings: [] } satisfies ExtractedValue];
     const quote = match[1].trim(), start = segment.text.indexOf(quote, match.index);

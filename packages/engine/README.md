@@ -9,6 +9,7 @@ The engine composes durable evidence storage, bounded acquisition, deterministic
 - `ingest(projectId, urls)`: ingest explicit sources without search.
 - `maintain(projectId)`: conditional fetch, immutable changed snapshots and interpretation under the current schema.
 - `replay(projectId, sourceVersionIds?)`: interpret preserved source segments under the current approved schema without fetching again.
+- `reparse(projectId, sourceVersionIds?)`: apply the configured parser to preserved original bytes, then interpret under the current schema. With no IDs, select only current source versions. Preserve original segments and releases; a historical reparse cannot move the latest pointer backward. Does **not** publish.
 - `approveProposal(id, rationale, allowBreaking?)`: atomically approve an evidence-backed candidate, move the research-schema pointer and enqueue conservative historical replay.
 - `rejectProposal(id, rationale)`: retain the candidate and record a rejection.
 - `publish(projectId)`: atomically save an immutable publication and update its public pointer, with unsupported observations withheld and disagreements unresolved.
@@ -48,10 +49,12 @@ Budgets cap sources, search calls, iterations and estimated spend per run. Provi
 
 Bootstrap audits every newly seen source/schema/provider combination. Subsequent runs include a deterministic 5% random sample keyed by run and source, plus all new combinations; explicit replay reaudits every selected source. This keeps apparently successful output in the audit population. Source-level failures retain original history and do not imply facts disappeared.
 
+Parser repair uses explicit reparse, separately from schema replay. The engine verifies preserved bytes against their original hash and length, stores a new immutable parsed version, and advances the latest-source pointer only if the input version is still current. Acquired timestamps, headers and content-addressed bytes retain their original meaning. A failed or unusable parse leaves that pointer unchanged and fails the run with an actionable finding; unusable parsed output remains available for inspection. A parser that changes its output without changing its version is rejected. Reparse does not fetch the source, while any extraction and audit calls still use the normal provider budget.
+
 ## Deliberate boundaries
 
 - There is no globally complete ontology or automatic certainty score. Coverage is scoped to the answerability contract and acquired source families.
-- Parser repair and OCR remain acquisition work. Replaying a schema uses preserved segments; applying a new parser requires a new parsed source version.
+- Parser repair and OCR remain acquisition work. Replaying a schema uses preserved segments; applying a repaired parser is an explicit `reparse` operation with versioned output.
 - Provider requests can be repeated after an unknown remote outcome. Durable evidence effects are idempotent; billing cannot be exactly-once across a remote service without provider-side idempotency.
 - An approved change is not automatically published. Existing schema-gap findings stay open until resolved by a reviewer or a later supported audit decision; approval is not evidence that a fix worked.
 - Unresolved references are not silently fused into canonical entities. This release preserves explicit reference values and identity/scope; domain-specific reconciliation can be added through the schema/audit boundary.

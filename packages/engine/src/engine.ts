@@ -94,6 +94,19 @@ export function createEngine(deps: EngineDependencies): Engine {
     await fence(execution);
     await repository.put('runs', RunSchema.parse(execution.run));
   }
+  async function setProjectStatus(execution: Execution, status: Project['status']): Promise<Project> {
+    return transactionRetry(async tx => {
+      await fence(execution, tx);
+      const current = await requireProject(execution.project.id, tx);
+      if (current.status === 'paused') {
+        if (status === 'exploring') throw new WorkflowError('Project is paused');
+        return current;
+      }
+      const updated: Project = { ...current, status, updatedAt: clock.now() };
+      await tx.put('projects', updated);
+      return updated;
+    });
+  }
   async function event(execution: Execution, phase: string, message: string, data: Record<string, JsonValue> = {}, level: EngineEvent['level'] = 'info'): Promise<void> {
     await fence(execution);
     const record: EngineEvent = {
@@ -230,6 +243,57 @@ export function createEngine(deps: EngineDependencies): Engine {
       catch (error) { if (error instanceof LeaseLostError || error instanceof BudgetExceededError) throw error; /* A malformed link remains unacquired. */ }
     }
     return { source: updated, version, segments, changed: true };
+  }
+  async function reparseSource(execution: Execution, source: Source, original: SourceVersion): Promise<AcquiredSource> {
+    await fence(execution);
+    const priorSegments = await repository.list('segments', { projectId: execution.project.id, where: { sourceVersionId: original.id } });
+    const parseAndStore = async () => {
+      const bytes = await deps.blobs.get(original.blobKey);
+      if (hash(bytes) !== original.contentHash || bytes.byteLength !== original.byteLength) throw new WorkflowError('Preserved source bytes failed content-hash or length verification');
+      const parsed = await deps.parser.parse({ url: original.url, status: 200, bytes, mediaType: original.mediaType, headers: original.headers, acquiredAt: original.fetchedAt, acquisition: original.acquisition, notModified: false });
+      await fence(execution);
+      if (!parsed.parserVersion.trim()) throw new WorkflowError('Parser must identify its version');
+      if (parsed.segments.some(segment => segment.parserVersion !== parsed.parserVersion || parsed.text.slice(segment.start, segment.end) !== segment.text)) throw new WorkflowError('Parser emitted segment text or version inconsistent with its document');
+      const version = SourceVersionSchema.parse({ ...original, id: stableId('sourceversion', source.id, original.contentHash, parsed.parserVersion), parserVersion: parsed.parserVersion, textHash: hash(parsed.text), title: parsed.title, warnings: parsed.warnings });
+      const segments = parsed.segments.map(segment => SegmentSchema.parse({ ...segment, id: stableId('segment', version.id, segment.index, hash(segment.text)), projectId: execution.project.id, sourceVersionId: version.id }));
+      const usable = segments.some(segment => segment.quality !== 'blocked' && segment.text.trim());
+      const saved = await transactionRetry(async tx => {
+        await fence(execution, tx);
+        const current = await tx.get('sources', source.id);
+        if (!current || current.projectId !== execution.project.id) throw new WorkflowError('Reparse source no longer exists in this project');
+        const existing = await tx.get('sourceVersions', version.id);
+        if (existing) {
+          const existingSegments = await tx.list('segments', { projectId: execution.project.id, where: { sourceVersionId: version.id } });
+          const ordered = (items: Segment[]) => [...items].sort((a, b) => a.index - b.index || a.id.localeCompare(b.id));
+          if (existing.textHash !== version.textHash || stableStringify(ordered(existingSegments)) !== stableStringify(ordered(segments))) throw new WorkflowError('Parser output changed without a parser version change; bump its version before reparsing');
+        } else {
+          await tx.put('sourceVersions', version, { insertOnly: true });
+          for (const segment of segments) await tx.put('segments', segment, { insertOnly: true });
+        }
+        const advancesLatest = usable && current.latestVersionId === original.id && version.id !== original.id;
+        const updated: Source = advancesLatest ? { ...current, latestVersionId: version.id, title: parsed.title || current.title, status: 'fetched', error: null } : current;
+        // lastCheckedAt, ETag and fetchedAt describe the original acquisition, not this local parse.
+        if (advancesLatest) await tx.put('sources', updated);
+        return { source: updated, version: existing ?? version, segments, changed: !existing, advancesLatest };
+      });
+      if (!usable) throw new WorkflowError(`Reparsing produced no usable source segments: ${parsed.warnings.join('; ') || 'empty or blocked parsed text'}`);
+      return saved;
+    };
+    let saved: Awaited<ReturnType<typeof parseAndStore>>;
+    try { saved = await parseAndStore(); }
+    catch (error) {
+      if (error instanceof LeaseLostError || error instanceof BudgetExceededError) throw error;
+      const evidence = priorSegments[0] ? segmentEvidence(priorSegments[0]) : null;
+      await addFinding(execution, { kind: 'acquisition', severity: 'warning', title: 'Source could not be reparsed', description: `${original.url}: ${errorText(error)}`, action: 'Inspect the preserved original bytes, repair or configure the parser with a new version, and retry explicit reparse. Existing source history and latest pointer were retained.', evidence: evidence ? [evidence] : [], entityId: null, field: null });
+      await event(execution, 'reparse', 'Source reparse failed; original source retained', { sourceId: source.id, sourceVersionId: original.id, error: errorText(error) }, 'warning');
+      throw error;
+    }
+    await event(execution, 'reparse', 'Preserved source bytes reparsed', { previousSourceVersionId: original.id, sourceVersionId: saved.version.id, parserVersion: saved.version.parserVersion, segments: saved.segments.length, latestAdvanced: saved.advancesLatest });
+    if (saved.version.warnings.length) {
+      const evidence = saved.segments[0] ? segmentEvidence(saved.segments[0]) : null;
+      await addFinding(execution, { kind: 'acquisition', severity: 'warning', title: 'Reparsed document needs review', description: `${original.url}: ${saved.version.warnings.join('; ')}`, action: 'Inspect the new parsed version against preserved original bytes before publication.', evidence: evidence ? [evidence] : [], entityId: null, field: null });
+    }
+    return saved;
   }
   async function discover(execution: Execution, iteration: number): Promise<void> {
     if (execution.run.stats.queries >= execution.project.budget.maxSearchQueries) return;
@@ -488,27 +552,29 @@ export function createEngine(deps: EngineDependencies): Engine {
     return execution;
   }
   async function runWork(projectId: string, kind: Exclude<Run['kind'], 'publish'>, options: CycleOptions = {}, job: Job | null = null): Promise<Run> {
-    const project = await requireProject(projectId);
+    let project = await requireProject(projectId);
     if (project.status === 'paused') throw new WorkflowError('Project is paused');
     const execution = await start(project, kind, job);
     if (execution.run.status === 'completed') return execution.run;
     try {
       await fence(execution);
-      await repository.put('projects', { ...project, status: 'exploring', updatedAt: clock.now() });
-      if (kind === 'replay' || options.sourceVersionIds) {
-        if (!project.currentSchemaId) throw new WorkflowError('Cannot replay without an approved current schema');
+      project = await setProjectStatus(execution, 'exploring');
+      execution.project = project;
+      if (kind === 'replay' || kind === 'reparse' || options.sourceVersionIds) {
+        if (!project.currentSchemaId) throw new WorkflowError(`Cannot ${kind === 'reparse' ? 'reparse' : 'replay'} without an approved current schema`);
         const schema = await repository.get('schemas', project.currentSchemaId);
         if (!schema) throw new WorkflowError('Current schema does not exist');
         const versions = await repository.list('sourceVersions', { projectId });
-        const requested = options.sourceVersionIds ? new Set(options.sourceVersionIds) : new Set(versions.map(version => version.id));
+        const defaults = kind === 'reparse' ? (await repository.list('sources', { projectId })).flatMap(source => source.latestVersionId ? [source.latestVersionId] : []) : versions.map(version => version.id);
+        const requested = new Set(options.sourceVersionIds ?? defaults);
         const selected = versions.filter(version => requested.has(version.id));
-        if (selected.length !== requested.size) throw new WorkflowError('Replay includes missing or foreign source versions');
+        if (selected.length !== requested.size) throw new WorkflowError(`${kind === 'reparse' ? 'Reparse' : 'Replay'} includes missing or foreign source versions`);
         for (const version of selected) {
           await countSource(execution, version.id);
           const source = await repository.get('sources', version.sourceId);
-          if (!source) throw new WorkflowError('Replay source no longer exists');
-          const segments = await repository.list('segments', { projectId, where: { sourceVersionId: version.id } });
-          await interpret(execution, schema, { source, version, segments, changed: false }, true);
+          if (!source) throw new WorkflowError('Source no longer exists');
+          const acquired = kind === 'reparse' ? await reparseSource(execution, source, version) : { source, version, segments: await repository.list('segments', { projectId, where: { sourceVersionId: version.id } }), changed: false };
+          await interpret(execution, schema, acquired, true);
         }
         await disagreements(execution, schema);
         await propose(execution, schema);
@@ -540,10 +606,8 @@ export function createEngine(deps: EngineDependencies): Engine {
       }
       execution.run.status = 'completed'; execution.run.completedAt = clock.now(); execution.run.phase = 'completed';
       await updateRun(execution);
-      const current = await requireProject(projectId);
       const open = await repository.list('findings', { projectId, where: { status: 'open' } });
-      await fence(execution);
-      await repository.put('projects', { ...current, status: open.length ? 'review' : 'ready', updatedAt: clock.now() });
+      await setProjectStatus(execution, open.length ? 'review' : 'ready');
       await event(execution, 'completed', 'Run completed; publication remains explicit', { observations: execution.run.stats.observations, findings: execution.run.stats.findings });
       return execution.run;
     } catch (error) {
@@ -552,9 +616,7 @@ export function createEngine(deps: EngineDependencies): Engine {
       execution.run.phase = execution.run.status; execution.run.error = errorText(error); execution.run.completedAt = clock.now();
       await updateRun(execution);
       await event(execution, execution.run.status, errorText(error), {}, error instanceof BudgetExceededError ? 'warning' : 'error');
-      const current = await requireProject(projectId);
-      await fence(execution);
-      await repository.put('projects', { ...current, status: 'review', updatedAt: clock.now() });
+      await setProjectStatus(execution, 'review');
       return execution.run;
     }
   }
@@ -673,6 +735,7 @@ export function createEngine(deps: EngineDependencies): Engine {
     ingest: (projectId, urls) => runWork(projectId, 'ingest', { sourceUrls: urls, skipSearch: true }),
     maintain: projectId => runWork(projectId, 'maintenance', { skipSearch: true }),
     replay: (projectId, sourceVersionIds) => runWork(projectId, 'replay', { ...(sourceVersionIds ? { sourceVersionIds } : {}), skipSearch: true }),
+    reparse: (projectId, sourceVersionIds) => runWork(projectId, 'reparse', { ...(sourceVersionIds ? { sourceVersionIds } : {}), skipSearch: true }),
     approveProposal, rejectProposal, publish: projectId => publishWork(projectId), rollback, executeJob,
   };
 }
