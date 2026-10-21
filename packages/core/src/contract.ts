@@ -84,4 +84,4 @@ export interface Parser { parse(document: AcquiredDocument): Promise<ParsedDocum
 
 // Deterministic implementation exports (owned by core; signature changes require PM).
 export interface SchemaChange { breaking: boolean; changes: string[] }
-export interface ProjectionInput { project: Project; schema: DomainSchema; entities: Entity[]; observations: Observation[]; segments: Segment[]; sourceVersions: SourceVersion[]; findings: Finding[]; previous: Publication | null; now: string }
+export interface ProjectionInput { project: Project; schema: DomainSchema; entities: Entity[]; observations: Observation[]; segments: Segment[]; sources: Source[]; sourceVersions: SourceVersion[]; findings: Finding[]; previous: Publication | null; now: string }
