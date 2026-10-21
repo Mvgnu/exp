@@ -29,8 +29,16 @@ export function valueText(value: JsonValue): string {
 export function fieldLabel(dataset: PublicDataset, entityType: string, id: string): string {
   return (
     dataset.schema.entityTypes.find((t) => t.id === entityType)?.fields.find((f) => f.id === id)
-      ?.label ?? id
+      ?.label ?? humanizeFieldId(id)
   );
+}
+function humanizeFieldId(id: string): string {
+  const words = id
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .trim();
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 export function formatDate(value: string): string {
   return new Date(value).toLocaleDateString('en-GB', {

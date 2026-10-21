@@ -11,8 +11,8 @@ verification:
   test: pnpm test:e2e
   build: pnpm --filter @site/catalog build
 bar:
-  reference: "OpenAlex works search"
-  property: "A visitor can narrow published records, inspect a value’s source and understand conflicts without reading explanatory marketing copy."
+  reference: 'OpenAlex works search'
+  property: 'A visitor can narrow published records, inspect a value’s source and understand conflicts without reading explanatory marketing copy.'
 ---
 
 # catalog
@@ -26,3 +26,5 @@ Fresh critic must inspect rendered static export and exercise a full user journe
 ## Evidence inspection amendment
 
 The public projection includes only parsed passages cited by the pinned publication. Every value's evidence must distinguish its source by URL path and immutable version, expose its heading/page/segment locator, and let a visitor inspect the preserved passage with the exact half-open evidence span highlighted. Synthetic sources remain clearly labeled and locally inspectable; an external `.example` link is not an inspection route. Old projections without passage context must state that limitation instead of fabricating text. Supporting source text is context, not an additional asserted fact. Never ship the private workspace snapshot to satisfy this requirement.
+
+Evidence inspection uses nested native disclosures in the static record page so that the quote, source identity and preserved text remain usable without JavaScript. Highlight only an exact source-version/segment/offset/quote match; preserve the original text and show an explicit limitation when the supplied span does not match. Scope badges use schema field labels, with a readable label derived from the key when the scope is project-specific.

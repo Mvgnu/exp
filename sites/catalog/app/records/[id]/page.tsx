@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, FileText, GitBranch } from 'lucide-react';
+import { ArrowLeft, FileText, GitBranch } from 'lucide-react';
+import { EvidencePassage } from '../../../components/evidence-passage';
 import { entries, fieldLabel, formatDate, valueText } from '../../../lib/catalog';
 export function generateStaticParams() {
   return entries().map((e) => ({ id: e.record.id }));
@@ -40,7 +41,7 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
           <div className="scope-row">
             {Object.entries(record.scope).map(([key, value]) => (
               <span key={key}>
-                {key}: {value}
+                {fieldLabel(dataset, record.entityType, key)}: {value}
               </span>
             ))}
           </div>
@@ -102,34 +103,13 @@ export default async function RecordPage({ params }: { params: Promise<{ id: str
                     ? 'source passage'
                     : `${field.evidence.length} source passages`}
                 </summary>
-                {field.evidence.map((e, i) => {
-                  const source = dataset.sources.find((s) => s.id === e.sourceVersionId);
-                  return (
-                    <div className="evidence-block" key={`${e.segmentId}-${e.start}-${i}`}>
-                      <blockquote>{e.quote}</blockquote>
-                      <div className="evidence-meta">
-                        <span>
-                          {source?.title ?? 'Source document'}
-                          {e.page ? ` · Page ${e.page}` : ''}
-                        </span>
-                        <span>
-                          Retrieved {formatDate(source?.fetchedAt ?? dataset.publication.createdAt)}
-                        </span>
-                      </div>
-                      {source &&
-                        (dataset.project.mode === 'demo' ? (
-                          <p className="fixture-origin">
-                            Synthetic fixture · {new URL(source.url).hostname}
-                          </p>
-                        ) : (
-                          <a href={source.url} target="_blank" rel="noreferrer">
-                            Open original source
-                            <ArrowUpRight size={13} />
-                          </a>
-                        ))}
-                    </div>
-                  );
-                })}
+                {field.evidence.map((e, i) => (
+                  <EvidencePassage
+                    key={`${e.segmentId}-${e.start}-${i}`}
+                    dataset={dataset}
+                    evidence={e}
+                  />
+                ))}
               </details>
             </article>
           ))}

@@ -733,8 +733,9 @@ h1 em {
   border-top: 1px solid #edf1ee;
   background: #fbfcfa;
 }
-.evidence-details summary {
+.evidence-details > summary {
   padding: 12px 22px;
+  min-height: 44px;
   cursor: pointer;
   font-size: 11px;
   color: var(--teal);
@@ -742,16 +743,20 @@ h1 em {
   align-items: center;
   gap: 7px;
 }
-.evidence-details summary:after {
+.evidence-details > summary:after {
   content: '+';
   margin-left: auto;
   font-size: 16px;
 }
-.evidence-details[open] summary:after {
+.evidence-details[open] > summary:after {
   content: '−';
 }
 .evidence-block {
   padding: 0 22px 20px;
+}
+.evidence-block + .evidence-block {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
 }
 .evidence-block blockquote {
   margin: 4px 0 11px;
@@ -769,6 +774,118 @@ h1 em {
   font-size: 10px;
   color: var(--muted);
 }
+.evidence-meta strong {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+}
+.evidence-source {
+  display: grid;
+  gap: 7px;
+  margin: 12px 0 0;
+  font-size: 11px;
+}
+.evidence-source > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 10px;
+}
+.evidence-source dt,
+.passage-coordinates dt {
+  color: var(--muted);
+}
+.evidence-source dd,
+.passage-coordinates dd {
+  margin: 0;
+  min-width: 0;
+}
+.evidence-source code,
+.passage-coordinates code {
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.evidence-source .source-url {
+  font-size: 11px;
+}
+.evidence-locator span {
+  display: block;
+}
+.passage-details {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: white;
+}
+.passage-details > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  min-height: 44px;
+  color: var(--teal);
+  font-size: 11px;
+  cursor: pointer;
+}
+.passage-details > summary:after {
+  content: '+';
+  margin-left: auto;
+  font-size: 16px;
+}
+.passage-details[open] > summary:after {
+  content: '−';
+}
+.passage-content {
+  padding: 0 12px 12px;
+}
+.passage-note,
+.context-unavailable {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.context-unavailable {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: var(--wash);
+  border-radius: 3px;
+}
+.passage-context {
+  font-size: 11px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.passage-context > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.passage-context p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 3px 0 0;
+}
+.preserved-passage {
+  margin: 14px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.75;
+  tab-size: 2;
+}
+.preserved-passage mark {
+  background: #fff0b9;
+  color: #24382c;
+  box-shadow: inset 0 -1px #d4ad4c;
+}
+.passage-coordinates {
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin: 0;
+  font-size: 10px;
+}
 .evidence-block > a {
   display: inline-flex;
   align-items: center;
@@ -779,7 +896,7 @@ h1 em {
 }
 .fixture-origin {
   font-size: 10px;
-  color: #88998f;
+  color: #576f60;
   margin: 7px 0 0;
 }
 .alternatives {
@@ -1195,7 +1312,7 @@ h1 em {
   .fact-value > p {
     font-size: 16px;
   }
-  .evidence-details summary {
+  .evidence-details > summary {
     padding: 12px 18px;
   }
   .evidence-block {
@@ -1207,6 +1324,13 @@ h1 em {
   .evidence-meta span {
     display: block;
     margin-top: 3px;
+  }
+  .evidence-source > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+  }
+  .evidence-source {
+    gap: 9px;
   }
   .record-context {
     border-left: 0;

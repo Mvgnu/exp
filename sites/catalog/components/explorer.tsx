@@ -378,7 +378,7 @@ export function CatalogExplorer({ datasets }: { datasets: PublicDataset[] }) {
                   <div className="scope-row">
                     {Object.entries(record.scope).map(([key, value]) => (
                       <span key={key}>
-                        {key} {value}
+                        {fieldLabel(dataset, record.entityType, key)} {value}
                       </span>
                     ))}
                     {record.warnings.some((w) => w.includes('disagree')) && (
