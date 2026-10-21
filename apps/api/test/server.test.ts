@@ -1,0 +1,22 @@
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { createStore, FileBlobStore } from '@deeplake/store';
+import type { Repository } from '@deeplake/store';
+import { createServer } from '../src/server.js';
+const token='test-operator-token-with-at-least-24-characters';
+let repository:Repository;let directory:string;let server:Awaited<ReturnType<typeof createServer>>;
+beforeEach(async()=>{directory=await mkdtemp(join(tmpdir(),'deeplake-api-'));repository=await createStore({memory:true});server=await createServer({repository,blobs:new FileBlobStore(directory),token,origins:['http://localhost:3000'],getEngine:async()=>{throw new Error('Live providers are not configured');}});});
+afterEach(async()=>{await server.close();await repository.close();await rm(directory,{recursive:true,force:true});});
+const auth={authorization:`Bearer ${token}`};
+const validProject={name:'Inspection corpus',topic:'Public engineering documents',questions:['What requirements are explicitly stated?'],seedUrls:['https://example.org/source']};
+describe('operator boundary',()=>{
+  it('exposes health but protects snapshots and all writes',async()=>{expect((await server.inject('/api/health')).statusCode).toBe(200);expect((await server.inject('/api/snapshot')).statusCode).toBe(401);expect((await server.inject({method:'POST',url:'/api/projects',payload:validProject})).statusCode).toBe(401);expect((await server.inject({url:'/api/snapshot',headers:auth})).statusCode).toBe(200);});
+  it('creates a validated live project and persists a real queued job',async()=>{const created=await server.inject({method:'POST',url:'/api/projects',headers:auth,payload:validProject});expect(created.statusCode).toBe(201);const project=created.json<{id:string;mode:string}>();expect(project.mode).toBe('live');const response=await server.inject({method:'POST',url:`/api/projects/${project.id}/run`,headers:auth,payload:{kind:'ingest',sourceUrls:['https://example.org/source']}});expect(response.statusCode).toBe(202);const jobs=await repository.listJobs(project.id);expect(jobs).toHaveLength(1);expect(jobs[0]?.payload.sourceUrls).toEqual(['https://example.org/source']);});
+  it('rejects silent demo substitution, unknown options and invalid budget data',async()=>{for(const extra of [{mode:'demo'},{apiKey:'must-not-be-accepted'},{budget:{maxUsd:-1}},{scope:{year:2026}}])expect((await server.inject({method:'POST',url:'/api/projects',headers:auth,payload:{...validProject,...extra}})).statusCode).toBe(400);expect(await repository.list('projects')).toHaveLength(0);});
+  it('requires source URLs for ingestion and refuses unknown projects',async()=>{const created=await server.inject({method:'POST',url:'/api/projects',headers:auth,payload:validProject});const{id}=created.json<{id:string}>();expect((await server.inject({method:'POST',url:`/api/projects/${id}/run`,headers:auth,payload:{kind:'ingest'}})).statusCode).toBe(400);expect((await server.inject({method:'POST',url:'/api/projects/missing/run',headers:auth,payload:{}})).statusCode).toBe(404);});
+  it('makes cancellation real and cannot cancel a terminal job twice',async()=>{const created=await server.inject({method:'POST',url:'/api/projects',headers:auth,payload:validProject});const{id}=created.json<{id:string}>();const job=await repository.enqueue({projectId:id,key:'api-cancel',kind:'cycle'});expect((await server.inject({method:'POST',url:`/api/jobs/${job.id}/cancel`,headers:auth})).statusCode).toBe(200);expect((await repository.listJobs(id))[0]?.status).toBe('cancelled');expect((await server.inject({method:'POST',url:`/api/jobs/${job.id}/cancel`,headers:auth})).statusCode).toBe(409);});
+  it('never exposes an unpublished project through the public endpoint',async()=>{const created=await server.inject({method:'POST',url:'/api/projects',headers:auth,payload:validProject});const{id}=created.json<{id:string}>();const response=await server.inject(`/v1/projects/${id}/publication`);expect(response.statusCode).toBe(404);expect(response.body).not.toContain(validProject.topic);});
+  it('does not grant cross-origin browser access to an unconfigured origin',async()=>{const response=await server.inject({url:'/api/snapshot',headers:{...auth,origin:'https://untrusted.example'}});expect(response.headers['access-control-allow-origin']).toBeUndefined();});
+});

@@ -13,11 +13,11 @@
     "test:architecture": "vitest run test/architecture",
     "test:e2e": "playwright test",
     "build": "pnpm --filter @site/workbench build && pnpm --filter @site/catalog build",
-    "demo": "tsx apps/cli/src/index.ts demo",
+    "demo": "node --import tsx apps/cli/src/index.ts demo",
     "dev": "pnpm --filter @site/workbench dev",
-    "api": "tsx apps/api/src/main.ts",
-    "worker": "tsx apps/worker/src/main.ts",
-    "cli": "tsx apps/cli/src/index.ts",
+    "api": "node --import tsx apps/api/src/main.ts",
+    "worker": "node --import tsx apps/worker/src/main.ts",
+    "cli": "node --import tsx apps/cli/src/index.ts",
     "verify": "pnpm check && pnpm test && pnpm test:architecture && pnpm demo && pnpm build && pnpm test:e2e"
   },
   "devDependencies": {
@@ -28,7 +28,8 @@
     "@types/react-dom": "^19.0.0",
     "typescript": "5.9.3",
     "tsx": "^4.20.0",
-    "vitest": "5.0.5"
+    "vitest": "5.0.5",
+    "@deeplake/core": "workspace:*"
   },
   "dependencies": {
     "zod": "3.25.76"

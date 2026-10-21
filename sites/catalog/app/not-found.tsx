@@ -1,0 +1,1 @@
+export default function NotFound(){return <main id="main" className="empty-state"><p className="eyebrow">404 · NOT IN THIS RELEASE</p><h1>This record is not available.</h1><p>The URL may refer to another publication.</p><a className="primary-button" href="/">Explore the current catalog</a></main>;}
