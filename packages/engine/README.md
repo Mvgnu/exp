@@ -6,7 +6,7 @@ The engine composes durable evidence storage, bounded acquisition, deterministic
 
 - `createProject(input, clock?)`: validate an answerability contract and budgets, producing a project to save through the repository.
 - `runCycle(projectId, options?)`: query planning, search frontier, diverse sampling, schema bootstrap, interpretation, audits and a proposed schema change. Does **not** publish.
-- `ingest(projectId, urls)`: ingest explicit sources without search.
+- `ingest(projectId, urls)`: ingest only the requested canonical URLs without search. Unrelated known sources remain in the frontier for a cycle or maintenance run.
 - `maintain(projectId)`: conditional fetch, immutable changed snapshots and interpretation under the current schema.
 - `replay(projectId, sourceVersionIds?)`: interpret preserved source segments under the current approved schema without fetching again.
 - `reparse(projectId, sourceVersionIds?)`: apply the configured parser to preserved original bytes, then interpret under the current schema. With no IDs, select only current source versions. Preserve original segments and releases; a historical reparse cannot move the latest pointer backward. Does **not** publish.

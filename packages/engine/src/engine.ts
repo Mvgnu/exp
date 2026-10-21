@@ -599,13 +599,15 @@ export function createEngine(deps: EngineDependencies): Engine {
         await disagreements(execution, schema);
         await propose(execution, schema);
       } else {
-        for (const url of options.sourceUrls ?? project.seedUrls) await sourceFor(execution, url);
+        const sourceUrls = kind === 'ingest' ? options.sourceUrls ?? [] : options.sourceUrls ?? project.seedUrls;
+        const explicitUrls = kind === 'ingest' ? new Set(sourceUrls.map(canonicalizeUrl)) : null;
+        for (const url of sourceUrls) await sourceFor(execution, url);
         let schema: DomainSchema | null = project.currentSchemaId ? await repository.get('schemas', project.currentSchemaId) : null;
         const iterations = kind === 'cycle' ? project.budget.maxIterations : 1;
         for (let iteration = 0; iteration < iterations; iteration++) {
           if (kind === 'cycle' && !options.skipSearch) await discover(execution, iteration);
           const known = await repository.list('sources', { projectId });
-          const pending = diverse(known.filter(source => !execution.processed.has(source.id) && source.status !== 'blocked' && (iteration === 0 || source.status === 'pending' || source.status === 'failed')));
+          const pending = diverse(known.filter(source => (!explicitUrls || explicitUrls.has(source.url)) && !execution.processed.has(source.id) && source.status !== 'blocked' && (iteration === 0 || source.status === 'pending' || source.status === 'failed')));
           if (!pending.length) break;
           const remaining = project.budget.maxSources - execution.run.stats.sources + pending.filter(source => execution.countedSources.has(source.id)).length;
           if (remaining <= 0) throw new BudgetExceededError('Maximum source budget reached');

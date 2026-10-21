@@ -33,9 +33,13 @@ Exports `createEngine`, `createProject`, `BudgetExceededError`, `LeaseLostError`
 
 The PM-approved additive `Engine.reparse` contract applies the configured parser to verified preserved bytes, selects current versions by default, stores immutable parsed history, checks the source pointer inside a serializable transaction, rejects same-version parser behavior drift, and reinterprets under the approved schema. Historical reparsing never regresses a current source pointer. Failed/unusable parsing leaves the pointer intact and reports a failed run with an actionable acquisition finding. Publication remains explicit.
 
+Explicit ingest processes only its requested canonical URLs, including duplicate/fragment normalization. It leaves unrelated registry sources pending. Cycle and maintenance continue to process the broader known frontier.
+
 ## Verification record
 
 2026-10-21: domain typecheck/build passed and 25 real-store integration/adversarial tests passed. Tests cover discovery → schema gap → approval → replay → publication, preserved raw/version history, unchanged retry deduplication, source changes, scope separation, disagreement, stale/breaking approval, rollback version monotonicity, budget/source caps, invalid audit quarantine, missing identity, lease cancellation, database restart, escape-aware JSON evidence offsets, numeric-value grounding, ambiguous structured types, actual model lineage, and sibling HTML article/list plus Markdown numbered-list/table records through the real parser and publication. Reparse tests cover durable jobs, no source acquisition, preserved publication/history, current-only defaults, historical pointer guards, repeated reparse deduplication, parser failure/unusable output, parser-version drift rejection, cancellation before persistence, and truthful cancellation events without overwriting a replacement worker's run. A controlled real-store interleaving verifies that run status updates preserve concurrent schema approval, public rollback, and pause. The article regression failed against parser 1.0.0; list/table cases failed against 1.1.0; all pass against versioned parser 1.2.0. Root architecture/build gates run after PM integration.
+
+The approved ingest-scope follow-up passed typecheck/build and its focused durable-store regression: the acquisition boundary receives only the selected canonical URL, an unrelated known source remains pending, and subsequent maintenance fetches both. The root combined gate includes this additional test (26 engine tests total).
 
 ## Explicit remaining limits
 
