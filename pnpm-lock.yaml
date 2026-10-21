@@ -39,6 +39,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@deeplake/cli':
+        specifier: workspace:*
+        version: link:../cli
       '@deeplake/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -54,6 +57,9 @@ importers:
       '@deeplake/store':
         specifier: workspace:*
         version: link:../../packages/store
+      '@deeplake/worker':
+        specifier: workspace:*
+        version: link:../worker
       '@fastify/cors':
         specifier: ^11.1.0
         version: 11.3.1
@@ -90,6 +96,9 @@ importers:
 
   apps/worker:
     dependencies:
+      '@deeplake/cli':
+        specifier: workspace:*
+        version: link:../cli
       '@deeplake/core':
         specifier: workspace:*
         version: link:../../packages/core

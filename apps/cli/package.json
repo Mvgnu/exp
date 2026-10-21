@@ -15,5 +15,9 @@
     "@deeplake/ingest": "workspace:*",
     "@deeplake/engine": "workspace:*",
     "zod": "3.25.76"
+  },
+  "exports": {
+    "./runtime": "./src/runtime.ts",
+    "./demo": "./src/demo.ts"
   }
 }

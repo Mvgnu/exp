@@ -17,6 +17,8 @@
     "zod": "3.25.76",
     "fastify": "^5.6.0",
     "@fastify/cors": "^11.1.0",
-    "@fastify/rate-limit": "^10.3.0"
+    "@fastify/rate-limit": "^10.3.0",
+    "@deeplake/cli": "workspace:*",
+    "@deeplake/worker": "workspace:*"
   }
 }

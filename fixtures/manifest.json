@@ -1,0 +1,309 @@
+[
+  {
+    "url": "https://curricula.example/cs101/2026/1",
+    "path": "fixtures/curricula/cs101-2026-01.md",
+    "family": "module-handbook",
+    "title": "Foundations of Computing",
+    "fields": {
+      "code": "CS101",
+      "name": "Foundations of Computing",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Written exam",
+      "category": "Core",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/cs102/2026/2",
+    "path": "fixtures/curricula/cs102-2026-02.md",
+    "family": "module-handbook",
+    "title": "Programming Studio",
+    "fields": {
+      "code": "CS102",
+      "name": "Programming Studio",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 8,
+      "assessment": "Practical portfolio",
+      "category": "Core",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/ma110/2026/3",
+    "path": "fixtures/curricula/ma110-2026-03.md",
+    "family": "module-handbook",
+    "title": "Discrete Mathematics",
+    "fields": {
+      "code": "MA110",
+      "name": "Discrete Mathematics",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Written exam",
+      "category": "Core",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/ds201/2026/4",
+    "path": "fixtures/curricula/ds201-2026-04.md",
+    "family": "module-handbook",
+    "title": "Data Structures",
+    "fields": {
+      "code": "DS201",
+      "name": "Data Structures",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Written exam",
+      "category": "Core",
+      "term": "Spring",
+      "prerequisiteRule": {
+        "anyOf": [
+          "CS101",
+          "equivalent prior knowledge"
+        ],
+        "recommended": [
+          "CS102"
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://curricula.example/ai301/2026/5",
+    "path": "fixtures/curricula/ai301-2026-05.md",
+    "family": "module-handbook",
+    "title": "Machine Learning Systems",
+    "fields": {
+      "code": "AI301",
+      "name": "Machine Learning Systems",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 8,
+      "assessment": "Research project",
+      "category": "Elective",
+      "term": "Spring",
+      "prerequisiteRule": {
+        "allOf": [
+          "DS201",
+          "MA110"
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://curricula.example/db210/2026/6",
+    "path": "fixtures/curricula/db210-2026-06.md",
+    "family": "module-handbook",
+    "title": "Database Design",
+    "fields": {
+      "code": "DB210",
+      "name": "Database Design",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Practical portfolio",
+      "category": "Core",
+      "term": "Spring"
+    }
+  },
+  {
+    "url": "https://curricula.example/se220/2026/7",
+    "path": "fixtures/curricula/se220-2026-07.md",
+    "family": "module-handbook",
+    "title": "Software Engineering",
+    "fields": {
+      "code": "SE220",
+      "name": "Software Engineering",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 8,
+      "assessment": "Team project",
+      "category": "Core",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/nw230/2026/8",
+    "path": "fixtures/curricula/nw230-2026-08.md",
+    "family": "module-handbook",
+    "title": "Networks and Distributed Systems",
+    "fields": {
+      "code": "NW230",
+      "name": "Networks and Distributed Systems",
+      "institution": "Northbridge University",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Written exam",
+      "category": "Elective",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/cs101/2025/9",
+    "path": "fixtures/curricula/cs101-2025-09.md",
+    "family": "module-handbook",
+    "title": "Foundations of Computing",
+    "fields": {
+      "code": "CS101",
+      "name": "Foundations of Computing",
+      "institution": "Northbridge University",
+      "curriculum": "2025",
+      "credits": 5,
+      "assessment": "Written exam",
+      "category": "Core",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/bi240/2026/10",
+    "path": "fixtures/curricula/bi240-2026-10.md",
+    "family": "assessment-regulations",
+    "title": "Computational Biology",
+    "fields": {
+      "code": "BI240",
+      "name": "Computational Biology",
+      "institution": "Riverton Institute",
+      "curriculum": "2026",
+      "credits": 6,
+      "assessment": "Research project",
+      "category": "Elective",
+      "term": "Spring"
+    }
+  },
+  {
+    "url": "https://curricula.example/et250/2026/11",
+    "path": "fixtures/curricula/et250-2026-11.md",
+    "family": "assessment-regulations",
+    "title": "Ethics of Information",
+    "fields": {
+      "code": "ET250",
+      "name": "Ethics of Information",
+      "institution": "Riverton Institute",
+      "curriculum": "2026",
+      "credits": 4,
+      "assessment": "Essay",
+      "category": "Elective",
+      "term": "Autumn"
+    }
+  },
+  {
+    "url": "https://curricula.example/ds310/2026/12",
+    "path": "fixtures/curricula/ds310-2026-12.md",
+    "family": "assessment-regulations",
+    "title": "Applied Data Science",
+    "fields": {
+      "code": "DS310",
+      "name": "Applied Data Science",
+      "institution": "Riverton Institute",
+      "curriculum": "2026",
+      "credits": 10,
+      "assessment": "Research project",
+      "category": "Elective",
+      "term": "Spring"
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/1",
+    "path": "fixtures/procurement/notice-01.md",
+    "family": "procurement-notice",
+    "title": "Municipal cloud infrastructure",
+    "fields": {
+      "reference": "DL-2026-101",
+      "name": "Municipal cloud infrastructure",
+      "authority": "City of Linden",
+      "estimatedValue": 740000,
+      "deadline": "2026-12-04",
+      "category": "IT services",
+      "region": "North",
+      "year": "2026"
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/2",
+    "path": "fixtures/procurement/notice-02.md",
+    "family": "procurement-notice",
+    "title": "Library energy retrofit",
+    "fields": {
+      "reference": "DL-2026-102",
+      "name": "Library energy retrofit",
+      "authority": "City of Harbor",
+      "estimatedValue": 1250000,
+      "deadline": "2026-11-28",
+      "category": "Construction",
+      "region": "West",
+      "year": "2026"
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/3",
+    "path": "fixtures/procurement/notice-03.md",
+    "family": "procurement-notice",
+    "title": "School cleaning framework",
+    "fields": {
+      "reference": "DL-2026-103",
+      "name": "School cleaning framework",
+      "authority": "County of Birch",
+      "estimatedValue": 360000,
+      "deadline": "2026-12-12",
+      "category": "Facility services",
+      "region": "South",
+      "year": "2026",
+      "renewalOption": {
+        "years": 2,
+        "maximumTotalYears": 4
+      }
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/4",
+    "path": "fixtures/procurement/notice-04.md",
+    "family": "procurement-notice",
+    "title": "Water quality monitoring",
+    "fields": {
+      "reference": "DL-2026-104",
+      "name": "Water quality monitoring",
+      "authority": "River District",
+      "estimatedValue": 185000,
+      "deadline": "2026-11-22",
+      "category": "Environmental services",
+      "region": "East",
+      "year": "2026"
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/5",
+    "path": "fixtures/procurement/notice-05.md",
+    "family": "procurement-notice",
+    "title": "Accessible public transport study",
+    "fields": {
+      "reference": "DL-2026-105",
+      "name": "Accessible public transport study",
+      "authority": "City of Meadow",
+      "estimatedValue": 95000,
+      "deadline": "2026-12-18",
+      "category": "Consulting",
+      "region": "North",
+      "year": "2026"
+    }
+  },
+  {
+    "url": "https://procurement.example/notices/6",
+    "path": "fixtures/procurement/notice-06.md",
+    "family": "award-register",
+    "title": "Municipal cloud infrastructure",
+    "fields": {
+      "reference": "DL-2026-101",
+      "name": "Municipal cloud infrastructure",
+      "authority": "City of Linden",
+      "estimatedValue": 780000,
+      "deadline": "2026-12-04",
+      "category": "IT services",
+      "region": "North",
+      "year": "2026"
+    }
+  }
+]
