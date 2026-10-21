@@ -3530,3 +3530,15 @@ details summary {
 /* Keep top-layer drawers anchored to the phone viewport when a wide table is behind them. */
 html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 760px) { .modal.drawer { inset: 0 auto 0 0; } }
+@media (max-width: 760px) {
+  .modal {
+    position: fixed;
+    inset: 0 auto 0 0;
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+}
