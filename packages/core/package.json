@@ -1,0 +1,19 @@
+{
+  "name": "@deeplake/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/contract.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run --root ../.. packages/core/test",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "3.25.76",
+    "ajv": "^8.17.1"
+  }
+}

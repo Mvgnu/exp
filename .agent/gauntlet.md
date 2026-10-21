@@ -1,0 +1,5 @@
+# Gauntlet
+
+Green gates show correctness against the spec; quality requires an external bar. Each SPEC names an outside work and one measurable property. A fresh critic receives only the goal, bar, rules, and built artifact. No builder report/history. Critics inspect actual running pages or executed package behavior. If they cannot inspect it, the round fails. Report only the largest remaining gap, never fix it. PM returns the gap to the builder and repeats until an argued pass, diminishing meaningful gains, or explicit PM stop with the gap recorded.
+
+For sites, build then serve out/ and inspect desktop/phone, navigation, source inspection, filters and reload. For engine packages, execute an end-to-end fixture and inspect durable evidence/history. Finish a milestone with a fresh smoothing critic and an onboarding drill: create a throwaway second-domain configuration; every necessary package edit is a gap. Blind A/B where practical. Unknown live-provider accuracy is recorded only after checking which credentials/capabilities are actually available.

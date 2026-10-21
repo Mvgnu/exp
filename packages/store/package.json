@@ -1,0 +1,21 @@
+{
+  "name": "@deeplake/store",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/contract.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run --root ../.. packages/store/test",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deeplake/core": "workspace:*",
+    "@electric-sql/pglite": "0.5.10",
+    "pg": "^8.16.0",
+    "zod": "3.25.76"
+  }
+}

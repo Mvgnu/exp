@@ -1,0 +1,22 @@
+{
+  "name": "@deeplake/engine",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/contract.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run --root ../.. packages/engine/test",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deeplake/core": "workspace:*",
+    "@deeplake/store": "workspace:*",
+    "@deeplake/providers": "workspace:*",
+    "@deeplake/ingest": "workspace:*",
+    "zod": "3.25.76"
+  }
+}

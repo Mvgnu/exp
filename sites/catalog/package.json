@@ -1,0 +1,20 @@
+{
+  "name": "@site/catalog",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "next build --webpack",
+    "dev": "next dev",
+    "test": "vitest run --root ../.. sites/catalog/test --passWithNoTests"
+  },
+  "dependencies": {
+    "@deeplake/core": "workspace:*",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "lucide-react": "^0.468.0",
+    "zod": "3.25.76"
+  }
+}

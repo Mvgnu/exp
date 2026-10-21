@@ -1,0 +1,19 @@
+{
+  "name": "@deeplake/worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run --root ../.. apps/worker/test",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deeplake/core": "workspace:*",
+    "@deeplake/store": "workspace:*",
+    "@deeplake/providers": "workspace:*",
+    "@deeplake/ingest": "workspace:*",
+    "@deeplake/engine": "workspace:*",
+    "zod": "3.25.76"
+  }
+}

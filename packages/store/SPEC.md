@@ -1,0 +1,28 @@
+---
+name: store
+description: "Durable evidence and leased work"
+paths:
+  owned: [packages/store/src/, packages/store/migrations/, packages/store/README.md]
+  tests: [packages/store/test/]
+exports: [see src/index.ts and src/contract.ts]
+consumes: [see package.json]
+verification:
+  check: pnpm --filter @deeplake/store check
+  test: pnpm --filter @deeplake/store test
+  build: pnpm --filter @deeplake/store build
+bar:
+  reference: "PostgreSQL SKIP LOCKED queue semantics"
+  property: "A process can restart without losing evidence, a retry produces no duplicate records, and an expired worker cannot complete another worker’s lease."
+---
+
+# Durable evidence and leased work
+
+Implement createStore(options): Promise<Repository> and FileBlobStore(directory). PGlite local/memory and pg production share SQL migration. Typed records validated with CollectionSchemas; immutable collections reject changed overwrite. Transactions are real, no in-memory pretend transaction. list is deterministic with pagination; where keys validated. Blob keys SHA-256 only and writes atomic. Durable jobs unique key, atomic claim, recovery, bounded retries, heartbeat/fence token, cancel. Budget reservations transactional and idempotent. Snapshot collects all records with actual jobs. Export store migrations and document production setup.
+
+## Write gate
+
+`src/contract.ts` and `package.json` remain PM-owned even inside the listed paths. Read `specs/00_engine.md` and `.agent/lop.md` / `.agent/gauntlet.md`. Any additional external dependency requires a PM manifest change. Own SPEC may be updated to report actual exports and limitations.
+
+## Required verification
+
+Meaningful adversarial tests and a usable integration surface; no mirror-only tests. Run the listed commands and `pnpm test:architecture` after integration. Record actual outcomes, disagreements, and remaining broken behavior. A fresh critic inspects real behavior.

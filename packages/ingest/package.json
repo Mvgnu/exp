@@ -1,0 +1,23 @@
+{
+  "name": "@deeplake/ingest",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/contract.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run --root ../.. packages/ingest/test",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deeplake/core": "workspace:*",
+    "cheerio": "^1.1.2",
+    "fast-xml-parser": "^5.3.0",
+    "undici": "^7.16.0",
+    "ipaddr.js": "^2.2.0",
+    "robots-parser": "^3.0.1"
+  }
+}

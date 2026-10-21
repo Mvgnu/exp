@@ -1,0 +1,36 @@
+{
+  "name": "deeplake",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "check": "pnpm -r check && tsc --noEmit -p tsconfig.tools.json",
+    "test": "vitest run --exclude test/architecture/**",
+    "test:architecture": "vitest run test/architecture",
+    "test:e2e": "playwright test",
+    "build": "pnpm --filter @site/workbench build && pnpm --filter @site/catalog build",
+    "demo": "tsx apps/cli/src/index.ts demo",
+    "dev": "pnpm --filter @site/workbench dev",
+    "api": "tsx apps/api/src/main.ts",
+    "worker": "tsx apps/worker/src/main.ts",
+    "cli": "tsx apps/cli/src/index.ts",
+    "verify": "pnpm check && pnpm test && pnpm test:architecture && pnpm demo && pnpm build && pnpm test:e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.15.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "5.9.3",
+    "tsx": "^4.20.0",
+    "vitest": "5.0.5"
+  },
+  "dependencies": {
+    "zod": "3.25.76"
+  }
+}
